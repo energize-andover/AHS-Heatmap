@@ -4,9 +4,10 @@ from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfpage import PDFTextExtractionNotAllowed
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfinterp import PDFPageInterpreter
-from pdfminer.pdfdevice import PDFDevice
 from pdfminer.layout import LAParams
 from pdfminer.converter import PDFPageAggregator
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPDF
 import pdfminer
 import pandas as pd
 import cairosvg
