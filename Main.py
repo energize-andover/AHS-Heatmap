@@ -16,6 +16,7 @@ svg_height = None
 HOSTNAME = None
 PORT = None
 DATA_PATH = None
+data = None
 
 
 def init(width, height, hostname, port, data_path):
@@ -87,15 +88,20 @@ def get_air_value_df(hostname, port, selected_room):
 
 
 def get_all_room_data(selected_rooms, floor):
-    data = None
+    room_data = None
 
     for row_index, row in selected_rooms.iterrows():
         if row['Label'] in df['text'].unique() or row['Label'] in [str(floor) + text for text in df['text'].unique()]:
-            global data
-
-            if data is None:
-                data = get_air_value_df(HOSTNAME, PORT, row['Label'])
+            if room_data is None:
+                room_data = get_air_value_df(HOSTNAME, PORT, row['Label'])
             else:
-                data = data.append(get_air_value_df(HOSTNAME, PORT, row['Label']), ignore_index=True)
+                room_data = room_data.append(get_air_value_df(HOSTNAME, PORT, row['Label']), ignore_index=True)
 
-    return data
+    return room_data
+
+
+def update_with_data(temp_data):
+    global data
+    data = temp_data
+
+    return 'Ok!' if data is not None else 'Error!'

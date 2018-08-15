@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json, jsonify
 from Main import *
 import os
 import pandas as pd
@@ -17,7 +17,6 @@ PORT = '8000'
 RED_VALUE = (80, 900)
 GREEN_VALUE = (65, 600)
 
-
 with open(secret_key_path) as file:
     key = file.readline()
     app.secret_key = key if key else os.urandom(64)
@@ -32,8 +31,7 @@ def root():
 
 @app.route("/getViewBox", methods={"GET"})
 def get_view_box():
-    global svg_width
-    global svg_height
+    global svg_width, svg_height
 
     svg_width = request.args.get("width")
     svg_height = request.args.get("height")
@@ -55,9 +53,17 @@ def get_all_data():
     df = pd.read_csv(csv_path)
 
     floor = request.args.get("floor")
-    filtered_rooms = df[df['Label'].str.startswith(str(floor))]
+    filtered_rooms = df[df['Room'].str.startswith(str(floor))]
 
-    data = get_all_room_data(filtered_rooms, floor)
+    # data = get_all_room_data(filtered_rooms, floor)
+    temp_data = pd.read_csv(os.path.join('data', 'csv', 'ahs_default_data.csv'))
+
+    common = temp_data.merge(filtered_rooms, on=['Room'])
+    temp_data = temp_data.drop(labels=['Unnamed: 0'], axis=1)  # Remove the duplicated index column
+    temp_data = temp_data[(temp_data.Room.isin(common.Room))]
+    temp_data = temp_data.reset_index(drop=True)  # Reset to count from 0 after dropping
+
+    return json.dumps({'rooms': temp_data['Room'].unique().tolist()})
 
 
 if __name__ == "__main__":

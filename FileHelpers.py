@@ -6,11 +6,10 @@ from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.layout import LAParams
 from pdfminer.converter import PDFPageAggregator
-from svglib.svglib import svg2rlg
-from reportlab.graphics import renderPDF
 import pdfminer
 import pandas as pd
 import cairosvg
+import os
 
 
 def get_text_and_coordinates(pdf_path):
@@ -78,7 +77,6 @@ def get_text_and_coordinates(pdf_path):
         # read the page into a layout object
         interpreter.process_page(page)
         layout = device.get_result()
-        print(page.mediabox)
         # extract text from this object
         df = parse_obj(layout._objs)
         return df
@@ -86,3 +84,14 @@ def get_text_and_coordinates(pdf_path):
 
 def svg_to_png(svg_path, output_path):
     cairosvg.svg2png(url=svg_path, write_to=output_path)
+
+
+def svg_to_pdf(svg_path, pdf_path):
+    # Delete the file if it exists, as inkscape won't overwrite
+    try:
+        os.remove(pdf_path)
+    except OSError:
+        pass
+
+    options = '--without-gui --export-area-page'
+    os.system('inkscape %s "%s" --export-pdf="%s.pdf"' % (options, svg_path, pdf_path))

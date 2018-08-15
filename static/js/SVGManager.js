@@ -1,4 +1,5 @@
 function sleep(ms) {
+
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -23,4 +24,8 @@ async function load_svg() {
 
     tryViewBox(maxTries, viewBoxDimensions);
     init(maxTries);
+    
+    getAllData(2);
+
+    let rooms = getRooms();
 }

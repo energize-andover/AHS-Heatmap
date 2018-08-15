@@ -1,3 +1,5 @@
+let rooms = [];
+
 let viewBoxTryCounter = 0;
 
 function tryViewBox(maxTries, viewBoxDimensions) {
@@ -46,4 +48,23 @@ function init(maxTries) {
         document.getElementById("errors").innerHTML += "<br />Sorry, but an internal error has occurred whilst starting up. Please try again later..."
 
     }
+}
+
+function getAllData(floor) {
+
+    $.ajax({
+        dataType: "json",
+        url: "/getAllData",
+        data: {"floor": floor},
+        async: false,
+    }).fail(() => {
+        document.getElementById("errors").innerHTML += "<br />Sorry, but an internal error has occurred whilst getting data. Please try again later...";
+    }).done((data) => {
+        rooms = data.rooms;
+    });
+
+}
+
+function getRooms(){
+    return rooms;
 }
