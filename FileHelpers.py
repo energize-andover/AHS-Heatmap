@@ -6,6 +6,7 @@ from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.layout import LAParams
 from pdfminer.converter import PDFPageAggregator
+from pathlib import Path
 import pdfminer
 import pandas as pd
 import cairosvg
@@ -94,4 +95,7 @@ def svg_to_pdf(svg_path, pdf_path):
         pass
 
     options = '--without-gui --export-area-page'
-    os.system('inkscape %s "%s" --export-pdf="%s.pdf"' % (options, svg_path, pdf_path))
+    os.system('inkscape %s "%s" --export-pdf="%s"' % (options, svg_path, pdf_path))
+
+    while not Path(pdf_path).is_file():
+        continue  # Wait until it's completed

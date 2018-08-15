@@ -28,4 +28,5 @@ async function load_svg() {
     getAllData(2);
 
     let rooms = getRooms();
+    console.log(rooms);
 }

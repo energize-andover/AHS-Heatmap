@@ -28,6 +28,8 @@ def init(width, height, hostname, port, data_path):
 
     df = get_text_and_coordinates(pdf_path)
 
+    svg_to_pdf(svg_path, pdf_path)
+
     # Gets PDF size in pts (1pt = 1/72 in) [0, 0, width, height]
     media_box = PdfFileReader(open(pdf_path, 'rb')).getPage(0).mediaBox
 
