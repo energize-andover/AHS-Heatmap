@@ -22,6 +22,7 @@ If you want to run this script on your server (or something along those lines), 
 * [Cairosvg](https://cairosvg.org/)
 * [Flask](http://flask.pocoo.org/)
 * [Inkscape](https://inkscape.org/en/) (installed and added to the PATH)
+* [Microsoft Visual C++ Compiler](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017)
 * [Pandas](http://pandas.pydata.org/)
 * [Pdfminer](https://pypi.org/project/pdfminer/)
 * [PyPDF2](https://pypi.org/project/PyPDF2/)
