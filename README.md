@@ -16,7 +16,7 @@ If the floor plan doesn't load, it's hosted [here](https://i.imgur.com/Mt1kolY.p
 
 If this functionality is implemented, temperature data should be inputted from a CSV file.
 
-###Dependencies
+### Dependencies
 If you want to run this script on your server (or something along those lines), it requires the following:
 * [Cairo](https://anaconda.org/conda-forge/cairo)
 * [Cairosvg](https://cairosvg.org/)
@@ -26,7 +26,7 @@ If you want to run this script on your server (or something along those lines), 
 * [Pdfminer](https://pypi.org/project/pdfminer/)
 * [PyPDF2](https://pypi.org/project/PyPDF2/)
 
-###Setup
+### Setup
 
 To run this program on your computer, follow these steps:
 1. Clone this repository.
