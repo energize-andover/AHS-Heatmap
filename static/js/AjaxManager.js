@@ -65,6 +65,31 @@ function getAllData(floor) {
 
 }
 
-function getRooms(){
+function getRooms() {
     return rooms;
+}
+
+let currentRoomInfo = [];
+
+function getRoomInfo(room) {
+    // [[topLeftX, topLeftY, bottomLeftX, bottomLeftY, bottomLeftX, bottomLeftY, topRightX, topRightY] (All as a % of the width or height), color (Do it later), temperature, units]
+    $.ajax({
+        dataType: "json",
+        url: "/getData",
+        data: {"room": room},
+        async: false,
+    }).done(json => {
+        if (json.status === "Ok!") {
+            currentRoomInfo = [json.coords, json.measure, json.units]
+        }
+        else {
+            document.getElementById("errors").innerHTML += `<br />Sorry, but an internal error has occurred whilst getting data for room ${room}. Please try again later...`;
+        }
+    }).fail(() => {
+        document.getElementById("errors").innerHTML += `<br />Sorry, but an internal error has occurred whilst getting data for room ${room}. Please try again later...`;
+    });
+}
+
+function getCurrentRoomInfo() {
+    return currentRoomInfo;
 }

@@ -11,6 +11,8 @@ svg_height = None
 
 csv_path = None
 
+temperature_data = None
+
 HOSTNAME = '10.12.4.98'
 PORT = '8000'
 
@@ -47,7 +49,7 @@ def init_main():
 
 @app.route("/getAllData", methods={"GET"})
 def get_all_data():
-    global csv_path
+    global csv_path, temperature_data
     csv_path = os.path.join('data', 'csv', 'ahs_air.csv')
 
     df = pd.read_csv(csv_path)
@@ -63,7 +65,28 @@ def get_all_data():
     temp_data = temp_data[(temp_data.Room.isin(common.Room))]
     temp_data = temp_data.reset_index(drop=True)  # Reset to count from 0 after dropping
 
+    temperature_data = temp_data
+
     return json.dumps({'rooms': temp_data['Room'].unique().tolist()})
+
+
+@app.route("/getData", methods={"GET"})
+def get_data():
+    global temperature_data
+
+    if temperature_data is not None:
+        room = request.args.get("room")
+
+        selected_row = temperature_data.loc[temperature_data['Room'] == str(room)]
+
+        measure = int(selected_row.iloc[0]['Temperature'])
+        units = str(selected_row.iloc[0]['Temperature Units'])
+
+        coordinates = get_room_coordinates(room)
+        if coordinates:
+            return json.dumps({"status": "Ok!", "coords": coordinates, "measure": measure, "units": units})
+
+    return json.dumps({"status": "No Data!"})
 
 
 if __name__ == "__main__":
