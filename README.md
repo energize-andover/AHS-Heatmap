@@ -18,14 +18,12 @@ If this functionality is implemented, temperature data should be inputted from a
 
 ### Dependencies
 If you want to run this script on your server (or something along those lines), it requires the following:
-* [Cairo](https://anaconda.org/conda-forge/cairo)
-* [Cairosvg](https://cairosvg.org/)
 * [Flask](http://flask.pocoo.org/)
 * [Inkscape](https://inkscape.org/en/) (installed and added to the PATH)
-* [Microsoft Visual C++ Compiler](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017)
 * [Pandas](http://pandas.pydata.org/)
-* [Pdfminer](https://pypi.org/project/pdfminer/)
+* [Pdfminer.six](https://pypi.org/project/pdfminer.six/)
 * [PyPDF2](https://pypi.org/project/PyPDF2/)
+* [Python 3+](https://www.python.org/downloads/)
 
 ### Setup
 
