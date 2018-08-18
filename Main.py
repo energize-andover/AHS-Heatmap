@@ -1,11 +1,9 @@
-import os
-import argparse
-import pandas as pd
 import datetime
 import time
 from bacnet_gateway_requests import get_value_and_units
 from PyPDF2 import PdfFileReader
 from FileHelpers import *
+from colour import Color
 
 pdf_path = None
 svg_path = None
@@ -18,6 +16,12 @@ HOSTNAME = None
 PORT = None
 DATA_PATH = None
 data = None
+
+BLUE_VALUE = (60, 600)
+GREEN_VALUE = (70, 800)
+RED_VALUE = (80, 1000)
+
+GRADIENTS = generate_gradients(BLUE_VALUE, GREEN_VALUE, RED_VALUE)
 
 
 def init(hostname, port, data_path):
@@ -110,7 +114,16 @@ def update_with_data(temp_data):
     return 'Ok!' if data is not None else 'Error!'
 
 
-def fill_room(room, measure, units):
+def get_color_index_from_measure(measure, c02):
+    if measure <= BLUE_VALUE[c02]:
+        return 0
+    elif measure >= RED_VALUE[c02]:
+        return len(GRADIENTS[c02]) - 1
+    else:
+        return (RED_VALUE[c02] - BLUE_VALUE[c02]) - (RED_VALUE[c02] - measure)
+
+
+def fill_chosen_room(room, measure, units):
     while DATA_PATH is None:
         time.sleep(1)
         continue
@@ -121,6 +134,13 @@ def fill_room(room, measure, units):
         x = int(round(selected_row['x0']))
         y = int(round(selected_row['y0']))
 
-        color = (255, 255, 0, 255)
+        color = GRADIENTS[0][get_color_index_from_measure(measure, 0)].rgb
+        color = list(tuple([int(round(255 * x)) for x in color]))
+        color.append(200)
+        color = tuple(color)
 
         flood_fill(png_path, (x, y), color)
+
+        return True
+
+    return False

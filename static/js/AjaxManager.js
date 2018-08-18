@@ -69,10 +69,8 @@ function getRooms() {
     return rooms;
 }
 
-let currentRoomInfo = [];
 
-function getRoomInfo(room) {
-    // [[topLeftX, topLeftY, bottomLeftX, bottomLeftY, bottomLeftX, bottomLeftY, topRightX, topRightY] (All as a % of the width or height), color (Do it later), temperature, units]
+function fillRoom(room) {
     $.ajax({
         dataType: "json",
         url: "/fillRoom",
@@ -80,7 +78,9 @@ function getRoomInfo(room) {
         async: false,
     }).done(json => {
         if (json.status === "Ok!") {
-            currentRoomInfo = [json.coords, json.measure, json.units]
+            // Do nothing
+        } else if (json.status.startsWith('No room labeled')) {
+            document.getElementById("errors").innerHTML += `<br />Sorry, but an internal error has occurred: ${json.status}`;
         }
         else {
             document.getElementById("errors").innerHTML += `<br />Sorry, but an internal error has occurred whilst getting data for room ${room}. Please try again later...`;
@@ -88,8 +88,4 @@ function getRoomInfo(room) {
     }).fail(() => {
         document.getElementById("errors").innerHTML += `<br />Sorry, but an internal error has occurred whilst getting data for room ${room}. Please try again later...`;
     });
-}
-
-function getCurrentRoomInfo() {
-    return currentRoomInfo;
 }

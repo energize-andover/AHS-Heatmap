@@ -82,8 +82,12 @@ def fill_room():
         measure = int(selected_row.iloc[0]['Temperature'])
         units = str(selected_row.iloc[0]['Temperature Units'])
 
-        fill_room(room, measure, units)
-        return json.dumps({"status": "Ok!", "measure": measure, "units": units})
+        room_exists = fill_chosen_room(room, measure, units)
+
+        if room_exists:
+            return json.dumps({"status": "Ok!"})
+        else:
+            return json.dumps({"status": "No room labeled \'{0}\' found!".format(room)})
 
     return json.dumps({"status": "No Data!"})
 
