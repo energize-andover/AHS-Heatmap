@@ -20,7 +20,7 @@ DATA_PATH = None
 data = None
 
 
-def init(width, height, hostname, port, data_path):
+def init(hostname, port, data_path):
     global svg_width, svg_height, media_box, pdf_path, svg_path, png_path, coords_df, HOSTNAME, PORT, DATA_PATH
 
     pdf_path = os.path.join('static', 'pdf', 'Andover HS level 3.pdf')
@@ -34,10 +34,7 @@ def init(width, height, hostname, port, data_path):
     # Gets PDF size in pts (1pt = 1/72 in) [0, 0, width, height]
     media_box = PdfFileReader(open(pdf_path, 'rb')).getPage(0).mediaBox
 
-    svg_width = width
-    svg_height = height
-
-    svg_to_png(svg_path, png_path, svg_width, svg_height)
+    svg_to_png(svg_path, png_path, 72)
 
     HOSTNAME = hostname
     PORT = port
@@ -113,8 +110,7 @@ def update_with_data(temp_data):
     return 'Ok!' if data is not None else 'Error!'
 
 
-def get_room_coordinates(room):
-
+def fill_room(room, measure, units):
     while DATA_PATH is None:
         time.sleep(1)
         continue
@@ -122,15 +118,9 @@ def get_room_coordinates(room):
     selected_row = coords_df.loc[coords_df['text'] == str(room)]
 
     if not selected_row.empty:
-        pdf_width_pt = media_box[2]
-        pdf_height_pt = media_box[3]
+        x = int(round(selected_row['x0']))
+        y = int(round(selected_row['y0']))
 
-        width_percent = selected_row['x0'] / pdf_width_pt
-        height_percent = selected_row['y0'] / pdf_height_pt
+        color = (255, 255, 0, 255)
 
-        coords = get_room_coords(png_path, [width_percent, height_percent])
-
-        return [coords[0][0], coords[0][1], coords[1][0], coords[1][1], coords[2][0], coords[2][1], coords[3][0],
-                coords[3][1]]
-
-    return []
+        flood_fill(png_path, (x, y), color)

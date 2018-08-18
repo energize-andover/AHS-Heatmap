@@ -75,7 +75,7 @@ function getRoomInfo(room) {
     // [[topLeftX, topLeftY, bottomLeftX, bottomLeftY, bottomLeftX, bottomLeftY, topRightX, topRightY] (All as a % of the width or height), color (Do it later), temperature, units]
     $.ajax({
         dataType: "json",
-        url: "/getData",
+        url: "/fillRoom",
         data: {"room": room},
         async: false,
     }).done(json => {

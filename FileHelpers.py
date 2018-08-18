@@ -7,11 +7,10 @@ from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.layout import LAParams
 from pdfminer.converter import PDFPageAggregator
 from pathlib import Path
+from PIL import Image, ImageDraw
 import pdfminer
 import pandas as pd
 import os
-import cv2
-import numpy as np
 
 
 def get_text_and_coordinates(pdf_path):
@@ -84,7 +83,7 @@ def get_text_and_coordinates(pdf_path):
         return df
 
 
-def svg_to_png(svg_path, output_path, width, height):
+def svg_to_png(svg_path, output_path, dpi):
     # Delete the file if it exists, as inkscape won't overwrite
     try:
         os.remove(output_path)
@@ -92,8 +91,8 @@ def svg_to_png(svg_path, output_path, width, height):
         pass
 
     options = '--without-gui --export-area-page --export-background="#ffffff"'
-    os.system('inkscape %s "%s" --export-width="%s" --export-height="%s" --export-png="%s"' % (
-    options, svg_path, output_path, width, height))
+    os.system('inkscape %s "%s" --export-dpi=%s --export-png="%s"' % (
+        options, svg_path, dpi, output_path))
 
     while not Path(output_path).is_file():
         continue  # Wait until it's completed
@@ -113,59 +112,12 @@ def svg_to_pdf(svg_path, pdf_path):
         continue  # Wait until it's completed
 
 
-def get_room_coords(png_path, room_coords):
-    img = cv2.imread(png_path, cv2.IMREAD_COLOR)
+def flood_fill(png_path, room_coords, color):
+    img = Image.open(png_path)
 
-    x = room_coords[0]  # room_coords is coordinates to bottom left corner, as a percentage of the width and height
-    y = room_coords[1]
+    width, height = img.size
 
-    height = img.shape[0]
-    width = img.shape[1]
+    coordinate = (room_coords[0], height - room_coords[1])
 
-    # Turn the percentages into pixel measurements
-    x *= width
-    y *= height
-
-    x = int(round(x))
-    y = int(round(y))
-
-    # Top Left
-    while not np.array_equal(img[x, y], np.array([0, 0, 0])):
-        x -= 1
-
-    x += 1  # Get out of the wall
-    while not (np.array_equal(img[x, y], np.array([0, 0, 0]))):
-        y += 1
-
-    y -= 1  # Get out of the wall
-
-    top_left = (x / width, y / height)
-
-    # Bottom Left
-
-    while not (np.array_equal(img[x, y], np.array([0, 0, 0]))):
-        y -= 1
-
-    y += 1  # Get out of the wall
-
-    bottom_left = (x / width, y / height)
-
-    # Bottom Right
-
-    while not (np.array_equal(img[x, y], np.array([0, 0, 0]))):
-        x += 1
-
-    x -= 1  # Get out of the wall
-
-    bottom_right = (x / width, y / height)
-
-    # Top Left
-
-    while not (np.array_equal(img[x, y], np.array([0, 0, 0]))):
-        y += 1
-
-    y -= 1  # Get out of the wall
-
-    top_right = (x / width, y / height)
-
-    return [top_left, bottom_left, bottom_right, top_right]
+    ImageDraw.floodfill(img, coordinate, value=color, thresh=5)
+    img.save(png_path)

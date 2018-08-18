@@ -43,7 +43,7 @@ def get_view_box():
 
 @app.route("/init")
 def init_main():
-    success = init(svg_width, svg_height, HOSTNAME, PORT, 'AHS')
+    success = init(HOSTNAME, PORT, 'AHS')
     return json.dumps({'status': success})
 
 
@@ -70,8 +70,8 @@ def get_all_data():
     return json.dumps({'rooms': temp_data['Room'].unique().tolist()})
 
 
-@app.route("/getData", methods={"GET"})
-def get_data():
+@app.route("/fillRoom", methods={"GET"})
+def fill_room():
     global temperature_data
 
     if temperature_data is not None:
@@ -82,9 +82,8 @@ def get_data():
         measure = int(selected_row.iloc[0]['Temperature'])
         units = str(selected_row.iloc[0]['Temperature Units'])
 
-        coordinates = get_room_coordinates(room)
-        if coordinates:
-            return json.dumps({"status": "Ok!", "coords": coordinates, "measure": measure, "units": units})
+        fill_room(room, measure, units)
+        return json.dumps({"status": "Ok!", "measure": measure, "units": units})
 
     return json.dumps({"status": "No Data!"})
 
