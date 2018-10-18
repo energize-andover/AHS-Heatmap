@@ -18,11 +18,15 @@ PORT = '8000'
 
 RED_VALUE = (80, 900)
 GREEN_VALUE = (65, 600)
-
-with open(secret_key_path) as file:
-    key = file.readline()
-    app.secret_key = key if key else os.urandom(64)
-
+try:
+    with open(secret_key_path) as file:
+        key = file.readline()
+        if key:
+            app.secret_key = key
+        else:
+            raise FileNotFoundError('No secret ket in file!')
+except FileNotFoundError:
+    app.secret_key = os.urandom(64)
 
 @app.route("/")
 @app.route("/index")

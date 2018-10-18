@@ -1,9 +1,8 @@
 import datetime
 import time
-from bacnet_gateway_requests import get_value_and_units
+from bacnet_gateway_requests import *
 from PyPDF2 import PdfFileReader
 from FileHelpers import *
-from colour import Color
 
 pdf_path = None
 svg_path = None

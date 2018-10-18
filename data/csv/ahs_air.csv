@@ -1,4 +1,4 @@
-Room,Facility,Temperature,CO2
+Label,Facility,Temperature,CO2
 116,ahs,3001071,
 137,ahs,3011595,3011592
 138,ahs,3001201,
@@ -26,7 +26,7 @@ Room,Facility,Temperature,CO2
 249,ahs,3009875,3009878
 251,ahs,3010431,3010434
 253,ahs,3010481,3010484
-255,ahs,3011366,3011369
+255A&B,ahs,3011366,3011369
 260A,ahs,3001161,
 260B,ahs,3001177,
 264A,ahs,3001515,3001503
@@ -92,7 +92,7 @@ Main Lobby,ahs,3000213,
 Computer Office ,ahs,3000522,
 Admin Office,ahs,3000476,
 CC Scene Shop,ahs,3002109,3002114
-CC 	Entry Hall & Common,ahs,3002081,3002086
+CC  Entry Hall & Common,ahs,3002081,3002086
 CC Stage,ahs,3002053,3002058
 CC Seating,ahs,3002025,3002030
 CC Band & Choral ZN1,ahs,3001988,3001996
