@@ -12,8 +12,6 @@ Here is an example of a properly formatted floor plan:
 
 ![Floor Plan](https://i.imgur.com/Mt1kolY.png)
 
-If the floor plan doesn't load, it's hosted [here](https://i.imgur.com/Mt1kolY.png)
-
 If this functionality is implemented, temperature data should be inputted from a CSV file.
 
 ### Dependencies
