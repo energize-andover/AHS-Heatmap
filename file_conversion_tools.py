@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 
+
 def svg_to_png(svg_path, png_path, dpi):
     # Delete the file if it exists, as inkscape won't overwrite
     remove_file(png_path)
