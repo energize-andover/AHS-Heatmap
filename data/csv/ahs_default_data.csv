@@ -1,4 +1,13 @@
-,Date / Time,Room,Temperature,Temperature Units,CO2 Level,CO2 Units,Floor,Wing
+
+138,71,deg F,,
+139,67,deg F,540,ppm
+201,72,deg F,957,ppm
+203,72,deg F,1111,ppm
+205,74,deg F,904,ppm
+207,67,deg F,1087,ppm
+209,70,deg F,790,ppm
+211,71,deg F,-232,ppm
+215,71,deg F,601,ppm,Date / Time,Room,Temperature,Temperature Units,CO2 Level,CO2 Units,Floor,Wing
 0,08/02/2018 12:18,116,71,°F,,,1,A
 1,08/02/2018 12:18,137,73,°F,522,ppm,1,A
 2,08/02/2018 12:18,138,76,°F,,,1,A

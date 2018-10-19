@@ -1,17 +1,10 @@
-from pdfminer.pdfparser import PDFParser
-from pdfminer.pdfdocument import PDFDocument
-from pdfminer.pdfpage import PDFPage
-from pdfminer.pdfpage import PDFTextExtractionNotAllowed
-from pdfminer.pdfinterp import PDFResourceManager
-from pdfminer.pdfinterp import PDFPageInterpreter
-from pdfminer.layout import LAParams
-from pdfminer.converter import PDFPageAggregator
-from pathlib import Path
-from PIL import Image, ImageDraw
-from colour import Color
 import pdfminer
 import pandas as pd
-import os
+from pdfminer.pdfpage import *
+from pdfminer.pdfinterp import *
+from pdfminer.layout import LAParams
+from pdfminer.converter import PDFPageAggregator
+from PyPDF2 import PdfFileReader
 
 
 def get_text_and_coordinates(pdf_path):
@@ -84,56 +77,5 @@ def get_text_and_coordinates(pdf_path):
         return df
 
 
-def generate_gradients(blue, green, red):
-    gradients = []
-
-    for counter in range(len(blue)):
-        g_to_b = green[counter] - blue[counter]
-        r_to_g = red[counter] - green[counter]
-
-        colors = list(Color("blue").range_to(Color("green"), g_to_b)) + list(
-            Color("green").range_to(Color("red"), r_to_g))
-
-        gradients.append(colors)
-
-    return tuple(gradients)
-
-
-def svg_to_png(svg_path, output_path, dpi):
-    # Delete the file if it exists, as inkscape won't overwrite
-    try:
-        os.remove(output_path)
-    except OSError:
-        pass
-
-    options = '--without-gui --export-area-page --export-background="#ffffff"'
-    os.system('inkscape %s "%s" --export-dpi=%s --export-png="%s"' % (
-        options, svg_path, dpi, output_path))
-
-    while not Path(output_path).is_file():
-        continue  # Wait until it's completed
-
-
-def svg_to_pdf(svg_path, pdf_path):
-    # Delete the file if it exists, as inkscape won't overwrite
-    try:
-        os.remove(pdf_path)
-    except OSError:
-        pass
-
-    options = '--without-gui --export-area-page'
-    os.system('inkscape %s "%s" --export-pdf="%s"' % (options, svg_path, pdf_path))
-
-    while not Path(pdf_path).is_file():
-        continue  # Wait until it's completed
-
-
-def flood_fill(png_path, room_coords, color):
-    img = Image.open(png_path)
-
-    width, height = img.size
-
-    coordinate = (room_coords[0], int(height - room_coords[1]))
-
-    ImageDraw.floodfill(img, coordinate, value=color, thresh=0)
-    img.save(png_path)
+def get_media_box(pdf_path):
+    return PdfFileReader(open(pdf_path, 'rb')).getPage(0).mediaBox
