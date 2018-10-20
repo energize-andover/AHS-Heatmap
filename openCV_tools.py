@@ -1,6 +1,7 @@
+from collections import Counter
+
 import cv2
 import numpy as np
-from collections import Counter
 
 img = None
 img_size = None
@@ -21,6 +22,9 @@ def get_img_size():
 
 
 def get_room_corner_coords(room_text_coords, png_path):
+    bottom_left = (room_text_coords[0], room_text_coords[1])
+    top_right = (room_text_coords[2], room_text_coords[3])
+
     background_color = BackgroundColorDetector(png_path).detect()
     lower_bound = np.array(np.clip([value - 5 for value in background_color], 0, 255))
     upper_bound = np.array(np.clip([value + 5 for value in background_color], 0, 255))
@@ -28,8 +32,9 @@ def get_room_corner_coords(room_text_coords, png_path):
 
     replacement_color = 128
 
-    cv2.floodFill(binary, None, room_text_coords, replacement_color)
+    cv2.floodFill(binary, None, bottom_left, replacement_color)
     binary = cv2.inRange(binary, replacement_color, replacement_color)
+    cv2.rectangle(binary, bottom_left, top_right, 255, -1)  # Fill in the room-number-shaped hole for shape recognition
 
     ret, thresh = cv2.threshold(binary, 127, 255, 0)
     im2, contours, hierarchy = cv2.findContours(thresh, 1, 2)
@@ -37,13 +42,9 @@ def get_room_corner_coords(room_text_coords, png_path):
 
     contour_perimeter = cv2.arcLength(contour, True)
     approx_poly_curve = cv2.approxPolyDP(contour, 0.05 * contour_perimeter, True)
-    room_coords = cv2.boundingRect(approx_poly_curve)
+    room_coords = cv2.boundingRect(approx_poly_curve)  # Format: (x, y, width, height)
 
-    print(str(len(approx_poly_curve)) + ", " + str(room_coords))
-
-    cv2.imshow('Binarized gradient', binary)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    return list(room_coords)
 
 
 def get_pixel_color(x, y):
