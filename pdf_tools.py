@@ -1,5 +1,6 @@
 import pdfminer
 import pandas as pd
+import re
 from pdfminer.pdfpage import *
 from pdfminer.pdfinterp import *
 from pdfminer.layout import LAParams
@@ -53,18 +54,45 @@ def get_text_and_coordinates(pdf_path):
 
             # if it's a textbox, print text and location
             if isinstance(obj, pdfminer.layout.LTTextBoxHorizontal):
-                df_dictionary['x0'].append(obj.bbox[0])
-                df_dictionary['y0'].append(obj.bbox[1])
-                df_dictionary['x1'].append(obj.bbox[2])
-                df_dictionary['y1'].append(obj.bbox[3])
-                df_dictionary['width'].append(obj.bbox[2] - obj.bbox[0])
-                df_dictionary['height'].append(obj.bbox[3] - obj.bbox[1])
-                df_dictionary['text'].append(obj.get_text().replace('\n', ''))
+                # Use some basic filtering: Remove letters, add hyphens, split combined rooms
+                text = re.sub('[^0-9]', '', obj.get_text())
+                text_len = len(text)
+
+                if text_len > 0:
+                    bbox = obj.bbox
+                    width = bbox[2] - bbox[0]
+                    height = bbox[3] - bbox[1]
+
+                    if text_len > 3 and text_len % 3 == 0:
+                        num_rooms = int(text_len / 3)
+
+                        for room in range(num_rooms):
+                            room_coords = (bbox[0], bbox[1] + (bbox[3] - bbox[1]) / num_rooms * room, bbox[2],
+                                           bbox[1] + (bbox[3] - bbox[1]) / num_rooms * (room + 1))
+
+                            df_dictionary['x0'].append(room_coords[0])
+                            df_dictionary['y0'].append(room_coords[1])
+                            df_dictionary['x1'].append(room_coords[2])
+                            df_dictionary['y1'].append(room_coords[3])
+                            df_dictionary['width'].append(room_coords[2] - room_coords[0])
+                            df_dictionary['height'].append(room_coords[3] - room_coords[1])
+                            text = text[3 * room: 3 * (room + 1)]
+                            df_dictionary['text'].append(text)
+                    else:
+                        if text_len == 5:
+                            text = text[:3] + '-' + text[3:]
+
+                        df_dictionary['x0'].append(bbox[0])
+                        df_dictionary['y0'].append(bbox[1])
+                        df_dictionary['x1'].append(bbox[2])
+                        df_dictionary['y1'].append(bbox[3])
+                        df_dictionary['width'].append(width)
+                        df_dictionary['height'].append(height)
+                        df_dictionary['text'].append(text)
 
             # if it's a container, recurse
             elif isinstance(obj, pdfminer.layout.LTFigure):
                 parse_obj(obj._objs)
-
         return pd.DataFrame.from_dict(df_dictionary)
 
     # loop over all pages in the document

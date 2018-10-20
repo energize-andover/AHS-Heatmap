@@ -1,4 +1,5 @@
 .idea/*
 venv/*
 *.pyc
-data/secret_key.txt
+*.pdf
+*.png
