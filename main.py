@@ -2,12 +2,13 @@ from file_conversion_tools import *
 from pdf_tools import *
 from coordinate_tools import *
 from bs4 import BeautifulSoup
+from colour import Color
 import os
 import shutil
 import svgwrite
 import svgutils.transform as st
 
-# Define variables
+# Define global variables
 svg_path = None
 svg_output_path = None
 pdf_path = None
@@ -17,9 +18,20 @@ soup = None
 view_box = None
 media_box = None
 
+red_value = None
+green_value = None
+blue_value = None
 
-def init():
-    global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box
+red = Color(rgb=(255, 0, 0))
+green = Color(rgb=(124, 252, 0))
+blue = Color(rgb=(0, 191, 255))
+
+temperature_colors = None
+co2_colors = None
+
+
+def init(red, green, blue):
+    global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, red_value, green_value, blue_value
     svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Andover HS level 3.svg")
     svg_output_path = svg_path[0:-4] + "_filled_rooms.svg"
     pdf_path = svg_path[0:-4] + ".pdf"
@@ -27,8 +39,6 @@ def init():
 
     if os.path.exists(svg_output_path):
         os.remove(svg_output_path)
-
-    shutil.copy(svg_path, svg_output_path)
 
     svg_to_pdf(svg_path, pdf_path)
     text_and_coords = get_text_and_coordinates(pdf_path)
@@ -41,8 +51,15 @@ def init():
     view_box = tuple(map(int, soup.find("svg")["viewbox"].split(" ")))
     media_box = get_media_box(pdf_path)
 
+    red_value = red
+    green_value = green
+    blue_value = blue
+
 
 def fill_room(room, color_hex_code, opacity):
+    if not os.path.exists(svg_output_path):
+        shutil.copy(svg_path, svg_output_path)
+
     room_rect_info = get_room_rect_info(room, media_box, text_and_coords, png_path)
 
     if room_rect_info is not None:
@@ -66,3 +83,16 @@ def fill_room(room, color_hex_code, opacity):
         floor_plan.append(second_svg)
         floor_plan.save(svg_output_path)
         os.remove(temp_path)
+
+
+def generate_color_arrays():
+    global temperature_colors, co2_colors
+    temperature_colors = generate_color_array(red_value[0], green_value[0], blue_value[0])
+    co2_colors = generate_color_array(red_value[1], green_value[1], blue_value[1])
+
+
+def generate_color_array(red_val, green_val, blue_val):
+    blue_to_green = list(blue.range_to(green, green_val - blue_val))
+    green_to_red = list(green.range_to(red, red_val - green_val))
+    green_to_red.pop(0)  # Remove the repeat of green
+    return blue_to_green + green_to_red
