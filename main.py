@@ -93,7 +93,7 @@ def generate_color_arrays():
 
 
 def generate_color_array(red_val, green_val, blue_val):
-    blue_to_green = list(blue.range_to(green, green_val - blue_val))
+    blue_to_green = list(blue.range_to(green, green_val - blue_val + 1))
     green_to_red = list(green.range_to(red, red_val - green_val))
     green_to_red.pop(0)  # Remove the repeat of green
     return blue_to_green + green_to_red
@@ -101,18 +101,16 @@ def generate_color_array(red_val, green_val, blue_val):
 
 def get_value_color(value, is_temperature_value):
     value_index = 0 if is_temperature_value else 1
+    global array_index
     array_index = 0
 
     last_element_index = red_value[value_index] - blue_value[value_index] - 1
 
     if value <= blue_value[value_index]:
-        global array_index
         array_index = 0
     elif value < red_value[value_index]:
-        global array_index
         array_index = last_element_index - (red_value[value_index] - value) + 1
     else:
-        global array_index
         array_index = last_element_index  # The index of the last element in the color array
 
     return temperature_colors[array_index] if is_temperature_value else co2_colors[array_index]
