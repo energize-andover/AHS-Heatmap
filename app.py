@@ -1,5 +1,5 @@
-from main import *
-from data_tools import *
+from main import init
+from data_tools import init_data_tools, fill_all_rooms
 import os
 
 rooms_and_sensors = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('data', 'csv', 'ahs_air.csv'))
@@ -15,3 +15,5 @@ RED_VALUE = (80, 1000)
 
 init(RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 init_data_tools(rooms_and_sensors, '10.12.4.98', '8000')
+
+fill_all_rooms(True)  # First start with temperature

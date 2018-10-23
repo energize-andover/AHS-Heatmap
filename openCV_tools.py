@@ -4,21 +4,14 @@ import cv2
 import numpy as np
 
 img = None
-img_size = None
 
 
 def initialize_cv(png_path):
-    global img, img_size
+    global img
     img = cv2.imread(png_path)
 
     if img is None:
         raise FileNotFoundError("There is no image located at '" + png_path + "'")
-
-    img_size = tuple(img.shape[1::-1])  # Extract only the width and height, not the channels
-
-
-def get_img_size():
-    return img_size
 
 
 def get_room_corner_coords(room_text_coords, png_path):

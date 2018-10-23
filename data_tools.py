@@ -1,4 +1,5 @@
 from bacnet_gateway_requests import *
+from main import fill_from_data
 import pandas as pd
 
 hostname = None
@@ -164,3 +165,8 @@ def get_new_room_data(room):
         return room_data
     else:
         return None
+
+
+def fill_all_rooms(is_temperature_value):
+    for indx, row in current_air_data.iterrows():
+        fill_from_data(row, is_temperature_value)
