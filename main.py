@@ -22,15 +22,15 @@ red_value = None
 green_value = None
 blue_value = None
 
-red = Color(rgb=(255, 0, 0))
-green = Color(rgb=(124, 252, 0))
-blue = Color(rgb=(0, 191, 255))
+red = Color('#ff0000')
+green = Color('#00ff00')
+blue = Color('#00bfff')
 
 temperature_colors = None
 co2_colors = None
 
 
-def init(red, green, blue):
+def init(r, g, b):
     global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, red_value, green_value, blue_value
     svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Andover HS level 3.svg")
     svg_output_path = svg_path[0:-4] + "_filled_rooms.svg"
@@ -51,9 +51,10 @@ def init(red, green, blue):
     view_box = tuple(map(int, soup.find("svg")["viewbox"].split(" ")))
     media_box = get_media_box(pdf_path)
 
-    red_value = red
-    green_value = green
-    blue_value = blue
+    red_value = r
+    green_value = g
+    blue_value = b
+    generate_color_arrays()
 
 
 def fill_room(room, color_hex_code, opacity):
@@ -96,3 +97,22 @@ def generate_color_array(red_val, green_val, blue_val):
     green_to_red = list(green.range_to(red, red_val - green_val))
     green_to_red.pop(0)  # Remove the repeat of green
     return blue_to_green + green_to_red
+
+
+def get_value_color(value, is_temperature_value):
+    value_index = 0 if is_temperature_value else 1
+    array_index = 0
+
+    last_element_index = red_value[value_index] - blue_value[value_index] - 1
+
+    if value <= blue_value[value_index]:
+        global array_index
+        array_index = 0
+    elif value < red_value[value_index]:
+        global array_index
+        array_index = last_element_index - (red_value[value_index] - value) + 1
+    else:
+        global array_index
+        array_index = last_element_index  # The index of the last element in the color array
+
+    return temperature_colors[array_index] if is_temperature_value else co2_colors[array_index]

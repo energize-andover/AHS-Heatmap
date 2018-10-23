@@ -31,9 +31,14 @@ def get_request_df(room):
     row = rooms_and_sensors[rooms_and_sensors['Label'] == str(room)]
 
     if not row.empty:
-        temp_value, temp_units = get_bacnet_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], hostname, port, True)
-        co2_value, co2_units = get_bacnet_value(row['Facility'].iloc[0], row['CO2'].iloc[0], hostname, port, True)
-
+        try:
+            temp_value, temp_units = get_bacnet_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], hostname,
+                                                      port,
+                                                      True)
+            co2_value, co2_units = get_bacnet_value(row['Facility'].iloc[0], row['CO2'].iloc[0], hostname, port, True)
+        except requests.exceptions.ConnectionError:
+            raise ConnectionError(
+                "Unable to get data from {0}:{1}. Are you connected to the right WiFi network?".format(hostname, port))
         # Prepare to print
         temp_value = int(temp_value) if temp_value else ''
         temp_units = temp_units if temp_units else ''
@@ -72,7 +77,11 @@ def get_bulk_request_df():
                 bulk_rq.append({'facility': row['Facility'], 'instance': row['CO2']})
 
         # Issue get-bulk request
-        bulk_rsp = get_bulk(bulk_rq, hostname, port)
+        try:
+            bulk_rsp = get_bulk(bulk_rq, hostname, port)
+        except requests.exceptions.ConnectionError:
+            raise ConnectionError(
+                "Unable to get data from {0}:{1}. Are you connected to the right WiFi network?".format(hostname, port))
 
         # Extract map from get-bulk response
         map = bulk_rsp['rsp_map']
