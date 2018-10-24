@@ -127,7 +127,7 @@ def add_overlay():
     temp_path = svg_path[0:-4] + '_temp_overlay.svg'
     dwg = svgwrite.Drawing(temp_path)
     dwg.add(dwg.rect(insert=(0, 0), size=(view_box[2], view_box[3]), fill='#ffffff',
-                     opacity=0, id="floor-plan-overlay"))
+                     opacity=0, id="floor-plan-overlay", visibility="hidden"))
     dwg.save()  # Save the path to a temporary file
     floor_plan = st.fromfile(svg_output_path)
     second_svg = st.fromfile(temp_path)
