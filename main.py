@@ -62,15 +62,6 @@ def fill_room(room, color_hex_code, opacity):
 
     if not os.path.exists(svg_output_path):
         shutil.copy(svg_path, svg_output_path)
-        dwg = svgwrite.Drawing(temp_path)
-        dwg.add(dwg.rect(insert=(0, 0), size=(view_box[2], view_box[3]), fill='#ffffff',
-                         opacity=0, id="floor-plan-overlay"))
-        dwg.save()  # Save the path to a temporary file
-        floor_plan = st.fromfile(svg_output_path)
-        second_svg = st.fromfile(temp_path)
-        floor_plan.append(second_svg)
-        floor_plan.save(svg_output_path)
-        os.remove(temp_path)
 
     room_rect_info = get_room_rect_info(room, media_box, text_and_coords, png_path)
 
@@ -130,3 +121,16 @@ def fill_from_data(data, is_temperature_value):
     value = data['temperature'] if is_temperature_value else data['co2']
     color = get_value_color(value, is_temperature_value)
     fill_room(data['room'], color, 0.6)
+
+
+def add_overlay():
+    temp_path = svg_path[0:-4] + '_temp_overlay.svg'
+    dwg = svgwrite.Drawing(temp_path)
+    dwg.add(dwg.rect(insert=(0, 0), size=(view_box[2], view_box[3]), fill='#ffffff',
+                     opacity=0, id="floor-plan-overlay"))
+    dwg.save()  # Save the path to a temporary file
+    floor_plan = st.fromfile(svg_output_path)
+    second_svg = st.fromfile(temp_path)
+    floor_plan.append(second_svg)
+    floor_plan.save(svg_output_path)
+    os.remove(temp_path)
