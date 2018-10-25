@@ -19,7 +19,7 @@ GREEN_VALUE = (70, 800)
 RED_VALUE = (80, 1000)
 
 init(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
-init_data_tools(rooms_and_sensors, 'energize.andoverma.us', '8000')
+init_data_tools(rooms_and_sensors, '10.12.4.98', '8000')
 
 fill_all_rooms(True)  # First start with temperature
 

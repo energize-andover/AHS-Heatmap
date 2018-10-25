@@ -8,21 +8,80 @@
 <body>
 <div id="svg-container">{# the svg is loaded in via javascript#}</div>
 <script type="text/javascript">
-    function showRoomData(rect) {
-        console.log(rect);
+    function showRoomData(path, oldValue, oldUnits, isTemperature) {
+        let overlay = $('#floor-plan-overlay');
+        let currentD = overlay.attr('d');
+        let pathD = $(path).attr('d');
+        overlay.attr('d', currentD + ' ' + pathD);
+        overlay.css({'opacity': 0.6, 'visibility': 'visible'});
+
+        let room = $(path).attr('id').split("-")[2];
+        // Extract the coordinates, width, and height, from the path
+        let splitPath = pathD.split(" ");
+        let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
+        let cornerPadding = 50;
+        let boxPadding = 100;
+        let textPadding = 50;
+
+        // Move text and fill in with value
+        let roomText = $('#room-title-text');
+        let valueText = $('#room-value-text');
+        let roomTextBBox = document.getElementById('room-title-text').getBBox();
+
+        let roomTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding + roomTextBBox.width, bottomRightCorner[1] + cornerPadding];
+        let valueTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding / 4, bottomRightCorner[1] + cornerPadding + roomTextBBox.height + textPadding];
+
+        roomText.attr('x', roomTextCoords[0]);
+        roomText.attr('y', roomTextCoords[1]);
+        roomText.css('visibility', 'visible');
+        roomText.html('​Room ' + room);
+
+        valueText.attr('x', valueTextCoords[0]);
+        valueText.attr('y', valueTextCoords[1]);
+        valueText.css('visibility', 'visible');
+        valueText.html(`${isTemperature ? 'Temperature' : 'CO2 Level' }: ${oldValue} ${oldUnits}`);
+
+        // Move and show the svg box
+        let box = $('#value-box');
+        let boxCoords = [valueTextCoords[0] - boxPadding / 8, parseFloat(roomText.attr('y')) - roomTextBBox.height - textPadding / 2];
+
+        console.log(2 * (parseFloat(roomText.attr('x')) - boxCoords[0]) + roomTextBBox.width);
+
+        box.attr('x', boxCoords[0]);
+        box.attr('y', boxCoords[1]);
+        box.attr('height', 4 * textPadding + roomTextBBox.height + document.getElementById('room-value-text').getBBox().height);
+        box.attr('width', 2 * (parseFloat(roomText.attr('x')) - boxCoords[0]) + roomTextBBox.width);
+        box.css('fill', 'white');
+        box.css('stroke', 'black');
+        box.css('stroke-width', '4');
+        box.css('visibility', 'visible');
     }
 
-    function hideRoomData(rect) {
-        console.log("Bye!");
+    function hideRoomData(path) {
+        let overlay = $('#floor-plan-overlay');
+        let currentD = overlay.attr('d');
+        overlay.attr('d', currentD.split("Z")[0] + "Z");
+        overlay.css({'opacity': 0, 'visibility': 'hidden'});
+
+        // Hide the svg box and the text
+        let box = $('#value-box');
+        box.attr('x', 0);
+        box.attr('y', 0);
+        box.attr('height', 0);
+        box.attr('width', 0);
+        box.css('visibility', 'hidden');
+
+        let roomText = $('#room-title-text');
+        let valueText = $('#room-value-text');
+
+        roomText.html("");
+        valueText.html("");
+        roomText.css('visibility', 'hidden');
+        valueText.css('visibility', 'hidden');
     }
 
     function loadSvg() {
-        $('#svg-container').load(`{{ svg_path }}?${$.now()}`, () => {
-            // Iterate over child embedded <svg>s, setting the onmouseover and onmouseout properties
-            let rect = $('#svg-container svg:first-of-type svg rect');
-            rect.attr('onmouseover', 'showRoomData(this)');
-            rect.attr('onmouseout', 'hideRoomData(this)');
-        });
+        $('#svg-container').load(`{{ svg_path }}?${$.now()}`);
 
     }
 

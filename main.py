@@ -59,7 +59,7 @@ def init(path, r, g, b):
     generate_color_arrays()
 
 
-def fill_room(room, color_hex_code, opacity):
+def fill_room(room, color_hex_code, opacity, value, units, isTemperature):
     temp_path = svg_path[0:-4] + '_temp_rect.svg'
 
     if not os.path.exists(svg_output_path):
@@ -77,8 +77,17 @@ def fill_room(room, color_hex_code, opacity):
         room_svg_height = get_svg_measure(room_height, view_box[3], media_box[3])
 
         dwg = svgwrite.Drawing(temp_path)
-        dwg.add(dwg.rect(insert=room_rect_svg_coords, size=(room_svg_width, room_svg_height), fill=color_hex_code,
-                         opacity=opacity, id="room-rect-{0}".format(room)))
+        dwg.add(dwg.path(
+            d="M{0} {1} L{2} {3} L{4} {5} L{6} {7} Z".format(room_rect_svg_coords[0], room_rect_svg_coords[1],
+                                                             room_rect_svg_coords[0],
+                                                             room_rect_svg_coords[1] + room_svg_height,
+                                                             room_rect_svg_coords[0] + room_svg_width,
+                                                             room_rect_svg_coords[1] + room_svg_height,
+                                                             room_rect_svg_coords[0] + room_svg_width,
+                                                             room_rect_svg_coords[1]), fill=color_hex_code,
+            opacity=opacity, id="room-rect-{0}".format(room),
+            onmouseover="showRoomData(this, {0}, '{1}', '{2}')".format(value, units, isTemperature),
+            onmouseout="hideRoomData(this)"))
         dwg.save()  # Save the path to a temporary file
 
         # Merge the files
@@ -121,8 +130,9 @@ def get_value_color(value, is_temperature_value):
 
 def fill_from_data(data, is_temperature_value):
     value = data['temperature'] if is_temperature_value else data['co2']
+    units = data['temperature units'] if is_temperature_value else data['co2 units']
     color = get_value_color(value, is_temperature_value)
-    fill_room(data['room'], color, 0.6)
+    fill_room(data['room'], color, 0.6, value, units, is_temperature_value)
 
 
 def add_overlay():
@@ -130,6 +140,11 @@ def add_overlay():
     dwg = svgwrite.Drawing(temp_path)
     dwg.add(dwg.path(d="M0 0 L0 {0} L{1} {2} L{3} 0 Z".format(view_box[3], view_box[2], view_box[3], view_box[2]),
                      fill='#ffffff', opacity=0, id="floor-plan-overlay", visibility="hidden"))
+    dwg.add(dwg.rect(insert=(0, 0), size=(0, 0), fill="white", stroke="black", id="value-box", visibility="hidden"))
+    dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-title-text", visibility="hidden",
+                     style="font-weight: bold; font-size: 160px;"))
+    dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-value-text", visibility="hidden",
+                     style="font-size: 120px;"))
     dwg.save()  # Save the path to a temporary file
     floor_plan = st.fromfile(svg_output_path)
     second_svg = st.fromfile(temp_path)
