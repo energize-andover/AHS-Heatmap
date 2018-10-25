@@ -30,9 +30,11 @@ temperature_colors = None
 co2_colors = None
 
 
-def init(r, g, b):
-    global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, red_value, green_value, blue_value
-    svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Andover HS level 3.svg")
+def init(path, r, g, b):
+    global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, \
+        red_value, green_value, blue_value
+
+    svg_path = path
     svg_output_path = svg_path[0:-4] + "_filled_rooms.svg"
     pdf_path = svg_path[0:-4] + ".pdf"
     png_path = svg_path[0:-4] + ".png"
@@ -126,8 +128,8 @@ def fill_from_data(data, is_temperature_value):
 def add_overlay():
     temp_path = svg_path[0:-4] + '_temp_overlay.svg'
     dwg = svgwrite.Drawing(temp_path)
-    dwg.add(dwg.rect(insert=(0, 0), size=(view_box[2], view_box[3]), fill='#ffffff',
-                     opacity=0, id="floor-plan-overlay", visibility="hidden"))
+    dwg.add(dwg.path(d="M0 0 L0 {0} L{1} {2} L{3} 0 Z".format(view_box[3], view_box[2], view_box[3], view_box[2]),
+                     fill='#ffffff', opacity=0, id="floor-plan-overlay", visibility="hidden"))
     dwg.save()  # Save the path to a temporary file
     floor_plan = st.fromfile(svg_output_path)
     second_svg = st.fromfile(temp_path)
