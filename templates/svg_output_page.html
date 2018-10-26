@@ -6,6 +6,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+</style>
 <div id="svg-container">{# the svg is loaded in via javascript#}</div>
 <script type="text/javascript">
     function showRoomData(path, oldValue, oldUnits, isTemperature) {
@@ -20,21 +23,23 @@
         let splitPath = pathD.split(" ");
         let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
         let cornerPadding = 50;
-        let boxPadding = 100;
+        let boxPadding = 150;
         let textPadding = 50;
 
         // Move text and fill in with value
         let roomText = $('#room-title-text');
         let valueText = $('#room-value-text');
-        let roomTextBBox = document.getElementById('room-title-text').getBBox();
 
-        let roomTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding + roomTextBBox.width, bottomRightCorner[1] + cornerPadding];
-        let valueTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding / 4, bottomRightCorner[1] + cornerPadding + roomTextBBox.height + textPadding];
+        let roomTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding / 4, bottomRightCorner[1] + cornerPadding];
 
         roomText.attr('x', roomTextCoords[0]);
         roomText.attr('y', roomTextCoords[1]);
         roomText.css('visibility', 'visible');
         roomText.html('​Room ' + room);
+
+        let roomTextBBox = document.getElementById('room-title-text').getBBox();
+
+        let valueTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding / 4, bottomRightCorner[1] + cornerPadding + roomTextBBox.height + textPadding];
 
         valueText.attr('x', valueTextCoords[0]);
         valueText.attr('y', valueTextCoords[1]);
@@ -43,18 +48,19 @@
 
         // Move and show the svg box
         let box = $('#value-box');
-        let boxCoords = [valueTextCoords[0] - boxPadding / 8, parseFloat(roomText.attr('y')) - roomTextBBox.height - textPadding / 2];
-
-        console.log(2 * (parseFloat(roomText.attr('x')) - boxCoords[0]) + roomTextBBox.width);
+        let boxCoords = [valueTextCoords[0] - boxPadding / 4, roomTextCoords[1] - roomTextBBox.height - textPadding / 2];
 
         box.attr('x', boxCoords[0]);
         box.attr('y', boxCoords[1]);
         box.attr('height', 4 * textPadding + roomTextBBox.height + document.getElementById('room-value-text').getBBox().height);
-        box.attr('width', 2 * (parseFloat(roomText.attr('x')) - boxCoords[0]) + roomTextBBox.width);
+        box.attr('width', 3 * boxPadding / 4 + document.getElementById('room-value-text').getBBox().width);
         box.css('fill', 'white');
         box.css('stroke', 'black');
         box.css('stroke-width', '4');
         box.css('visibility', 'visible');
+
+        console.log(roomTextCoords[1], boxCoords[1], box.attr('height'), roomTextBBox.height);
+
     }
 
     function hideRoomData(path) {

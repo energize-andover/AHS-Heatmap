@@ -142,9 +142,9 @@ def add_overlay():
                      fill='#ffffff', opacity=0, id="floor-plan-overlay", visibility="hidden"))
     dwg.add(dwg.rect(insert=(0, 0), size=(0, 0), fill="white", stroke="black", id="value-box", visibility="hidden"))
     dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-title-text", visibility="hidden",
-                     style="font-weight: bold; font-size: 160px;"))
+                     style="font-weight: bold; font-size: 160px; font-family: 'Roboto Mono', monospace;"))
     dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-value-text", visibility="hidden",
-                     style="font-size: 120px;"))
+                     style="font-size: 120px; font-family: 'Roboto Mono', monospace;"))
     dwg.save()  # Save the path to a temporary file
     floor_plan = st.fromfile(svg_output_path)
     second_svg = st.fromfile(temp_path)
