@@ -27,6 +27,8 @@ def init_data_tools(rooms_and_sensors_path, bacnet_hostname, bacnet_port):
 def update_air_data():
     global current_air_data
     current_air_data = get_bulk_request_df()
+    current_air_data['temperature'] = pd.to_numeric(current_air_data['temperature'], errors='coerce')
+    current_air_data['co2'] = pd.to_numeric(current_air_data['co2'], errors='coerce')
 
 
 def get_request_df(room):

@@ -19,6 +19,7 @@
         overlay.css({'opacity': 0.6, 'visibility': 'visible'});
 
         let room = $(path).attr('id').split("-")[2];
+        updateRoomData(room);
         // Extract the coordinates, width, and height, from the path
         let splitPath = pathD.split(" ");
         let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
@@ -58,9 +59,6 @@
         box.css('stroke', 'black');
         box.css('stroke-width', '4');
         box.css('visibility', 'visible');
-
-        console.log(roomTextCoords[1], boxCoords[1], box.attr('height'), roomTextBBox.height);
-
     }
 
     function hideRoomData(path) {
@@ -86,9 +84,21 @@
         valueText.css('visibility', 'hidden');
     }
 
+    function updateRoomData(room, isTemperature) {
+        $.ajax({
+            type: "POST",
+            url: "/get_room_data",
+            data: {'room': room, 'temperature': (isTemperature) ? 1 : 0},
+            success: sayYay()
+        });
+    }
+
+    function sayYay(data) {
+        console.log("Yay!", data)
+    }
+
     function loadSvg() {
         $('#svg-container').load(`{{ svg_path }}?${$.now()}`);
-
     }
 
     $(document).ready(() => {

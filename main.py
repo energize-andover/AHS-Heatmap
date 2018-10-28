@@ -151,3 +151,7 @@ def add_overlay():
     floor_plan.append(second_svg)
     floor_plan.save(svg_output_path)
     os.remove(temp_path)
+
+
+def delete_temp_file():
+    os.remove(svg_path[0:-4] + '_filled_rooms.svg')
