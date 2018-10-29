@@ -11,6 +11,9 @@
 </style>
 <div id="svg-container">{# the svg is loaded in via javascript#}</div>
 <script type="text/javascript">
+    let updateInterval;
+
+
     function showRoomData(path, oldValue, oldUnits, isTemperature) {
         let overlay = $('#floor-plan-overlay');
         let currentD = overlay.attr('d');
@@ -19,7 +22,6 @@
         overlay.css({'opacity': 0.6, 'visibility': 'visible'});
 
         let room = $(path).attr('id').split("-")[2];
-        updateRoomData(room);
         // Extract the coordinates, width, and height, from the path
         let splitPath = pathD.split(" ");
         let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
@@ -84,25 +86,37 @@
         valueText.css('visibility', 'hidden');
     }
 
-    function updateRoomData(room, isTemperature) {
-        $.ajax({
-            type: "POST",
-            url: "/get_room_data",
-            data: {'room': room, 'temperature': (isTemperature) ? 1 : 0},
-            success: sayYay()
-        });
-    }
-
-    function sayYay(data) {
-        console.log("Yay!", data)
-    }
-
     function loadSvg() {
         $('#svg-container').load(`{{ svg_path }}?${$.now()}`);
     }
 
+    function reactToUpdate(response) {
+        if (JSON.parse(response).status === "ok") {
+            loadSvg();
+            console.log("Reloaded");
+        }
+        else
+            clearInterval(updateInterval);
+    }
+
+    function updateSvg() {
+        console.log("Updating SVG...");
+        $.ajax({
+            url: "/update_svg",
+            success: (resp) => {
+                reactToUpdate(resp);
+            },
+            error: (resp) => {
+                reactToUpdate(resp);
+            },
+            async: false
+        });
+    }
+
     $(document).ready(() => {
         loadSvg();
+
+        setTimeout(() => {updateInterval = setInterval(updateSvg, 5 * 60 * 1000);}, 1000) // 5 minutes in milliseconds
     });
 </script>
 </body>
