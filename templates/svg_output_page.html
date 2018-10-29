@@ -96,6 +96,7 @@
                     if (new Date().getMinutes() % 5 === 0) {
                         clearInterval(minInterval);
                         setInterval(loadSvg, 5 * 60 * 1000); // Reload every 5 minutes
+                        loadSvg();
                     }
                 }, 60 * 1000);
             }

@@ -60,11 +60,11 @@ def start_svg_auto_updater():
 
     print("Seconds synced")
 
-    minute = dt.datetime.now().minute % 10
+    minute = dt.datetime.now().minute % 10 + 1
 
     while minute != 4 and minute != 9:
         time.sleep(60)
-        minute = dt.datetime.now().minute % 10
+        minute = dt.datetime.now().minute % 10 + 1
 
     print("Minutes synced\nStarting update thread...")
 

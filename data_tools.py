@@ -173,5 +173,5 @@ def get_new_room_data(room):
 def fill_all_rooms(is_temperature_value):
     for indx, row in current_air_data.iterrows():
         fill_from_data(row, is_temperature_value)
-        if indx == len(current_air_data.index) - 1:
-            add_overlay()
+
+    add_overlay()
