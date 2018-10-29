@@ -11,9 +11,6 @@
 </style>
 <div id="svg-container">{# the svg is loaded in via javascript#}</div>
 <script type="text/javascript">
-    let updateInterval;
-
-
     function showRoomData(path, oldValue, oldUnits, isTemperature) {
         let overlay = $('#floor-plan-overlay');
         let currentD = overlay.attr('d');
@@ -87,36 +84,30 @@
     }
 
     function loadSvg() {
+        console.log("Loading svg...");
         $('#svg-container').load(`{{ svg_path }}?${$.now()}`);
     }
 
-    function reactToUpdate(response) {
-        if (JSON.parse(response).status === "ok") {
-            loadSvg();
-            console.log("Reloaded");
-        }
-        else
-            clearInterval(updateInterval);
+    function startSVGUpdating() {
+        let secInterval = setInterval(() => {
+            if (new Date().getSeconds() === 0) {
+                clearInterval(secInterval);
+                let minInterval = setInterval(() => {
+                    if (new Date().getMinutes() % 5 === 0) {
+                        clearInterval(minInterval);
+                        setInterval(loadSvg, 5 * 60 * 1000); // Reload every 5 minutes
+                    }
+                }, 60 * 1000);
+            }
+
+        }, 1000);
     }
 
-    function updateSvg() {
-        console.log("Updating SVG...");
-        $.ajax({
-            url: "/update_svg",
-            success: (resp) => {
-                reactToUpdate(resp);
-            },
-            error: (resp) => {
-                reactToUpdate(resp);
-            },
-            async: false
-        });
-    }
 
     $(document).ready(() => {
         loadSvg();
 
-        setTimeout(() => {updateInterval = setInterval(updateSvg, 5 * 60 * 1000);}, 1000) // 5 minutes in milliseconds
+        setTimeout(startSVGUpdating(), 100); //Detach a loop into a thread
     });
 </script>
 </body>
