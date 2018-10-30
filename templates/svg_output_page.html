@@ -11,7 +11,9 @@
 </style>
 <div id="svg-container">{# the svg is loaded in via javascript#}</div>
 <script type="text/javascript">
-    function showRoomData(path, oldValue, oldUnits, isTemperature) {
+    let isShowingTemperature = true;
+
+    function showRoomData(path, oldValue, oldUnits) {
         let overlay = $('#floor-plan-overlay');
         let currentD = overlay.attr('d');
         let pathD = $(path).attr('d');
@@ -44,7 +46,7 @@
         valueText.attr('x', valueTextCoords[0]);
         valueText.attr('y', valueTextCoords[1]);
         valueText.css('visibility', 'visible');
-        valueText.html(`${isTemperature ? 'Temperature' : 'CO2 Level' }: ${oldValue} ${oldUnits}`);
+        valueText.html(`${isShowingTemperature ? 'Temperature' : 'CO2 Level' }: ${oldValue} ${oldUnits}`);
 
         // Move and show the svg box
         let box = $('#value-box');
@@ -85,7 +87,7 @@
 
     function loadSvg() {
         console.log("Loading svg...");
-        $('#svg-container').load(`{{ svg_path }}?${$.now()}`);
+        $('#svg-container').load(`static/svg_and_conversions/Andover-HS-level-3_filled_rooms_${isShowingTemperature ? 'temperature' : 'co2'}.svg?${$.now()}`);
     }
 
     function startSVGUpdating() {

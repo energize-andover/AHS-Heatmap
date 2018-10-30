@@ -7,10 +7,10 @@ import os
 import shutil
 import svgwrite
 import svgutils.transform as st
+import math
 
 # Define global variables
 svg_path = None
-svg_output_path = None
 pdf_path = None
 png_path = None
 text_and_coords = None
@@ -24,23 +24,29 @@ blue_value = None
 
 red = Color('#ff0000')
 green = Color('#00ff00')
-blue = Color('#00bfff')
+blue = Color('#0000ff')
 
 temperature_colors = None
 co2_colors = None
 
 
 def init(path, r, g, b):
-    global svg_path, svg_output_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, \
+    global svg_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, \
         red_value, green_value, blue_value
 
     svg_path = path
-    svg_output_path = svg_path[0:-4] + "_filled_rooms.svg"
+
     pdf_path = svg_path[0:-4] + ".pdf"
     png_path = svg_path[0:-4] + ".png"
 
-    if os.path.exists(svg_output_path):
-        os.remove(svg_output_path)
+    temp_path = svg_path[0:-4] + '_filled_rooms_temperature.svg'
+    co2_path = svg_path[0:-4] + '_filled_rooms_co2.svg'
+
+    if os.path.exists(temp_path):
+        os.remove(temp_path)
+
+    if os.path.exists(co2_path):
+        os.remove(co2_path)
 
     svg_to_pdf(svg_path, pdf_path)
     text_and_coords = get_text_and_coordinates(pdf_path)
@@ -59,11 +65,12 @@ def init(path, r, g, b):
     generate_color_arrays()
 
 
-def fill_room(room, color_hex_code, opacity, value, units, isTemperature):
+def fill_room(room, color_hex_code, opacity, value, units, is_temperature):
     temp_path = svg_path[0:-4] + '_temp_rect.svg'
+    output_path = svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2')
 
-    if not os.path.exists(svg_output_path):
-        shutil.copy(svg_path, svg_output_path)
+    if not os.path.exists(output_path):
+        shutil.copy(svg_path, output_path)
 
     room_rect_info = get_room_rect_info(room, media_box, text_and_coords, png_path)
 
@@ -86,15 +93,15 @@ def fill_room(room, color_hex_code, opacity, value, units, isTemperature):
                                                              room_rect_svg_coords[0] + room_svg_width,
                                                              room_rect_svg_coords[1]), fill=color_hex_code,
             opacity=opacity, id="room-rect-{0}".format(room),
-            onmouseover="showRoomData(this, {0}, '{1}', '{2}')".format(value, units, isTemperature),
+            onmouseover="showRoomData(this, {0}, '{1}')".format(value, units),
             onmouseout="hideRoomData(this)"))
         dwg.save()  # Save the path to a temporary file
 
         # Merge the files
-        floor_plan = st.fromfile(svg_output_path)
+        floor_plan = st.fromfile(output_path)
         second_svg = st.fromfile(temp_path)
         floor_plan.append(second_svg)
-        floor_plan.save(svg_output_path)
+        floor_plan.save(output_path)
         os.remove(temp_path)
 
 
@@ -121,22 +128,25 @@ def get_value_color(value, is_temperature_value):
     if value <= blue_value[value_index]:
         array_index = 0
     elif value < red_value[value_index]:
-        array_index = last_element_index - (red_value[value_index] - value) + 1
+        array_index = int(last_element_index - (red_value[value_index] - value) + 1)
     else:
         array_index = last_element_index  # The index of the last element in the color array
 
-    return temperature_colors[array_index].hex_l if is_temperature_value else co2_colors[array_index]
+    return temperature_colors[array_index].hex_l if is_temperature_value else co2_colors[array_index].hex_l
 
 
 def fill_from_data(data, is_temperature_value):
     value = data['temperature'] if is_temperature_value else data['co2']
     units = data['temperature units'] if is_temperature_value else data['co2 units']
-    color = get_value_color(value, is_temperature_value)
-    fill_room(data['room'], color, 0.6, value, units, is_temperature_value)
+    if not math.isnan(value) and units is not None and units != '':
+        color = get_value_color(value, is_temperature_value)
+        fill_room(data['room'], color, 0.6, value, units, is_temperature_value)
 
 
-def add_overlay():
-    temp_path = svg_path[0:-4] + '_temp_overlay.svg'
+def add_overlay(is_temperature):
+    temp_path = svg_path[0:-4] + '_temp_rect.svg'
+    output_path = svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2')
+
     dwg = svgwrite.Drawing(temp_path)
     dwg.add(dwg.path(d="M0 0 L0 {0} L{1} {2} L{3} 0 Z".format(view_box[3], view_box[2], view_box[3], view_box[2]),
                      fill='#ffffff', opacity=0, id="floor-plan-overlay", visibility="hidden"))
@@ -146,12 +156,13 @@ def add_overlay():
     dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-value-text", visibility="hidden",
                      style="font-size: 120px; font-family: 'Roboto Mono', monospace;"))
     dwg.save()  # Save the path to a temporary file
-    floor_plan = st.fromfile(svg_output_path)
+    floor_plan = st.fromfile(
+        svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2'))
     second_svg = st.fromfile(temp_path)
     floor_plan.append(second_svg)
-    floor_plan.save(svg_output_path)
+    floor_plan.save(output_path)
     os.remove(temp_path)
 
 
-def delete_temp_file():
-    os.remove(svg_path[0:-4] + '_filled_rooms.svg')
+def delete_temp_file(is_temperature):
+    os.remove(svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2'))

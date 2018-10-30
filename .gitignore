@@ -3,4 +3,4 @@ venv/*
 *.pyc
 *.pdf
 *.png
-*_filled_rooms.*
+*_filled_rooms_*

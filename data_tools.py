@@ -174,4 +174,4 @@ def fill_all_rooms(is_temperature_value):
     for indx, row in current_air_data.iterrows():
         fill_from_data(row, is_temperature_value)
 
-    add_overlay()
+    add_overlay(is_temperature_value)

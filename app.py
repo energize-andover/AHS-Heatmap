@@ -24,11 +24,10 @@ GREEN_VALUE = (70, 900)
 RED_VALUE = (80, 2000)
 
 init(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
-init_data_tools(rooms_and_sensors, '10.12.4.98', '8000')
+init_data_tools(rooms_and_sensors, 'energize.andoverma.us', '8000')
 
-is_temp_value = True  # True if the current SVG displays temperature
-
-fill_all_rooms(is_temp_value)  # First start with temperature
+fill_all_rooms(True)  # First start with temperature
+fill_all_rooms(False)
 
 scheduler = sched.scheduler(time.time, time.sleep)
 
@@ -36,8 +35,10 @@ scheduler = sched.scheduler(time.time, time.sleep)
 def update_svg():
     print("Updating svg...")
     update_air_data()
-    delete_temp_file()
-    fill_all_rooms(is_temp_value)
+    delete_temp_file(True)
+    fill_all_rooms(True)
+    delete_temp_file(False)
+    fill_all_rooms(False)
 
 
 def start_app():
@@ -45,8 +46,7 @@ def start_app():
 
     @app.route("/")
     def load_svg():
-        return render_template('svg_output_page.html', title='Andover HS Level 3',
-                               svg_path=svg_output_path.replace('\\', '/'))
+        return render_template('svg_output_page.html', title='Andover HS Level 3')
 
     app.run()
 
