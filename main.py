@@ -31,8 +31,7 @@ co2_colors = None
 
 
 def init(path, r, g, b):
-    global svg_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, \
-        red_value, green_value, blue_value
+    global svg_path, pdf_path, png_path, text_and_coords, soup, view_box, media_box, red_value, green_value, blue_value
 
     svg_path = path
 

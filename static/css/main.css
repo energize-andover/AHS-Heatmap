@@ -1,0 +1,32 @@
+/************NAVIGATION************/
+#nav-logo {
+    min-height: 50px;
+    transition: 1s opacity;
+}
+
+#nav-logo:hover {
+    opacity: 0.6;
+}
+
+.navbar-menu div a {
+    transition: 0.5s all;
+}
+
+.navbar-item {
+    color: #113255;
+}
+
+.navbar-item:hover {
+    background-color: #F2C413 !important;
+    color: #113255 !important;
+}
+
+#nav-logo-link:hover {
+    background-color: unset !important;
+    color: unset !important;
+}
+
+.navbar-item.active-page {
+    background-color: #113255;
+    color: #F2C413;
+}

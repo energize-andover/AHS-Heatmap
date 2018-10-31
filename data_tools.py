@@ -1,17 +1,13 @@
 from bacnet_gateway_requests import *
 from main import fill_from_data, add_overlay
 import pandas as pd
-import numpy as np
-
-hostname = None
-port = None
 
 current_air_data = None
 rooms_and_sensors = None
 
 
-def init_data_tools(rooms_and_sensors_path, bacnet_hostname, bacnet_port):
-    global rooms_and_sensors, hostname, port
+def init_data_tools(rooms_and_sensors_path):
+    global rooms_and_sensors
     # Read spreadsheet into a DataFrame.
     # Each row contains the following:
     #   - Label
@@ -19,8 +15,6 @@ def init_data_tools(rooms_and_sensors_path, bacnet_hostname, bacnet_port):
     #   - Instance ID of CO2 sensor
     #   - Instance ID of temperature sensor
     rooms_and_sensors = pd.read_csv(rooms_and_sensors_path, na_filter=False, comment='#')
-    hostname = bacnet_hostname
-    port = bacnet_port
     update_air_data()
 
 
@@ -36,13 +30,10 @@ def get_request_df(room):
 
     if not row.empty:
         try:
-            temp_value, temp_units = get_bacnet_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], hostname,
-                                                      port,
-                                                      True)
-            co2_value, co2_units = get_bacnet_value(row['Facility'].iloc[0], row['CO2'].iloc[0], hostname, port, True)
+            temp_value, temp_units = get_bacnet_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], True)
+            co2_value, co2_units = get_bacnet_value(row['Facility'].iloc[0], row['CO2'].iloc[0], True)
         except requests.exceptions.ConnectionError:
-            raise ConnectionError(
-                "Unable to get data from {0}:{1}. Are you connected to the right WiFi network?".format(hostname, port))
+            raise ConnectionError("Unable to get data. Are you connected to the right WiFi network?")
         # Prepare to print
         temp_value = int(temp_value) if temp_value else ''
         temp_units = temp_units if temp_units else ''
@@ -67,76 +58,72 @@ def get_request_df(room):
 
 
 def get_bulk_request_df():
-    if hostname is not None and port is not None:
-        # Initialize empty bulk request
-        bulk_rq = []
+    # Initialize empty bulk request
+    bulk_rq = []
 
-        # Iterate over the rows of the dataframe, adding elements to the bulk request
-        for index, row in rooms_and_sensors.iterrows():
+    # Iterate over the rows of the dataframe, adding elements to the bulk request
+    for index, row in rooms_and_sensors.iterrows():
 
-            # Append facility/instance pairs to bulk request
-            if row['Temperature']:
-                bulk_rq.append({'facility': row['Facility'], 'instance': row['Temperature']})
-            if row['CO2']:
-                bulk_rq.append({'facility': row['Facility'], 'instance': row['CO2']})
+        # Append facility/instance pairs to bulk request
+        if row['Temperature']:
+            bulk_rq.append({'facility': row['Facility'], 'instance': row['Temperature']})
+        if row['CO2']:
+            bulk_rq.append({'facility': row['Facility'], 'instance': row['CO2']})
 
-        # Issue get-bulk request
-        try:
-            bulk_rsp = get_bulk(bulk_rq, hostname, port)
-        except requests.exceptions.ConnectionError:
-            raise ConnectionError(
-                "Unable to get data from {0}:{1}. Are you connected to the right WiFi network?".format(hostname, port))
+    # Issue get-bulk request
+    try:
+        bulk_rsp = get_bulk(bulk_rq)
+    except requests.exceptions.ConnectionError:
+        raise ConnectionError("Unable to get data from. Are you connected to the right WiFi network?")
 
-        # Extract map from get-bulk response
-        map = bulk_rsp['rsp_map']
+    # Extract map from get-bulk response
+    map = bulk_rsp['rsp_map']
 
-        df_dictionary = {
-            'room': [],
-            'temperature': [],
-            'temperature units': [],
-            'co2': [],
-            'co2 units': []
-        }
+    df_dictionary = {
+        'room': [],
+        'temperature': [],
+        'temperature units': [],
+        'co2': [],
+        'co2 units': []
+    }
 
-        # Iterate over the rows of the DataFrame, displaying temperature and CO2 values extracted from map
-        for index, row in rooms_and_sensors.iterrows():
+    # Iterate over the rows of the DataFrame, displaying temperature and CO2 values extracted from map
+    for index, row in rooms_and_sensors.iterrows():
 
-            # Initialize empty display values
-            temp_value = ''
-            temp_units = ''
-            co2_value = ''
-            co2_units = ''
+        # Initialize empty display values
+        temp_value = ''
+        temp_units = ''
+        co2_value = ''
+        co2_units = ''
 
-            # Get facility of current row
-            facility = row['Facility']
+        # Get facility of current row
+        facility = row['Facility']
 
-            # Try to extract current row's temperature and CO2 values from map
-            if facility in map:
+        # Try to extract current row's temperature and CO2 values from map
+        if facility in map:
 
-                instance = str(row['Temperature'])
-                if instance and (instance in map[facility]):
-                    rsp = map[facility][instance]
-                    property = rsp['property']
-                    temp_value = int(rsp[property]) if rsp[property] else ''
-                    temp_units = rsp['units']
+            instance = str(row['Temperature'])
+            if instance and (instance in map[facility]):
+                rsp = map[facility][instance]
+                property = rsp['property']
+                temp_value = int(rsp[property]) if rsp[property] else ''
+                temp_units = rsp['units']
 
-                instance = str(row['CO2'])
-                if instance and (instance in map[facility]):
-                    rsp = map[facility][instance]
-                    property = rsp['property']
-                    co2_value = int(rsp[property]) if rsp[property] else ''
-                    co2_units = rsp['units']
+            instance = str(row['CO2'])
+            if instance and (instance in map[facility]):
+                rsp = map[facility][instance]
+                property = rsp['property']
+                co2_value = int(rsp[property]) if rsp[property] else ''
+                co2_units = rsp['units']
 
-            # Output CSV format
-            df_dictionary['room'].append(row['Label'])
-            df_dictionary['temperature'].append(temp_value)
-            df_dictionary['temperature units'].append(temp_units)
-            df_dictionary['co2'].append(co2_value)
-            df_dictionary['co2 units'].append(co2_units)
+        # Output CSV format
+        df_dictionary['room'].append(row['Label'])
+        df_dictionary['temperature'].append(temp_value)
+        df_dictionary['temperature units'].append(temp_units)
+        df_dictionary['co2'].append(co2_value)
+        df_dictionary['co2 units'].append(co2_units)
 
-        return pd.DataFrame.from_dict(df_dictionary)
-    else:
-        return None
+    return pd.DataFrame.from_dict(df_dictionary)
 
 
 def get_room_data(room):

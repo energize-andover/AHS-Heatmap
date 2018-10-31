@@ -24,7 +24,7 @@ GREEN_VALUE = (70, 900)
 RED_VALUE = (80, 2000)
 
 init(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
-init_data_tools(rooms_and_sensors, 'energize.andoverma.us', '8000')
+init_data_tools(rooms_and_sensors)
 
 fill_all_rooms(True)  # First start with temperature
 fill_all_rooms(False)
@@ -45,8 +45,13 @@ def start_app():
     app = Flask(__name__)
 
     @app.route("/")
+    def home():
+        return render_template("index.html", title="Floor Plan")
+
+    @app.route("/ahs/3")
     def load_svg():
-        return render_template('svg_output_page.html', title='Andover HS Level 3')
+        return render_template('svg_output_page.html', title='Andover HS Level 3',
+                               file_filled_prefix="Andover-HS-level-3_filled_rooms_")
 
     app.run()
 
