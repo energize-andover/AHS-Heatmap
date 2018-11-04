@@ -3,11 +3,12 @@
 import requests
 import json
 
-PUBLIC_HOSTNAME = "10.12.4.98"
+PUBLIC_HOSTNAME = 'energize.andoverma.us'
+INTERNAL_PORT = '8000'
 
 
 # Request present value and units for the supplied instance
-def get_bacnet_value( facility, instance, gateway_hostname=PUBLIC_HOSTNAME, gateway_port=None, live=False ):
+def get_value( facility, instance, gateway_hostname=None, gateway_port=None, live=False ):
 
     value = None
     units = None
@@ -30,13 +31,13 @@ def get_bacnet_value( facility, instance, gateway_hostname=PUBLIC_HOSTNAME, gate
         # Convert JSON response to Python dictionary
         dc_rsp = json.loads( gateway_rsp.text )
 
-        # Extract BACnet response from the dictionary
-        dc_bn_rsp = dc_rsp['bacnet_response']
+        # Extract instance response from the dictionary
+        dc_inst_rsp = dc_rsp['instance_response']
 
-        # Extract result from BACnet response
-        if ( dc_bn_rsp['success'] ):
+        # Extract result from instance response
+        if ( dc_inst_rsp['success'] ):
 
-            dc_data = dc_bn_rsp['data']
+            dc_data = dc_inst_rsp['data']
 
             if dc_data['success']:
                 value = dc_data['presentValue']
@@ -46,7 +47,7 @@ def get_bacnet_value( facility, instance, gateway_hostname=PUBLIC_HOSTNAME, gate
 
 
 # Request multiple values from BACnet Gateway
-def get_bulk( bulk_request, gateway_hostname=PUBLIC_HOSTNAME, gateway_port='8000'):
+def get_bulk( bulk_request, gateway_hostname=None, gateway_port=None ):
 
     bulk_rsp = []
 
@@ -69,16 +70,34 @@ def get_bulk( bulk_request, gateway_hostname=PUBLIC_HOSTNAME, gateway_port='8000
 # Post request to web service
 def post_request( gateway_hostname, gateway_port, args ):
 
-    # Format URL
-    if ( gateway_hostname == PUBLIC_HOSTNAME ) and ( gateway_port == None ):
-        s = 's'
-        port = ''
+    # Normalize hostname
+    if not gateway_hostname:
+        gateway_hostname = PUBLIC_HOSTNAME
+
+    # Normalize port
+    gateway_port = str( gateway_port ) if gateway_port else ''
+
+    # Set SSL and port fragments
+    if gateway_hostname == PUBLIC_HOSTNAME:
+
+        if gateway_port:
+            s = ''
+            port = ':' + gateway_port
+        else:
+            s = 's'
+            port = ''
+
     else:
+
         s = ''
-        port = ':' + str( gateway_port )
 
+        if gateway_port:
+            port = ':' + gateway_port
+        else:
+            port = ':' + INTERNAL_PORT
+
+    # Format URL
     url = 'http' + s + '://' + gateway_hostname + port
-
 
     # Post request
     gateway_rsp = requests.post( url, data=args )

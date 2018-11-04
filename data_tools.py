@@ -1,6 +1,8 @@
-from bacnet_gateway_requests import *
+from building_data_requests import get_value, get_bulk
 from main import fill_from_data, add_overlay
 import pandas as pd
+import numbers
+import requests
 
 current_air_data = None
 rooms_and_sensors = None
@@ -30,8 +32,8 @@ def get_request_df(room):
 
     if not row.empty:
         try:
-            temp_value, temp_units = get_bacnet_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], True)
-            co2_value, co2_units = get_bacnet_value(row['Facility'].iloc[0], row['CO2'].iloc[0], True)
+            temp_value, temp_units = get_value(row['Facility'].iloc[0], row['Temperature'].iloc[0], True)
+            co2_value, co2_units = get_value(row['Facility'].iloc[0], row['CO2'].iloc[0], True)
         except requests.exceptions.ConnectionError:
             raise ConnectionError("Unable to get data. Are you connected to the right WiFi network?")
         # Prepare to print
@@ -58,7 +60,6 @@ def get_request_df(room):
 
 
 def get_bulk_request_df():
-    # Initialize empty bulk request
     bulk_rq = []
 
     # Iterate over the rows of the dataframe, adding elements to the bulk request
@@ -106,14 +107,14 @@ def get_bulk_request_df():
             if instance and (instance in map[facility]):
                 rsp = map[facility][instance]
                 property = rsp['property']
-                temp_value = int(rsp[property]) if rsp[property] else ''
+                temp_value = int(rsp[property]) if isinstance(rsp[property], numbers.Number) else ''
                 temp_units = rsp['units']
 
             instance = str(row['CO2'])
             if instance and (instance in map[facility]):
                 rsp = map[facility][instance]
                 property = rsp['property']
-                co2_value = int(rsp[property]) if rsp[property] else ''
+                co2_value = int(rsp[property]) if isinstance(rsp[property], numbers.Number) else ''
                 co2_units = rsp['units']
 
         # Output CSV format
