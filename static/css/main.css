@@ -7,22 +7,28 @@
 }
 
 #nav-logo-link {
-    transition: 1s opacity!important;
+    transition: 1s opacity !important;
 }
 
 #nav-logo-link:hover {
-    opacity: 0.6!important;
+    opacity: 0.6 !important;
 }
 
 .navbar-menu div a {
     transition: 0.5s all;
 }
 
-.navbar-item {
-    color: #113255;
+.navbar-item,
+.navbar-item.has-dropdown,
+.navbar-item.has-dropdown .navbar-link {
+    color: #113255 !important;
+    transition: 0.5s all;
 }
 
-.navbar-item:hover {
+.navbar-item:hover,
+.navbar-item.active-page:hover,
+.navbar-item.has-dropdown.is-active .navbar-link,
+.navbar-item.has-dropdown:hover .navbar-link {
     background-color: #F2C413 !important;
     color: #113255 !important;
 }
@@ -33,6 +39,6 @@
 }
 
 .navbar-item.active-page {
-    background-color: #113255;
-    color: #F2C413;
+    background-color: #113255 !important;
+    color: #F2C413 !important;
 }
