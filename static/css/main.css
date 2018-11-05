@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
 /************NAVIGATION************/
 #nav-logo {
-    min-height: 50px;
-    transition: 1s opacity;
+    min-height: 3.125rem;
+    max-height: 3.5rem;
 }
 
-#nav-logo:hover {
-    opacity: 0.6;
+#nav-logo-link {
+    transition: 1s opacity!important;
+}
+
+#nav-logo-link:hover {
+    opacity: 0.6!important;
 }
 
 .navbar-menu div a {

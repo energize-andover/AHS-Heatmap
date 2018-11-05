@@ -1,6 +1,6 @@
 .idea/*
 venv/*
 *.pyc
-*.pdf
-*.png
-*_filled_rooms_*
+static/svg_and_conversions/*.pdf
+static/svg_and_conversions/*.png
+static/svg_and_conversions/*_filled_rooms_*

@@ -7,6 +7,8 @@ import time
 import datetime as dt
 import timeinterval
 import threading
+import calendar
+import datetime
 
 svg_flask_path = os.path.join('static', 'svg_and_conversions', "Andover-HS-level-3.svg")
 svg_output_path = svg_flask_path[0:-4] + "_filled_rooms.svg"
@@ -32,6 +34,13 @@ fill_all_rooms(False)
 scheduler = sched.scheduler(time.time, time.sleep)
 
 
+def datetime_to_utc(dt):
+    """Converts a datetime object to UTC timestamp
+        naive datetime will be considered UTC."""
+
+    return calendar.timegm(dt.utctimetuple())
+
+
 def update_svg():
     print("Updating svg...")
     update_air_data()
@@ -51,7 +60,8 @@ def start_app():
     @app.route("/ahs/3")
     def load_svg():
         return render_template('svg_output_page.html', title='Andover HS Level 3',
-                               file_filled_prefix="Andover-HS-level-3_filled_rooms_")
+                               file_filled_prefix="Andover-HS-level-3_filled_rooms_",
+                               time=datetime_to_utc(datetime.datetime.now()))
 
     app.run()
 

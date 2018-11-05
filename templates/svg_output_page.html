@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 {% import 'macros.html' as macros %}
-{{ macros.head("AHS Level 3") }}
-<body>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-</style>
+{{ macros.head("AHS Level 3", time) }}
+<body id="body">
+<link rel="stylesheet" href="static/css/svg_output_page.css?{{ time }}"> <!-- We want to avoid caching -->
 {{ macros.nav("/ahs/3") }}
 <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
 <div class="onoffswitch">
@@ -16,85 +14,6 @@
     </label>
 </div>
 
-<style>
-    .onoffswitch {
-        position: relative;
-        width: 148px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
-
-    .onoffswitch-checkbox {
-        display: none;
-    }
-
-    .onoffswitch-label {
-        display: block;
-        overflow: hidden;
-        cursor: pointer;
-        border: 2px solid #999999;
-        border-radius: 20px;
-    }
-
-    .onoffswitch-inner {
-        display: block;
-        width: 200%;
-        margin-left: -100%;
-        transition: margin 0.3s ease-in 0s;
-    }
-
-    .onoffswitch-inner:before, .onoffswitch-inner:after {
-        display: block;
-        float: left;
-        width: 50%;
-        height: 30px;
-        padding: 0;
-        line-height: 30px;
-        font-size: 14px;
-        color: white;
-        font-family: Trebuchet, Arial, sans-serif;
-        font-weight: bold;
-        box-sizing: border-box;
-    }
-
-    .onoffswitch-inner:before {
-        content: "Temperature";
-        padding-left: 10px;
-        background-color: #113255;
-        color: #F2C413;
-    }
-
-    .onoffswitch-inner:after {
-        content: "Carbon Dioxide";
-        padding-right: 10px;
-        background-color: #F2C413;
-        color: #113255;
-        text-align: right;
-    }
-
-    .onoffswitch-switch {
-        display: block;
-        width: 20px;
-        margin: 5px;
-        background: #FFFFFF;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 114px;
-        border: 2px solid #999999;
-        border-radius: 20px;
-        transition: all 0.3s ease-in 0s;
-    }
-
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-        margin-left: 0;
-    }
-
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-        right: 0px;
-    }
-</style>
 <script type="text/javascript">
     let isShowingTemperature = true;
 
@@ -194,7 +113,6 @@
         isShowingTemperature = !isShowingTemperature;
         loadSvg();
     }
-
 
     $(document).ready(() => {
         loadSvg();

@@ -24,7 +24,7 @@ blue_value = None
 
 red = Color('#ff0000')
 green = Color('#00ff00')
-blue = Color('#0000ff')
+blue = Color('#00ffff')
 
 temperature_colors = None
 co2_colors = None

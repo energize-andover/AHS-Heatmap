@@ -1,13 +1,13 @@
-{% macro head(title) %}
-    <head>
+{% macro head(title, time) %}
+    <head id="head">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ title }}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-        <link rel="stylesheet" href="static/css/main.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <base href="/">
+        <link rel="stylesheet" href="static/css/main.css?{{ time }}">
     </head>
 {% endmacro %}
 
@@ -15,7 +15,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/" id="nav-logo-link">
-                <img src="static/img/AHS-Logo.jpg" width="auto" id="nav-logo">
+                <img src="static/img/Andover-Seal.png" width="auto" id="nav-logo" alt="Town of Andover Seal">
             </a>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -27,7 +27,7 @@
         </div>
 
         <div class="navbar-menu">
-            <div class="navbar-start">
+            <div class="navbar-end">
                 <a class="navbar-item" href="/">Home</a>
                 <a class="navbar-item" href="/about">About</a>
 
