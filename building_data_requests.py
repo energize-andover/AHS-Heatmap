@@ -3,12 +3,12 @@
 import requests
 import json
 
-PUBLIC_HOSTNAME = 'energize.andoverma.us'
+PUBLIC_HOSTNAME = '10.12.4.98'
 INTERNAL_PORT = '8000'
 
 
 # Request present value and units for the supplied instance
-def get_value( facility, instance, gateway_hostname=None, gateway_port=None, live=False ):
+def get_value( facility, instance, gateway_hostname=PUBLIC_HOSTNAME, gateway_port=INTERNAL_PORT, live=False ):
 
     value = None
     units = None
@@ -47,7 +47,7 @@ def get_value( facility, instance, gateway_hostname=None, gateway_port=None, liv
 
 
 # Request multiple values from BACnet Gateway
-def get_bulk( bulk_request, gateway_hostname=None, gateway_port=None ):
+def get_bulk( bulk_request, gateway_hostname=PUBLIC_HOSTNAME, gateway_port=INTERNAL_PORT):
 
     bulk_rsp = []
 

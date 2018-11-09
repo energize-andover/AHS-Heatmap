@@ -55,15 +55,27 @@ def start_app():
 
     @app.route("/")
     def home():
-        return render_template("index.html", title="Floor Plan")
+        return render_template("index.html", title="Floor Plan", time=get_time())
 
-    @app.route("/ahs/3")
-    def load_svg():
-        return render_template('svg_output_page.html', title='Andover HS Level 3',
-                               file_filled_prefix="Andover-HS-level-3_filled_rooms_",
-                               time=datetime_to_utc(datetime.datetime.now()))
+    @app.route("/ahs/<floor>")
+    def load_svg(floor):
+        try:
+            floor_num = float(floor)
+        except ValueError:
+            abort(404)
+
+        if 1 <= floor_num <= 4:
+            return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
+                                   file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor),
+                                   time=get_time())
+        else:
+            abort(404)
 
     app.run()
+
+
+def get_time():
+    return datetime_to_utc(datetime.datetime.now())
 
 
 def start_svg_auto_updater():
