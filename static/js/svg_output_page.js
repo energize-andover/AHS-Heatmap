@@ -37,10 +37,26 @@ function showRoomData(path, oldValue, oldUnits) {
     let box = $('#value-box');
     let boxCoords = [valueTextCoords[0] - boxPadding / 4, roomTextCoords[1] - roomTextBBox.height - textPadding / 2];
 
-    box.attr('x', boxCoords[0]);
-    box.attr('y', boxCoords[1]);
-    box.attr('height', 4 * textPadding + roomTextBBox.height + document.getElementById('room-value-text').getBBox().height);
-    box.attr('width', 3 * boxPadding / 4 + document.getElementById('room-value-text').getBBox().width);
+    let view_box = $('#svg-container').children('svg').first().attr('viewBox').split(' ');
+
+    let box_height = 4 * textPadding + roomTextBBox.height + document.getElementById('room-value-text').getBBox().height;
+    let box_width = 3 * boxPadding / 4 + document.getElementById('room-value-text').getBBox().width;
+    let box_x = boxCoords[0], box_y = boxCoords[1];
+
+    if (box_x + box_width >= view_box[2]) {
+        // The box would extend outside of the viewBox
+        box_x -= box_width; // Move the box so that one of its RIGHT corners is at (box_x, box_y)
+    }
+
+    if (box_y + box_height >= view_box[3]) {
+        // The box would extend outside of the viewBox
+        box_y -= box_height; // Move the box so that one of the BOTTOM corners is at (box_x, box_y)
+    }
+
+    box.attr('x', box_x);
+    box.attr('y', box_y);
+    box.attr('height', box_height);
+    box.attr('width', box_width);
     box.css('fill', 'white');
     box.css('stroke', 'black');
     box.css('stroke-width', '4');

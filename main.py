@@ -71,7 +71,7 @@ def fill_room(room, color_hex_code, opacity, value, units, is_temperature):
     if not os.path.exists(output_path):
         shutil.copy(svg_path, output_path)
 
-    room_rect_info = get_room_rect_info(room, media_box, text_and_coords, png_path)
+    room_rect_info = get_room_rect_info(room, media_box, text_and_coords)
 
     if room_rect_info is not None:
         room_corner = (room_rect_info[0], room_rect_info[1])
