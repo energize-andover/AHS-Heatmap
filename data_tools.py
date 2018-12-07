@@ -1,5 +1,5 @@
 from building_data_requests import get_value, get_bulk
-from main import fill_from_data, add_overlay
+from main import HeatmapMain
 import pandas as pd
 import numbers
 import requests
@@ -158,8 +158,11 @@ def get_new_room_data(room):
         return None
 
 
-def fill_all_rooms(is_temperature_value):
-    for indx, row in current_air_data.iterrows():
-        fill_from_data(row, is_temperature_value)
+def fill_all_rooms(heatmap, is_temperature_value):
+    if not isinstance(heatmap, HeatmapMain):
+        return # We will get run time errors later on if heatmap is not an instance of HeatmapMain
 
-    add_overlay(is_temperature_value)
+    for indx, row in current_air_data.iterrows():
+        heatmap.fill_from_data(row, is_temperature_value)
+
+    heatmap.add_overlay(is_temperature_value)
