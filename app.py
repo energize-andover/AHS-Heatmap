@@ -10,9 +10,10 @@ import timeinterval
 import threading
 import calendar
 import datetime
+import shutil
 
-svg_flask_path = os.path.join('static', 'svg_and_conversions', "Andover-HS-level-3.svg")
-svg_output_path = svg_flask_path[0:-4] + "_filled_rooms.svg"
+svg_file_name = "Andover-HS-level-3.svg"
+svg_flask_path = os.path.join('static', 'svg_and_conversions', svg_file_name)
 svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), svg_flask_path)
 
 rooms_and_sensors = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('data', 'csv', 'ahs_air.csv'))
@@ -33,6 +34,12 @@ fill_all_rooms(floor_3, False)
 
 scheduler = sched.scheduler(time.time, time.sleep)
 
+# Empty out the temporary folder by deleting it and making a new one
+folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           os.path.join('static', 'temp_update_svgs'))
+shutil.rmtree(folder_path)
+os.mkdir(folder_path)
+
 
 def datetime_to_utc(dt):
     """Converts a datetime object to UTC timestamp
@@ -44,7 +51,7 @@ def datetime_to_utc(dt):
 def update_svg():
     print("Updating svg...")
     update_air_data()
-    update_map(svg_path)
+    update_map(svg_file_name, svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
 
 def start_app():
