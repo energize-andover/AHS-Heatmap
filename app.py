@@ -12,9 +12,10 @@ import calendar
 import datetime
 import shutil
 
-svg_file_name = "Andover-HS-level-3.svg"
-svg_flask_path = os.path.join('static', 'svg_and_conversions', svg_file_name)
-svg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), svg_flask_path)
+
+levels = [1, 2, 3, 4]
+svg_file_prefix = "Andover-HS-level-"
+svg_and_conversions_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('static', 'svg_and_conversions'))
 
 rooms_and_sensors = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('data', 'csv', 'ahs_air.csv'))
 
@@ -26,19 +27,24 @@ BLUE_VALUE = (60, 100)
 GREEN_VALUE = (70, 900)
 RED_VALUE = (80, 2000)
 
-floor_3 = HeatmapMain(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
-init_data_tools(rooms_and_sensors)
-
-fill_all_rooms(floor_3, True)  # First start with temperature
-fill_all_rooms(floor_3, False)
-
-scheduler = sched.scheduler(time.time, time.sleep)
-
 # Empty out the temporary folder by deleting it and making a new one
 folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            os.path.join('static', 'temp_update_svgs'))
 shutil.rmtree(folder_path)
 os.mkdir(folder_path)
+
+init_data_tools(rooms_and_sensors)
+
+for level in levels:
+    svg_file_name = svg_file_prefix + str(level) + '.svg'
+    svg_path = os.path.join(svg_and_conversions_path, svg_file_name)
+
+    heatmap = HeatmapMain(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
+
+    fill_all_rooms(heatmap, True)  # First start with temperature
+    fill_all_rooms(heatmap, False)
+
+scheduler = sched.scheduler(time.time, time.sleep)
 
 
 def datetime_to_utc(dt):
@@ -49,9 +55,13 @@ def datetime_to_utc(dt):
 
 
 def update_svg():
-    print("Updating svg...")
     update_air_data()
-    update_map(svg_file_name, svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
+
+    for floor_level in levels:
+        file_name = svg_file_prefix + str(floor_level) + '.svg'
+        file_path = os.path.join(svg_and_conversions_path, file_name)
+
+        update_map(svg_file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
 
 def start_app():
@@ -67,6 +77,7 @@ def start_app():
             floor_num = float(floor)
         except ValueError:
             abort(404)
+            return None  # Stops the following code from executing
 
         if 1 <= floor_num <= 4:
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),

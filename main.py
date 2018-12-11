@@ -130,9 +130,9 @@ class HeatmapMain:
                          fill='#ffffff', opacity=0, id="floor-plan-overlay", visibility="hidden"))
         dwg.add(dwg.rect(insert=(0, 0), size=(0, 0), fill="white", stroke="black", id="value-box", visibility="hidden"))
         dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-title-text", visibility="hidden",
-                         style="font-weight: bold; font-size: 160px; font-family: 'Roboto Mono', monospace;"))
+                         style="font-weight: bold; font-size: 80px; font-family: 'Roboto Mono', monospace;"))
         dwg.add(dwg.text(text="", insert=(0, 0), fill="black", id="room-value-text", visibility="hidden",
-                         style="font-size: 120px; font-family: 'Roboto Mono', monospace;"))
+                         style="font-size: 60px; font-family: 'Roboto Mono', monospace;"))
         dwg.save()  # Save the path to a temporary file
         floor_plan = st.fromfile(
             self.svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2'))

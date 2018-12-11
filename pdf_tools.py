@@ -64,7 +64,7 @@ def get_text_and_coordinates(pdf_path):
 
                     if text_len == 5:
                         text = text[:3] + '-' + text[3:]
-                    elif text_len > 5:
+                    elif text_len > 5 or text_len < 3:
                         continue  # Currently just ignoring those few rooms which are problematic
 
                     df_dictionary['x0'].append(bbox[0])

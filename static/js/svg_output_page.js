@@ -31,7 +31,7 @@ function showRoomData(path, oldValue, oldUnits) {
     valueText.attr('x', valueTextCoords[0]);
     valueText.attr('y', valueTextCoords[1]);
     valueText.css('visibility', 'visible');
-    valueText.html(`${isShowingTemperature ? 'Temperature' : 'CO2 Level' }: ${oldValue} ${oldUnits}`);
+    valueText.html(`${isShowingTemperature ? 'Temperature' : 'CO2 Level'}: ${oldValue} ${oldUnits}`);
 
     // Move and show the svg box
     let box = $('#value-box');
@@ -45,12 +45,16 @@ function showRoomData(path, oldValue, oldUnits) {
 
     if (box_x + box_width >= view_box[2]) {
         // The box would extend outside of the viewBox
-        box_x -= box_width; // Move the box so that one of its RIGHT corners is at (box_x, box_y)
+        box_x -= box_width + getRoomPathWidth(path) + 3 * cornerPadding; // Move the box so that one of its RIGHT corners is at (box_x, box_y)
+        roomText.attr('x', roomTextCoords[0] - box_width - getRoomPathWidth(path) - 3 * cornerPadding);
+        valueText.attr('x', valueTextCoords[0] - box_width - getRoomPathWidth(path) - 3 * cornerPadding);
     }
 
     if (box_y + box_height >= view_box[3]) {
         // The box would extend outside of the viewBox
-        box_y -= box_height; // Move the box so that one of the BOTTOM corners is at (box_x, box_y)
+        box_y -= box_height + getRoomPathHeight(path) + 3 * cornerPadding; // Move the box and text to stay on screen and not cover
+        roomText.attr('y', roomTextCoords[1] - box_height - getRoomPathHeight(path) - 3 * cornerPadding);
+        valueText.attr('y', valueTextCoords[1] - box_height - getRoomPathHeight(path) - 3 * cornerPadding);
     }
 
     box.attr('x', box_x);
@@ -61,6 +65,36 @@ function showRoomData(path, oldValue, oldUnits) {
     box.css('stroke', 'black');
     box.css('stroke-width', '4');
     box.css('visibility', 'visible');
+}
+
+function getRoomPathWidth(path) {
+    let pathD = $(path).attr('d');
+    let split = pathD.split('L');
+    // To get width:
+    // split[2] up to first space - split[1] up to first space
+    let svg_width = Math.abs(parseFloat(split[1].split(' ')[0]) - parseFloat(split[2].split(' ')[0]));
+
+    // Calculate pixel width based on SVG width
+    let svg = $(path).parents('svg').first().parent('svg').first();
+    let viewBox = $(svg).attr('viewBox').split(' ');
+    let width = $(svg).width();
+
+    return svg_width / viewBox[2] * width;
+}
+
+function getRoomPathHeight(path) {
+    let pathD = $(path).attr('d');
+    let split = pathD.split('L');
+    // To get height:
+    // split[1] between first and second space - split[0] between first and second space
+    let svg_height = Math.abs(parseFloat(split[1].split(' ')[1]) - parseFloat(split[0].split(' ')[1]));
+
+    // Calculate pixel width based on SVG width
+    let svg = $(path).parents('svg').first().parent('svg').first();
+    let viewBox = $(svg).attr('viewBox').split(' ');
+    let height = $(svg).height();
+
+    return svg_height / viewBox[3] * height;
 }
 
 function hideRoomData(path) {
