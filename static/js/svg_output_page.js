@@ -11,7 +11,7 @@ function showRoomData(path, oldValue, oldUnits) {
     let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
     let cornerPadding = 50;
     let boxPadding = 150;
-    let textPadding = 50;
+    let textPadding = 20;
 
     // Move text and fill in with value
     let roomText = $('#room-title-text');

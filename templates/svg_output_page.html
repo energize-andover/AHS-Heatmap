@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 {% import 'macros.html' as macros %}
-{{ macros.head("AHS Level 3", time) }}
+{% set title = "AHS Level " + floor %}
+{{ macros.head(title, time) }}
 <body id="body">
 <link rel="stylesheet" href="static/css/svg_output_page.css?{{ time }}"> <!-- We want to avoid caching -->
-{{ macros.nav("/ahs/3") }}
+{% set url = "/ahs/" + floor %}
+{{ macros.nav(url) }}
 <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
 <div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>

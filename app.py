@@ -82,7 +82,7 @@ def start_app():
         if 1 <= floor_num <= 4:
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
                                    file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor),
-                                   time=get_time())
+                                   time=get_time(), floor=floor)
         else:
             abort(404)
 
