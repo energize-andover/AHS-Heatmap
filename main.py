@@ -116,6 +116,9 @@ class HeatmapMain:
     def fill_from_data(self, data, is_temperature_value):
         value = data['temperature'] if is_temperature_value else data['co2']
         units = data['temperature units'] if is_temperature_value else data['co2 units']
+        if data['room'] == '305' and '4' in self.svg_path:
+            print()
+
         if not math.isnan(value) and units is not None and units != '':
             color = self.get_value_color(value, is_temperature_value)
             self.fill_room(data['room'], color, 0.6, value, units, is_temperature_value)
