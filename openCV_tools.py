@@ -23,11 +23,24 @@ def get_room_corner_coords(room_text_coords):
     upper_bound = np.array(np.clip([value + 5 for value in background_color], 0, 255))
     binary = cv2.inRange(img, lower_bound, upper_bound)
 
+    # cv2.imshow('binary 1', binary)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
     replacement_color = 128
 
     cv2.floodFill(binary, None, bottom_left, replacement_color)
     binary = cv2.inRange(binary, replacement_color, replacement_color)
+
+    # cv2.imshow('binary 2', binary)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
     cv2.rectangle(binary, bottom_left, top_right, 255, -1)  # Fill in the room-number-shaped hole for shape recognition
+
+    # cv2.imshow('binary 3', binary)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     ret, thresh = cv2.threshold(binary, 127, 255, 0)
     im2, contours, hierarchy = cv2.findContours(thresh, 1, 2)

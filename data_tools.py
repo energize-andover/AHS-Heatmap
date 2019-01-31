@@ -3,6 +3,9 @@ from main import HeatmapMain
 import pandas as pd
 import numbers
 import requests
+from tempfile import mkstemp
+from shutil import move
+from os import fdopen, remove
 
 current_air_data = None
 rooms_and_sensors = None
@@ -160,9 +163,26 @@ def get_new_room_data(room):
 
 def fill_all_rooms(heatmap, is_temperature_value):
     if not isinstance(heatmap, HeatmapMain):
-        return # We will get run time errors later on if heatmap is not an instance of HeatmapMain
+        return  # We will get run time errors later on if heatmap is not an instance of HeatmapMain
 
     for indx, row in current_air_data.iterrows():
         heatmap.fill_from_data(row, is_temperature_value)
 
     heatmap.add_overlay(is_temperature_value)
+
+    replace_in_file(
+        '{0}_filled_rooms_{1}.svg'.format(heatmap.svg_path[:-4], 'temperature' if is_temperature_value else 'co2'), 'svg:', '') # Cleanup broken formatting that svgwrite sometimes generates
+
+
+# Code from https://stackoverflow.com/questions/39086/search-and-replace-a-line-in-a-file-in-python
+def replace_in_file(file_path, pattern, replacement):
+    # Create temp file
+    fh, abs_path = mkstemp()
+    with fdopen(fh, 'w') as new_file:
+        with open(file_path) as old_file:
+            for line in old_file:
+                new_file.write(line.replace(pattern, replacement))
+    # Remove original file
+    remove(file_path)
+    # Move new file
+    move(abs_path, file_path)

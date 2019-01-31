@@ -1,4 +1,12 @@
 function showRoomData(path, oldValue, oldUnits) {
+    let roomText = $('#room-title-text');
+    let valueText = $('#room-value-text');
+
+    if (window.location.href.includes("/ahs/3") || window.location.href.includes("/ahs/4")) {
+        roomText.css('font-size', '150px');
+        valueText.css('font-size', '150px');
+    }
+
     let overlay = $('#floor-plan-overlay');
     let currentD = overlay.attr('d');
     let pathD = $(path).attr('d');
@@ -14,9 +22,6 @@ function showRoomData(path, oldValue, oldUnits) {
     let textPadding = 20;
 
     // Move text and fill in with value
-    let roomText = $('#room-title-text');
-    let valueText = $('#room-value-text');
-
     let roomTextCoords = [bottomRightCorner[0] + cornerPadding + boxPadding / 4, bottomRightCorner[1] + cornerPadding];
 
     roomText.attr('x', roomTextCoords[0]);
@@ -31,7 +36,7 @@ function showRoomData(path, oldValue, oldUnits) {
     valueText.attr('x', valueTextCoords[0]);
     valueText.attr('y', valueTextCoords[1]);
     valueText.css('visibility', 'visible');
-    valueText.html(`${isShowingTemperature ? 'Temperature' : 'CO2 Level'}: ${oldValue} ${oldUnits}`);
+    valueText.html(`${isShowingTemperature ? 'Temperature' : 'CO2 Level'}: ${oldValue}${oldUnits.replace('deg ', '&#176;')}`);
 
     // Move and show the svg box
     let box = $('#value-box');
@@ -143,6 +148,5 @@ function toggleDisplay() {
 
 $(document).ready(() => {
     loadSvg();
-
     setTimeout(startSVGUpdating(), 100); //Detach a loop into a thread
 });
