@@ -28,8 +28,7 @@ GREEN_VALUE = (70, 900)
 RED_VALUE = (80, 2000)
 
 # Empty out the temporary folder by deleting it and making a new one
-folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           os.path.join('static', 'temp_update_svgs'))
+folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('static', 'temp_update_svgs'))
 shutil.rmtree(folder_path)
 os.mkdir(folder_path)
 
@@ -79,7 +78,7 @@ def start_app():
             abort(404)
             return None  # Stops the following code from executing
 
-        if 1 <= floor_num <= 4:
+        if floor_num in levels:
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
                                    file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor),
                                    time=get_time(), floor=floor)
