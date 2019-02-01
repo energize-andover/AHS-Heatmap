@@ -3,8 +3,8 @@
 import requests
 import json
 
-PUBLIC_HOSTNAME = '10.12.4.98'
-INTERNAL_PORT = '8000'
+PUBLIC_HOSTNAME = 'energize.andoverma.us'
+INTERNAL_PORT = ''
 
 
 # Request present value and units for the supplied instance
