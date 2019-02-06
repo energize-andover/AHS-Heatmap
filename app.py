@@ -12,10 +12,10 @@ import calendar
 import datetime
 import shutil
 
-
-levels = [1, 2, 3, 4]
+levels = [2, 3, 4]
 svg_file_prefix = "Andover-HS-level-"
-svg_and_conversions_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('static', 'svg_and_conversions'))
+svg_and_conversions_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        os.path.join('static', 'svg_and_conversions'))
 
 rooms_and_sensors = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('data', 'csv', 'ahs_air.csv'))
 
@@ -83,8 +83,28 @@ def start_app():
                                    file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor),
                                    time=get_time(), floor=floor)
         else:
-            abort(404)
+            abort(500)
 
+    @app.errorhandler(404)
+    def error_404(e):
+        return load_error_page(404, 'Page Not Found', 'The page you are looking for might have been removed, had its ' +
+                               'name changed, or be temporarily unavailable.')
+
+    @app.errorhandler(403)
+    def error_403(e):
+        return load_error_page(403, 'Forbidden', 'You don\'t have permission to access this page on this server')
+
+    @app.errorhandler(500)
+    def error_500(e):
+        return load_error_page(500, 'Internal Server Error', Markup('The server encountered an internal error or ' +
+                               'misconfiguration and was unable to complete your request. <br><br>' +
+                               'Please contact Daniel Ivanovich (<a href="mailto:dan@ivanovi.ch">dan@ivanovi.ch</a>) ' +
+                               'to make this issue known.'))
+
+    def load_error_page(code, tagline, details):
+        return render_template('error.html', code=str(code), tagline=tagline, details=details), code
+
+    app.register_error_handler(404, error_404)
     app.run()
 
 
