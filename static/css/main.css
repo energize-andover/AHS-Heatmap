@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('../font-awesome/css/all.css');
 
 /************NAVIGATION************/
 #nav-logo {
@@ -41,4 +42,13 @@
 .navbar-item.active-page {
     background-color: #113255 !important;
     color: #F2C413 !important;
+}
+
+/************GENERAL************/
+a {
+    transition: 0.5s all;
+}
+
+footer {
+    padding: 20px;
 }

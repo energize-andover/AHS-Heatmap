@@ -11,7 +11,7 @@
     </head>
 {% endmacro %}
 
-{% macro nav(currentURL) %}
+{% macro nav(currentURL, floors) %}
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/" id="nav-logo-link">
@@ -34,11 +34,14 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="/ahs/">AHS</a>
 
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="/ahs/1">Level 1</a>
-                        <a class="navbar-item" href="/ahs/2">Level 2</a>
-                        <a class="navbar-item" href="/ahs/3">Level 3</a>
-                        <a class="navbar-item" href="/ahs/4">Level 4</a>
+                    <div class="navbar-dropdown" id="floor-dropdown">
+                        <script type="text/javascript">
+                            let floors = {{ floors }};
+
+                            floors.forEach((floor) => {
+                                $('#floor-dropdown').append(`<a class="navbar-item" href="/ahs/${floor}">Floor ${floor - 1}</a>`)
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -53,4 +56,44 @@
             });
         </script>
     </nav>
+{% endmacro %}
+
+{% macro footer(year) %}
+    <footer class="site-footer">
+        <div class="container">
+            <p style="text-align: center; color: black; margin-bottom: 20px;">
+                <small>&copy;{{ year }} Daniel Ivanovich All rights reserved.</small>
+            </p>
+            <img style="display: block; margin: 0 auto" src="static/img/Energize-Andover-Logo.png"/>
+        </div>
+        </div>
+    </footer>
+    <script>
+        let footer = $('.site-footer:first');
+
+        function adjustFooter() {
+            if ($('header:first').outerHeight() + $('main:first').outerHeight() + footer.outerHeight() < $(window).height()) {
+                footer.css({
+                    'position': 'fixed',
+                    'left': 0,
+                    'right': 0,
+                    'bottom': 0
+                });
+            } else {
+                footer.css({
+                    'position': 'static',
+                    'left': 'unset',
+                    'right': 'unset',
+                    'bottom': 'unset'
+                });
+            }
+        }
+
+        $(window).bind('resize', function () {
+            adjustFooter();
+        });
+
+        $(adjustFooter());
+    </script>
+
 {% endmacro %}

@@ -66,9 +66,25 @@ def update_svg():
 def start_app():
     app = Flask(__name__)
 
+    @app.context_processor
+    def inject_floors_to_all_templates():
+        return dict(floors=levels)
+
+    @app.context_processor
+    def inject_time_to_all_templates():
+        return dict(time=get_time())
+
+    @app.context_processor
+    def inject_year_to_all_templates():
+        return dict(year=get_year())
+
     @app.route("/")
     def home():
-        return render_template("index.html", title="Floor Plan", time=get_time())
+        return render_template("index.html", title="AHS Heatmaps")
+
+    @app.route("/about")
+    def about():
+        return render_template("about.html", title="About | AHS Heatmaps")
 
     @app.route("/ahs/<floor>")
     def load_svg(floor):
@@ -80,8 +96,7 @@ def start_app():
 
         if floor_num in levels:
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
-                                   file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor),
-                                   time=get_time(), floor=floor)
+                                   file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor), floor=floor)
         else:
             abort(500)
 
@@ -97,9 +112,9 @@ def start_app():
     @app.errorhandler(500)
     def error_500(e):
         return load_error_page(500, 'Internal Server Error', Markup('The server encountered an internal error or ' +
-                               'misconfiguration and was unable to complete your request. <br><br>' +
-                               'Please contact Daniel Ivanovich (<a href="mailto:dan@ivanovi.ch">dan@ivanovi.ch</a>) ' +
-                               'to make this issue known.'))
+                                                                    'misconfiguration and was unable to complete your request. <br><br>' +
+                                                                    'Please contact Daniel Ivanovich (<a href="mailto:dan@ivanovi.ch">dan@ivanovi.ch</a>) ' +
+                                                                    'to make this issue known.'))
 
     def load_error_page(code, tagline, details):
         return render_template('error.html', code=str(code), tagline=tagline, details=details), code
@@ -110,6 +125,10 @@ def start_app():
 
 def get_time():
     return datetime_to_utc(datetime.datetime.now())
+
+
+def get_year():
+    return datetime.datetime.now().year
 
 
 def start_svg_auto_updater():

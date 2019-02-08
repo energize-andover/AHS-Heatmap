@@ -3,8 +3,8 @@
 import requests
 import json
 
-PUBLIC_HOSTNAME = 'energize.andoverma.us'
-INTERNAL_PORT = ''
+PUBLIC_HOSTNAME = '10.12.4.98'
+INTERNAL_PORT = '8000'
 
 
 # Request present value and units for the supplied instance
@@ -34,8 +34,7 @@ def get_value(facility, instance, gateway_hostname=PUBLIC_HOSTNAME, gateway_port
         dc_inst_rsp = dc_rsp['instance_response']
 
         # Extract result from instance response
-        if (dc_inst_rsp['success']):
-
+        if dc_inst_rsp['success']:
             dc_data = dc_inst_rsp['data']
 
             if dc_data['success']:
