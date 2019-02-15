@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 {% import 'macros.html' as macros %}
 {% set title = "AHS Level " + floor %}
@@ -6,8 +5,9 @@
 <body id="body">
 <link rel="stylesheet" href="static/css/svg_output_page.css?{{ time }}"> <!-- We want to avoid caching -->
 {% set url = "/ahs/" + floor %}
-{{ macros.nav(url) }}
+{{ macros.nav(url, floors) }}
 <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
+<h1 id="err-msg" class="is-size-4 has-text-centered"></h1>
 <div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch" onclick="toggleDisplay()">
@@ -18,9 +18,37 @@
 
 <script type="text/javascript">
     let isShowingTemperature = true;
+    let retryCount = 0;
+    let timer = null;
 
     function loadSvg() {
-        $('#svg-container').load(`static/svg_and_conversions/{{ file_filled_prefix }}${isShowingTemperature ? 'temperature' : 'co2'}.svg?${$.now()}`);
+        let err = $('#err-msg');
+
+        $('#svg-container').load(`static/svg_and_conversions/{{ file_filled_prefix }}${isShowingTemperature ? 'temperature' : 'co2'}.svg?${$.now()}`, (responseText, statusText, xhr) => {
+            if (xhr.status === 404) {
+                if (!SVGExists) {
+                }
+
+                timer = setTimeout(() => {
+                    loadSvg();
+                    retryCount++;
+                }, 1000);
+            } else if (xhr.status === 200 && timer != null) {
+                retryCount = 0;
+                clearTimeout(timer);
+                err.css('display', 'none');
+            }
+
+            if (retryCount > 10) {
+                clearTimeout(timer);
+                err.css('display', 'block');
+                err.html(`Unable to ${SVGExists() ? 're' : ''}load heatmap, please try again later or <a href="mailto:dan@ivanovi.ch">contact the developer</a>`);
+            }
+        });
+    }
+
+    function SVGExists() {
+        return !!$('#svg-container svg:first').length; // Condense into boolean
     }
 </script>
 <script src="static/js/svg_output_page.js?{{ time }}"></script>

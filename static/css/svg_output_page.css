@@ -83,3 +83,7 @@
     display: block;
     margin: 0 auto;
 }
+
+#err-msg {
+    display: none;
+}

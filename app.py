@@ -29,7 +29,10 @@ RED_VALUE = (80, 2000)
 
 # Empty out the temporary folder by deleting it and making a new one
 folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('static', 'temp_update_svgs'))
-shutil.rmtree(folder_path)
+
+if os.path.exists(folder_path):
+    shutil.rmtree(folder_path)
+
 os.mkdir(folder_path)
 
 init_data_tools(rooms_and_sensors)
