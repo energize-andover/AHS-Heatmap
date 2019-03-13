@@ -43,7 +43,7 @@ def get_room_corner_coords(room_text_coords):
     # cv2.destroyAllWindows()
 
     ret, thresh = cv2.threshold(binary, 127, 255, 0)
-    im2, contours, hierarchy = cv2.findContours(thresh, 1, 2)
+    contours, hierarchy = cv2.findContours(thresh, 1, 2)
     contour = contours[0]
 
     contour_perimeter = cv2.arcLength(contour, True)
