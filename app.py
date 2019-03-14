@@ -12,6 +12,8 @@ import calendar
 import datetime
 import shutil
 
+app
+
 levels = [2, 3, 4]
 svg_file_prefix = "Andover-HS-level-"
 svg_and_conversions_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -67,6 +69,7 @@ def update_svg():
 
 
 def start_app():
+    global app
     app = Flask(__name__)
 
     @app.context_processor
@@ -123,7 +126,6 @@ def start_app():
         return render_template('error.html', code=str(code), tagline=tagline, details=details), code
 
     app.register_error_handler(404, error_404)
-    app.run()
 
 
 def get_time():
@@ -154,9 +156,10 @@ def start_svg_auto_updater():
     timeinterval.start(5 * 60 * 1000, update_svg)
     update_svg()
 
+update_thread = threading.Thread(target=start_svg_auto_updater)
+update_thread.start()
+
+start_app()
 
 if __name__ == '__main__':
-    update_thread = threading.Thread(target=start_svg_auto_updater)
-    update_thread.start()
-
-    start_app()
+    app.run()
