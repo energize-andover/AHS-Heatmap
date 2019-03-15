@@ -11,7 +11,7 @@
     </head>
 {% endmacro %}
 
-{% macro nav(currentURL, floors) %}
+{% macro nav() %}
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ host_prefix }}/" id="nav-logo-link">
@@ -51,7 +51,7 @@
             $('.navbar-menu .navbar-item').each((indx, elem) => {
                 let href = $(elem).attr('href');
 
-                if (href === '{{ currentURL }}')
+                if (href === '{{ request.path }}')
                     $(elem).addClass('active-page');
             });
         </script>

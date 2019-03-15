@@ -5,14 +5,13 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>Error {{ code }} | Heatmaps</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
 
-    <base href="/">
+    <base href="{{ host_prefix }}/">
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="static/css/error-page.css" />
 </head>
@@ -26,10 +25,10 @@
 			</div>
 			<h2>{{ code }} - {{ tagline }}</h2>
 			<p>{{ details }}</p>
-			<a id="home-button" href="/">Go To Homepage</a>
+			<a id="home-button" href="{{ host_prefix }}/">Go To Homepage</a>
 		</div>
 	</div>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>

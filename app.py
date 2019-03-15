@@ -73,9 +73,9 @@ def start_app():
     global app
     app = Flask(__name__)
 
-    @app.context_processor
-    def inject_floors_to_all_templates():
-        return dict(floors=levels)
+    # @app.context_processor
+    # def inject_floors_to_all_templates():
+    #     return dict(floors=levels)
 
     @app.context_processor
     def inject_time_to_all_templates():
@@ -129,6 +129,7 @@ def start_app():
     app.register_error_handler(404, error_404)
 
     app.jinja_env.globals['host_prefix'] = HOST_PREFIX
+    app.jinja_env.globals['floors'] = levels
     app.static_url_path = '{0}/static'.format(HOST_PREFIX)
 
     # remove old static map
