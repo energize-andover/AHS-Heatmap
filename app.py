@@ -105,7 +105,7 @@ def start_app():
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
                                    file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor), floor=floor)
         else:
-            abort(500)
+            abort(404)
 
     @app.errorhandler(404)
     def error_404(e):
