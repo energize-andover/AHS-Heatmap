@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <base href="{{ url_for('home') }}">
+        <base href="{{ host_prefix }}/">
         <link rel="stylesheet" href="static/css/main.css?{{ time }}">
     </head>
 {% endmacro %}
@@ -14,7 +14,7 @@
 {% macro nav(currentURL, floors) %}
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/" id="nav-logo-link">
+            <a class="navbar-item" href="{{ host_prefix }}/" id="nav-logo-link">
                 <img src="static/img/Andover-Seal.png" width="auto" id="nav-logo" alt="Town of Andover Seal">
             </a>
 
@@ -28,18 +28,18 @@
 
         <div class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item" href="/">Home</a>
-                <a class="navbar-item" href="/about">About</a>
+                <a class="navbar-item" href="{{ host_prefix }}/">Home</a>
+                <a class="navbar-item" href="{{ host_prefix }}/about">About</a>
 
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="/ahs/">AHS</a>
+                    <a class="navbar-link">AHS</a>
 
                     <div class="navbar-dropdown" id="floor-dropdown">
                         <script type="text/javascript">
                             let floors = {{ floors }};
 
                             floors.forEach((floor) => {
-                                $('#floor-dropdown').append(`<a class="navbar-item" href="/ahs/${floor}">Floor ${floor - 1}</a>`)
+                                $('#floor-dropdown').append(`<a class="navbar-item" href="{{ host_prefix }}/ahs/${floor}">Floor ${floor - 1}</a>`)
                             });
                         </script>
                     </div>

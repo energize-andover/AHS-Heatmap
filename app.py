@@ -13,6 +13,7 @@ import datetime
 import shutil
 
 app
+HOST_PREFIX = "/heatmap"
 
 levels = [2, 3, 4]
 svg_file_prefix = "Andover-HS-level-"
@@ -84,15 +85,15 @@ def start_app():
     def inject_year_to_all_templates():
         return dict(year=get_year())
 
-    @app.route("/")
+    @app.route("{0}/".format(HOST_PREFIX))
     def home():
         return render_template("index.html", title="AHS Heatmaps")
 
-    @app.route("/about")
+    @app.route("{0}/about".format(HOST_PREFIX))
     def about():
         return render_template("about.html", title="About | AHS Heatmaps")
 
-    @app.route("/ahs/<floor>")
+    @app.route("{0}/ahs/<floor>".format(HOST_PREFIX))
     def load_svg(floor):
         try:
             floor_num = float(floor)
@@ -126,6 +127,23 @@ def start_app():
         return render_template('error.html', code=str(code), tagline=tagline, details=details), code
 
     app.register_error_handler(404, error_404)
+
+    app.jinja_env.globals['host_prefix'] = HOST_PREFIX
+    app.static_url_path = '{0}/static'.format(HOST_PREFIX)
+
+    # remove old static map
+    url_map = app.url_map
+    try:
+        for rule in url_map.iter_rules('static'):
+            url_map._rules.remove(rule)
+    except ValueError:
+        # no static view was created yet
+        pass
+
+    # register new; the same view function is used
+    app.add_url_rule(
+        app.static_url_path + '/<path:filename>',
+        endpoint='static', view_func=app.send_static_file)
 
 
 def get_time():
