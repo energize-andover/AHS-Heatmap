@@ -11,8 +11,7 @@ import math
 
 
 class HeatmapMain:
-    def __init__(self, floor, path, r, g, b):
-        self.floor = floor
+    def __init__(self, path, r, g, b):
         self.svg_path = path
 
         self.pdf_path = self.svg_path[0:-4] + ".pdf"
@@ -49,9 +48,6 @@ class HeatmapMain:
         self.generate_color_arrays()
 
     def fill_room(self, room, color_hex_code, opacity, value, units, is_temperature):
-        if not str(room).startswith(str(self.floor)):
-            return
-
         temp_path = self.svg_path[0:-4] + '_temp_rect.svg'
         output_path = self.svg_path[0:-4] + '_filled_rooms_{0}.svg'.format('temperature' if is_temperature else 'co2')
 
@@ -120,6 +116,8 @@ class HeatmapMain:
     def fill_from_data(self, data, is_temperature_value):
         value = data['temperature'] if is_temperature_value else data['co2']
         units = data['temperature units'] if is_temperature_value else data['co2 units']
+        if data['room'] == '307' and '4' in self.svg_path:
+            print()
 
         if not math.isnan(value) and units is not None and units != '':
             color = self.get_value_color(value, is_temperature_value)

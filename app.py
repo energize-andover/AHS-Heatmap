@@ -44,7 +44,7 @@ for level in levels:
     svg_file_name = svg_file_prefix + str(level) + '.svg'
     svg_path = os.path.join(svg_and_conversions_path, svg_file_name)
 
-    heatmap = HeatmapMain(level - 1, svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
+    heatmap = HeatmapMain(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
     fill_all_rooms(heatmap, True)  # First start with temperature
     fill_all_rooms(heatmap, False)
@@ -66,7 +66,7 @@ def update_svg():
         file_name = svg_file_prefix + str(floor_level) + '.svg'
         file_path = os.path.join(svg_and_conversions_path, file_name)
 
-        update_map(level - 1, svg_file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
+        update_map(svg_file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
 
 def start_app():

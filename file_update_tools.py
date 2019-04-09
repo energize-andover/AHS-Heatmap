@@ -4,14 +4,14 @@ import os
 import shutil
 
 
-def update_map(floor, svg_name, svg_path, red, green, blue):
+def update_map(svg_name, svg_path, red, green, blue):
     # Build the absolute path of the temporary output file (where what will be the updated SVG is stored)
     temp_output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     os.path.join('static', 'temp_update_svgs', svg_name))
 
     shutil.copy(svg_path, temp_output_path)  # Copy the empty SVG to the other folder
 
-    heatmap = HeatmapMain(floor, temp_output_path, red, green, blue)
+    heatmap = HeatmapMain(temp_output_path, red, green, blue)
 
     is_temperature = True
 
