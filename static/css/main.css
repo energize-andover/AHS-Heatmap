@@ -53,13 +53,18 @@ footer {
     padding: 20px;
 }
 
+#footer-text a,
 #footer-link-holder a {
     color: black;
-    font-size: 24px;
-    margin: 0 5px;
     transition: 1s all;
 }
 
+#footer-link-holder a {
+    font-size: 24px;
+    margin: 0 5px;
+}
+
+#footer-text a:hover,
 #footer-link-holder a:hover {
     opacity: 0.6;
 }
