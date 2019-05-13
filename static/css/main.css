@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('../font-awesome/css/all.css');
 
+/**
+    Color Reference:
+    Gold: #F2C413
+    Blue: #113255
+ */
+
 /************NAVIGATION************/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+nav {
+    height: 52px;
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.navbar-brand {
+    width: 100%;
+    position: relative;
+}
+
 #nav-logo {
-    min-height: 3.125rem;
-    max-height: 3.5rem;
+    max-height: 42px;
+    width: auto;
 }
 
 #nav-logo-link {
@@ -15,33 +38,42 @@
     opacity: 0.6 !important;
 }
 
-.navbar-menu div a {
-    transition: 0.5s all;
+.navbar-burger {
+    display: block !important;
+    margin-left: auto;
 }
 
-.navbar-item,
-.navbar-item.has-dropdown,
-.navbar-item.has-dropdown .navbar-link {
-    color: #113255 !important;
-    transition: 0.5s all;
+.navbar-burger.is-active {
+    color: white!important;
 }
 
-.navbar-item:hover,
-.navbar-item.active-page:hover,
-.navbar-item.has-dropdown.is-active .navbar-link,
-.navbar-item.has-dropdown:hover .navbar-link {
-    background-color: #F2C413 !important;
-    color: #113255 !important;
+#sidenav {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    bottom: 0;
+    background-color: #113255;
+    width: 320px;
+    z-index: 29;
+    transition: 0.75s all;
+    padding-top: 60px;
 }
 
-#nav-logo-link:hover {
-    background-color: unset !important;
-    color: unset !important;
+#sidenav.active {
+    right: 0;
 }
 
-.navbar-item.active-page {
-    background-color: #113255 !important;
-    color: #F2C413 !important;
+#sidenav .sidenav-item {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    color: #F2C413;
+    font-size: 30px;
+}
+
+#sidenav .sidenav-item.active-page {
+    background-color: white;
+    color: #113255;
 }
 
 /************GENERAL************/
@@ -67,4 +99,7 @@ footer {
 #footer-text a:hover,
 #footer-link-holder a:hover {
     opacity: 0.6;
+}
+
+#main-hero {
 }
