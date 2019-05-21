@@ -69,7 +69,25 @@ nav {
     padding: 18px;
     color: #F2C413;
     font-size: 30px;
+    transition: 0.5s all;
 }
+
+#sidenav .sidenav-item:hover {
+    opacity: 0.75;
+}
+
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-title {
+    color: #F2C413;
+}
+
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-title:hover {
+    opacity: 0.9;
+}
+
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
+    display: none;
+}
+
 
 #sidenav .sidenav-item.active-page {
     background-color: white;
