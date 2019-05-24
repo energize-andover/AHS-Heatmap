@@ -13,6 +13,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
 }
 
 nav {
@@ -44,7 +45,7 @@ nav {
 }
 
 .navbar-burger.is-active {
-    color: white!important;
+    color: white !important;
 }
 
 #sidenav {
@@ -80,8 +81,8 @@ nav {
     color: #F2C413;
 }
 
-#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-title:hover {
-    opacity: 0.9;
+#sidenav .sidenav-item.sidenav-dropdown:hover {
+    opacity: 0.75;
 }
 
 #sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
@@ -92,6 +93,21 @@ nav {
 #sidenav .sidenav-item.active-page {
     background-color: white;
     color: #113255;
+}
+
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden.hidden-revealed {
+    display: block !important;
+    height: auto !important;
+}
+
+.dropdown-caret {
+    transition: 0.5s transform;
+    transform: rotate(180deg);
+    margin-left: 10px;
+}
+
+.dropdown-caret.dropdown-caret-active {
+    transform: rotate(0deg);
 }
 
 /************GENERAL************/
@@ -109,6 +125,7 @@ footer {
     transition: 1s all;
 }
 
+
 #footer-link-holder a {
     font-size: 24px;
     margin: 0 5px;
@@ -119,5 +136,10 @@ footer {
     opacity: 0.6;
 }
 
-#main-hero {
+
+/************CSS BREAKPOINTS************/
+@media screen and (max-width: 600px) {
+    #sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
+        display: block !important;
+    }
 }

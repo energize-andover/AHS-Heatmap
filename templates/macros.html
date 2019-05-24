@@ -3,11 +3,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ title }}</title>
+
+        <!-- Import Bulma - the CSS framework used to build this site (https://bulma.io/) -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <!-- Import FontAwesome Icons (JS + SVG version for custom CSS animations) (https://fontawesome.com) -->
+        <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+        <!-- Import jQuery for all-around better and easier JavaScript (https://jquery.com/) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <base href="{{ host_prefix }}/">
+
+        <!-- Import main CSS stylesheet, adding a ? with the current UTC time to ensure that the cache is avoided -->
         <link rel="stylesheet" href="static/css/main.css?{{ time }}">
+
+        <!-- Import and initialize Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="194x194" href="static/img/favicon/favicon-194x194.png">
@@ -115,6 +124,6 @@
 
         $(adjustFooter());
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
     <script type="text/javascript" src="{{ host_prefix }}/static/js/navigation.js?{{ time }}"></script>
-
 {% endmacro %}

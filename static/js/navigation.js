@@ -3,14 +3,45 @@ $('.navbar-burger').first().click(() => {
     $('#sidenav').toggleClass('active');
 });
 
-$('.sidenav-dropdown-title').each((indx, title) => {
-    let dropdown = $(title).parent();
-    let hidden = dropdown.children('.sidenav-dropdown-hidden').first();
+/** Detect mobile browsers using mobile-detect.js (https://github.com/hgoebl/mobile-detect.js) **/
+let md = new MobileDetect(window.navigator.userAgent);
 
-    dropdown.mouseenter(() => {
-        hidden.slideDown();
+function adjustNav() {
+    $('.sidenav-dropdown-title').each((indx, title) => {
+        let dropdown = $(title).parent();
+        let hidden = dropdown.children('.sidenav-dropdown-hidden').first();
+
+        if (md.mobile() == null) {
+            dropdown.mouseenter(() => {
+                hidden.slideDown();
+            });
+            dropdown.mouseleave(() => {
+                hidden.slideUp();
+            });
+        } else {
+            hidden.css('display', 'block !important');
+        }
     });
-    dropdown.mouseleave(() => {
-        hidden.slideUp();
+}
+
+adjustNav();
+
+$(window).resize(() => {
+    adjustNav();
+});
+
+
+// Keep dropdown expanded if active page is part of it
+let activeLink = $('.active-page').first();
+if (activeLink.hasClass('sidenav-dropdown-item')) {
+    dropdown = activeLink.parents('.sidenav-dropdown-hidden').each((indx, hidden) => {
+        $(hidden).addClass('hidden-revealed');
     });
+}
+
+// Add FontAwesome caret icons to each dropdown title
+$('.sidenav-dropdown-title').each((indx, titleDOM) => {
+    let title = $(titleDOM);
+
+    title.append('<i class="fas fa-caret-up dropdown-caret"></i>'); // Add the caret icon
 });
