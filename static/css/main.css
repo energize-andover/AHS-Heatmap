@@ -1,10 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('../font-awesome/css/all.css');
 
+/**
+    Color Reference:
+    Gold: #F2C413
+    Blue: #113255
+ */
+
 /************NAVIGATION************/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+nav {
+    height: 52px;
+    background-color: rgba(0, 0, 0, 0) !important;
+    z-index: 32!important;
+}
+
+.navbar-brand {
+    width: 100%;
+    position: relative;
+}
+
 #nav-logo {
-    min-height: 3.125rem;
-    max-height: 3.5rem;
+    max-height: 42px;
+    width: auto;
 }
 
 #nav-logo-link {
@@ -15,33 +40,89 @@
     opacity: 0.6 !important;
 }
 
-.navbar-menu div a {
+.navbar-burger {
+    display: block !important;
+    margin-left: auto;
+}
+
+.navbar-burger.is-active {
+    color: white !important;
+}
+
+#sidenav {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    bottom: 0;
+    background-color: #113255;
+    width: 320px;
+    z-index: 31;
+    transition: 0.75s all;
+    padding-top: 60px;
+}
+
+#sidenav.active {
+    right: 0;
+}
+
+#sidenav .sidenav-item {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    color: #F2C413;
+    font-size: 30px;
     transition: 0.5s all;
 }
 
-.navbar-item,
-.navbar-item.has-dropdown,
-.navbar-item.has-dropdown .navbar-link {
-    color: #113255 !important;
-    transition: 0.5s all;
+#sidenav .sidenav-item:hover {
+    opacity: 0.75;
 }
 
-.navbar-item:hover,
-.navbar-item.active-page:hover,
-.navbar-item.has-dropdown.is-active .navbar-link,
-.navbar-item.has-dropdown:hover .navbar-link {
-    background-color: #F2C413 !important;
-    color: #113255 !important;
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-title {
+    color: #F2C413;
 }
 
-#nav-logo-link:hover {
-    background-color: unset !important;
-    color: unset !important;
+#sidenav .sidenav-item.sidenav-dropdown:hover {
+    opacity: 0.75;
 }
 
-.navbar-item.active-page {
-    background-color: #113255 !important;
-    color: #F2C413 !important;
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
+    display: none;
+}
+
+
+#sidenav .sidenav-item.active-page {
+    background-color: white;
+    color: #113255;
+}
+
+#sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden.hidden-revealed {
+    display: block !important;
+    height: auto !important;
+}
+
+.dropdown-caret {
+    transition: 0.5s transform;
+    transform: rotate(180deg);
+    margin-left: 10px;
+}
+
+.dropdown-caret.dropdown-caret-active {
+    transform: rotate(0deg);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 30;
+    transition: 0.5s opacity;
+    cursor: pointer;
 }
 
 /************GENERAL************/
@@ -59,6 +140,7 @@ footer {
     transition: 1s all;
 }
 
+
 #footer-link-holder a {
     font-size: 24px;
     margin: 0 5px;
@@ -67,4 +149,12 @@ footer {
 #footer-text a:hover,
 #footer-link-holder a:hover {
     opacity: 0.6;
+}
+
+
+/************CSS BREAKPOINTS************/
+@media screen and (max-width: 600px) {
+    #sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
+        display: block !important;
+    }
 }
