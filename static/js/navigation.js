@@ -1,6 +1,33 @@
+let overlay = $("#overlay");
+
+function hideOverlay() {
+    overlay.css('opacity', '0');
+    setTimeout(() => {
+        overlay.css('visibility', 'hidden'); // Make sure the animation finishes before making it invisible
+    }, 500);
+}
+
 $('.navbar-burger').first().click(() => {
     $('.navbar-burger').first().toggleClass('is-active');
-    $('#sidenav').toggleClass('active');
+
+    let sidenav = $('#sidenav');
+
+    sidenav.toggleClass('active');
+
+    if (sidenav.hasClass('active')) {
+        // Sidenav is opening
+        overlay.css('visibility', 'visible');
+        overlay.css('opacity', '0.6');
+    } else {
+        // Sidenav is closing
+        hideOverlay();
+    }
+});
+
+overlay.click(() => {
+    $("#sidenav").removeClass('active');
+    $('.navbar-burger').first().removeClass('is-active');
+    hideOverlay();
 });
 
 /** Detect mobile browsers using mobile-detect.js (https://github.com/hgoebl/mobile-detect.js) **/
@@ -14,9 +41,11 @@ function adjustNav() {
         if (md.mobile() == null) {
             dropdown.mouseenter(() => {
                 hidden.slideDown();
+                $(title).children('.dropdown-caret').css('transform', 'rotate(0deg)');
             });
             dropdown.mouseleave(() => {
                 hidden.slideUp();
+                $(title).children('.dropdown-caret').css('transform', '');
             });
         } else {
             hidden.css('display', 'block !important');

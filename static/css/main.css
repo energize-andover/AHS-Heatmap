@@ -19,6 +19,7 @@ header {
 nav {
     height: 52px;
     background-color: rgba(0, 0, 0, 0) !important;
+    z-index: 32!important;
 }
 
 .navbar-brand {
@@ -55,7 +56,7 @@ nav {
     bottom: 0;
     background-color: #113255;
     width: 320px;
-    z-index: 29;
+    z-index: 31;
     transition: 0.75s all;
     padding-top: 60px;
 }
@@ -108,6 +109,20 @@ nav {
 
 .dropdown-caret.dropdown-caret-active {
     transform: rotate(0deg);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 30;
+    transition: 0.5s opacity;
+    cursor: pointer;
 }
 
 /************GENERAL************/

@@ -7,7 +7,9 @@
         <!-- Import Bulma - the CSS framework used to build this site (https://bulma.io/) -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <!-- Import FontAwesome Icons (JS + SVG version for custom CSS animations) (https://fontawesome.com) -->
-        <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"
+                integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH"
+                crossorigin="anonymous"></script>
         <!-- Import jQuery for all-around better and easier JavaScript (https://jquery.com/) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -35,11 +37,12 @@
 {% macro nav() %}
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="{{ host_prefix }}/" id="nav-logo-link">
+            <a class="navbar-item" href="{{ host_prefix }}/" id="nav-logo-link" title="Click to return to home page">
                 <img src="static/img/Energize-Andover-Logo-Small.png" width="auto" id="nav-logo"
                      alt="Town of Andover Seal">
             </a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               title="Click to toggle navigation">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -47,8 +50,8 @@
         </div>
     </nav>
     <div id="sidenav">
-        <a class="sidenav-item" href="{{ host_prefix }}/">Home</a>
-        <a class="sidenav-item" href="{{ host_prefix }}/about">About</a>
+        <a class="sidenav-item" href="{{ host_prefix }}/" title="Click to go to the home page">Home</a>
+        <a class="sidenav-item" href="{{ host_prefix }}/about" title="Click to go to the about page">About</a>
 
         <div class="sidenav-item sidenav-dropdown">
             <a class="sidenav-dropdown-title">AHS</a>
@@ -58,7 +61,7 @@
                     let floors = {{ floors }};
 
                     floors.forEach((floor) => {
-                        $('#floor-dropdown').append(`<a class="sidenav-item sidenav-dropdown-item" href="{{ host_prefix }}/ahs/${floor}">Floor ${floor - 1}</a>`)
+                        $('#floor-dropdown').append(`<a class="sidenav-item sidenav-dropdown-item" href="{{ host_prefix }}/ahs/${floor}" title="Click to view the map of floor ${floor - 1}">Floor ${floor - 1}</a>`)
                     });
                 </script>
             </div>
@@ -68,12 +71,14 @@
             $('#sidenav .sidenav-item').each((indx, elem) => {
                 let href = $(elem).attr('href');
 
-                if (href === '{{ request.path }}')
+                if (href === '{{ request.path }}') {
                     $(elem).addClass('active-page');
+                    $(elem).attr('title', `${$(elem).attr('title')} (You are currently on this page)`);
+                }
             });
         </script>
     </div>
-    <div id="overlay"></div>
+    <div id="overlay" title="Click to hide navigation"></div>
 {% endmacro %}
 
 {% macro footer(year) %}
