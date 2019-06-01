@@ -50,33 +50,36 @@
         </div>
     </nav>
     <div id="sidenav">
-        <a class="sidenav-item" href="{{ host_prefix }}/" title="Click to go to the home page">Home</a>
-        <a class="sidenav-item" href="{{ host_prefix }}/about" title="Click to go to the about page">About</a>
+        <div id="sidenav-body">
+            <a class="sidenav-item" href="{{ host_prefix }}/" title="Click to go to the home page">Home</a>
+            <a class="sidenav-item" href="{{ host_prefix }}/about" title="Click to go to the about page">About</a>
 
-        <div class="sidenav-item sidenav-dropdown">
-            <a class="sidenav-dropdown-title">AHS</a>
+            <div class="sidenav-item sidenav-dropdown">
+                <a class="sidenav-dropdown-title">AHS</a>
 
-            <div class="sidenav-dropdown-hidden" id="floor-dropdown">
-                <script type="text/javascript">
-                    let floors = {{ floors }};
+                <div class="sidenav-dropdown-hidden" id="floor-dropdown">
+                    <script type="text/javascript">
+                        let floors = {{ floors }};
 
-                    floors.forEach((floor) => {
-                        $('#floor-dropdown').append(`<a class="sidenav-item sidenav-dropdown-item" href="{{ host_prefix }}/ahs/${floor}" title="Click to view the map of floor ${floor - 1}">Floor ${floor - 1}</a>`)
-                    });
-                </script>
+                        floors.forEach((floor) => {
+                            $('#floor-dropdown').append(`<a class="sidenav-item sidenav-dropdown-item" href="{{ host_prefix }}/ahs/${floor}" title="Click to view the map of floor ${floor - 1}">Floor ${floor - 1}</a>`)
+                        });
+                    </script>
+                </div>
             </div>
+
+
+            <script type="text/javascript">
+                $('#sidenav .sidenav-item').each((indx, elem) => {
+                    let href = $(elem).attr('href');
+
+                    if (href === '{{ request.path }}') {
+                        $(elem).addClass('active-page');
+                        $(elem).attr('title', `${$(elem).attr('title')} (You are currently on this page)`);
+                    }
+                });
+            </script>
         </div>
-
-        <script type="text/javascript">
-            $('#sidenav .sidenav-item').each((indx, elem) => {
-                let href = $(elem).attr('href');
-
-                if (href === '{{ request.path }}') {
-                    $(elem).addClass('active-page');
-                    $(elem).attr('title', `${$(elem).attr('title')} (You are currently on this page)`);
-                }
-            });
-        </script>
     </div>
     <div id="overlay" title="Click to hide navigation"></div>
 {% endmacro %}

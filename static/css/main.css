@@ -19,7 +19,7 @@ header {
 nav {
     height: 52px;
     background-color: rgba(0, 0, 0, 0) !important;
-    z-index: 32!important;
+    z-index: 32 !important;
 }
 
 .navbar-brand {
@@ -59,6 +59,11 @@ nav {
     z-index: 31;
     transition: 0.75s all;
     padding-top: 60px;
+}
+
+#sidenav-body {
+    max-height: calc(100% - 52px);
+    overflow-y: auto;
 }
 
 #sidenav.active {
