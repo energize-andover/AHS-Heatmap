@@ -40,12 +40,10 @@ function adjustNav() {
 
         if (md.mobile() == null) {
             dropdown.mouseenter(() => {
-                hidden.slideDown();
-                $(title).children('.dropdown-caret').css('transform', 'rotate(0deg)');
+                hidden.stop(true, true).slideDown();
             });
             dropdown.mouseleave(() => {
-                hidden.slideUp();
-                $(title).children('.dropdown-caret').css('transform', '');
+                hidden.stop(true, true).slideUp();
             });
         } else {
             hidden.css('display', 'block !important');
@@ -67,10 +65,3 @@ if (activeLink.hasClass('sidenav-dropdown-item')) {
         $(hidden).addClass('hidden-revealed');
     });
 }
-
-// Add FontAwesome caret icons to each dropdown title
-$('.sidenav-dropdown-title').each((indx, titleDOM) => {
-    let title = $(titleDOM);
-
-    title.append('<i class="fas fa-caret-up dropdown-caret"></i>'); // Add the caret icon
-});

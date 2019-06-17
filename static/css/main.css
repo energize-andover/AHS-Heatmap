@@ -106,16 +106,6 @@ nav {
     height: auto !important;
 }
 
-.dropdown-caret {
-    transition: 0.5s transform;
-    transform: rotate(180deg);
-    margin-left: 10px;
-}
-
-.dropdown-caret.dropdown-caret-active {
-    transform: rotate(0deg);
-}
-
 #overlay {
     position: fixed;
     top: 0;
