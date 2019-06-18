@@ -43,6 +43,7 @@ nav {
 .navbar-burger {
     display: block !important;
     margin-left: auto;
+    color: #F2C413 !important;
 }
 
 .navbar-burger.is-active {
@@ -146,7 +147,47 @@ footer {
     opacity: 0.6;
 }
 
+.section {
+    background-color: #113255;
+    color: #F2C413 !important;
+}
 
+.section .title,
+.section .subtitle {
+    color: #F2C413 !important;
+}
+
+.section a {
+    color: #F2C413 !important;
+    text-decoration: underline;
+}
+
+.section a:hover {
+    opacity: 0.7;
+}
+
+#about-main .section p {
+    text-indent: 2em;
+}
+
+.section hr {
+    background-color: #F2C413;
+}
+
+.section {
+    padding: 24px 16px;
+}
+
+#about-main .section:first-of-type {
+    padding: 3em 1.5em;
+}
+
+#home-main .button {
+    background-color: #F2C413!important;
+    color: #113255 !important;
+    text-decoration: none!important;
+    border: none;
+}
 /************CSS BREAKPOINTS************/
 @media screen and (max-width: 600px) {
     #sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
