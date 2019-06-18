@@ -130,6 +130,10 @@ def start_app():
 
     app.jinja_env.globals['host_prefix'] = HOST_PREFIX
     app.jinja_env.globals['floors'] = levels
+    app.jinja_env.globals['date'] = datetime.datetime.now().strftime("%B %d, %Y")
+    app.jinja_env.globals['blue_values'] = BLUE_VALUE
+    app.jinja_env.globals['green_values'] = GREEN_VALUE
+    app.jinja_env.globals['red_values'] = RED_VALUE
     app.static_url_path = '{0}/static'.format(HOST_PREFIX)
 
     # remove old static map
