@@ -44,6 +44,7 @@
     padding-left: 10px;
     background-color: #113255;
     color: #F2C413;
+    text-align: left;
 }
 
 .onoffswitch-inner:after {
@@ -86,4 +87,27 @@
 
 #err-msg {
     display: none;
+}
+
+#label-ul {
+    text-align: center;
+}
+
+#label-ul li {
+    display: inline-block;
+    font-size: 21px;
+    min-height: 34px;
+    vertical-align: middle;
+    margin: 2px;
+}
+
+.footnote-asterisk {
+    font-size: 24px;
+    vertical-align: top;
+    color: #F2C413;
+    font-weight: bold;
+}
+
+#svg-container {
+    border: 3px solid #113255;
 }

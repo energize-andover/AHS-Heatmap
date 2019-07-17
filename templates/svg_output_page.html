@@ -4,17 +4,39 @@
 {{ macros.head(title, time) }}
 <body id="body">
 <link rel="stylesheet" href="static/css/svg_output_page.css?{{ time }}"> <!-- We want to avoid caching -->
-{{ macros.nav() }}
-<div id="svg-container"><!-- the svg is loaded in via javascript--></div>
-<h1 id="err-msg" class="is-size-4 has-text-centered"></h1>
-<div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-    <label class="onoffswitch-label" for="myonoffswitch" onclick="toggleDisplay()">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-</div>
-
+<header>
+    {{ macros.nav() }}
+</header>
+<main>
+    <section class="section" style="padding-top: 52px">
+        <h1 class="title is-size-2 has-text-centered">Map of AHS, Level {{ floor }}<span class="footnote-asterisk">*</span></h1>
+        <h1 id="err-msg" class="subtitle is-size-4 has-text-centered"></h1>
+        <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <ul id="label-ul">
+                <li>Color rooms by:</li>
+                <li>
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                               checked>
+                        <label class="onoffswitch-label" for="myonoffswitch" onclick="toggleDisplay()">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>(Click to toggle)</li>
+            </ul>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <p class="is-size-5 footnote"><span class="footnote-asterisk">*</span>Where level 1 consists of the field house and level 4 consists of room numbers 301 and above</p>
+        </div>
+    </section>
+</main>
 <script type="text/javascript">
     let isShowingTemperature = true;
     let retryCount = 0;
@@ -24,6 +46,7 @@
         let err = $('#err-msg');
 
         $('#svg-container').load(`static/svg_and_conversions/{{ file_filled_prefix }}${isShowingTemperature ? 'temperature' : 'co2'}.svg?${$.now()}`, (responseText, statusText, xhr) => {
+            adjustFooter();
             if (xhr.status === 404) {
                 if (!SVGExists) {
                 }

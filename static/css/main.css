@@ -22,6 +22,10 @@ nav {
     z-index: 32 !important;
 }
 
+main {
+    color: #113255;
+}
+
 .navbar-brand {
     width: 100%;
     position: relative;
@@ -44,6 +48,7 @@ nav {
     display: block !important;
     margin-left: auto;
     color: #F2C413 !important;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .navbar-burger.is-active {
@@ -132,7 +137,7 @@ footer {
 
 #footer-text a,
 #footer-link-holder a {
-    color: black;
+    color: #113255;
     transition: 1s all;
 }
 
@@ -147,17 +152,18 @@ footer {
     opacity: 0.6;
 }
 
-.section {
+.section.blue {
     background-color: #113255;
     color: #F2C413 !important;
 }
 
-.section .title,
-.section .subtitle {
+.section.blue .title,
+.section.blue .subtitle,
+.section.blue p {
     color: #F2C413 !important;
 }
 
-.section a {
+.section.blue a {
     color: #F2C413 !important;
     text-decoration: underline;
 }
@@ -170,7 +176,7 @@ footer {
     text-indent: 2em;
 }
 
-.section hr {
+.section.blue hr {
     background-color: #F2C413;
 }
 
@@ -178,16 +184,33 @@ footer {
     padding: 24px 16px;
 }
 
+.section hr {
+    background-color: #113255;
+}
+
 #about-main .section:first-of-type {
     padding: 3em 1.5em;
 }
 
-#home-main .button {
-    background-color: #F2C413!important;
-    color: #113255 !important;
-    text-decoration: none!important;
+.section .button {
+    background-color: #113255 !important;
+    color: #F2C413 !important;
+    text-decoration: none !important;
     border: none;
 }
+
+.section.blue .button {
+    background-color: #F2C413 !important;
+    color: #113255 !important;
+}
+
+.section,
+.section .title,
+.section .subtitle,
+.section p {
+    color: #113255;
+}
+
 /************CSS BREAKPOINTS************/
 @media screen and (max-width: 600px) {
     #sidenav .sidenav-item.sidenav-dropdown .sidenav-dropdown-hidden {
