@@ -1,9 +1,9 @@
 <html lang="en">
 {% import 'macros.html' as macros %}
 {% set title = "AHS Level " + floor %}
-{{ macros.head(title, time) }}
+{{ macros.head(title) }}
 <body id="body">
-<link rel="stylesheet" href="static/css/svg_output_page.css?{{ time }}"> <!-- We want to avoid caching -->
+<link rel="stylesheet" href="static/css/svg_output_page.css"> <!-- We want to avoid caching -->
 <header>
     {{ macros.nav() }}
 </header>

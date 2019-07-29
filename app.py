@@ -78,10 +78,6 @@ def start_app():
     #     return dict(floors=levels)
 
     @app.context_processor
-    def inject_time_to_all_templates():
-        return dict(time=get_time())
-
-    @app.context_processor
     def inject_year_to_all_templates():
         return dict(year=get_year())
 
@@ -178,6 +174,7 @@ def start_svg_auto_updater():
 
     timeinterval.start(5 * 60 * 1000, update_svg)
     update_svg()
+
 
 update_thread = threading.Thread(target=start_svg_auto_updater)
 update_thread.start()
