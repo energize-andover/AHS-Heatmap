@@ -29,7 +29,8 @@ An example of a properly formatted floor plan can be seen here:
 1) Clone this repository
 2) [Optional]: Create a [python virtual enviornment](https://docs.python-guide.org/dev/virtualenvs/) for this project
 3) Install the project's dependencies (see [Dependencies](#dependencies))
-4) Ensure you have an internet connection and run `main.py`
+4) Install [Inkscape](https://inkscape.org/) and add it to your system's PATH (you should be able to open Inkscape by opening a terminal and running `inkscape` from any directory)
+5) Ensure you have an internet connection and run `main.py`
 
 See [Security Notice](#security-notice) to learn more
 
