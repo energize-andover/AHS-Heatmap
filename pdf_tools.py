@@ -1,3 +1,4 @@
+import os
 import pdfminer
 import pandas as pd
 from pdfminer.pdfpage import *
@@ -8,6 +9,9 @@ from PyPDF2 import PdfFileReader
 
 
 def get_text_and_coordinates(pdf_path):
+    # Extract the room prefix from level in the pdf_path
+    room_prefix = int(pdf_path.split(os.sep)[-1].split('-')[-1][:1]) - 1
+
     # Open a PDF file.
     fp = open(pdf_path, 'rb')
 
@@ -55,6 +59,10 @@ def get_text_and_coordinates(pdf_path):
             if isinstance(obj, pdfminer.layout.LTTextBoxHorizontal):
                 # Use some basic filtering: Remove letters, add hyphens, ignore combined rooms
                 text = re.sub('[^0-9]', '', obj.get_text())
+
+                if not text.startswith(str(room_prefix)):
+                    continue  # Ignore noise that gives room numbers that cannot possibly belong to the floor
+
                 text_len = len(text)
 
                 if text_len > 0:
@@ -63,7 +71,7 @@ def get_text_and_coordinates(pdf_path):
                     height = bbox[3] - bbox[1]
 
                     if text_len == 5:
-                        text = text[:3] + '-' + text[3:]
+                        text = text[:3] + '.' + text[3:]
                     elif text_len > 5 or text_len < 3:
                         continue  # Currently just ignoring those few rooms which are problematic
 

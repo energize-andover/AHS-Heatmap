@@ -54,6 +54,9 @@ class HeatmapMain:
         if not os.path.exists(output_path):
             shutil.copy(self.svg_path, output_path)
 
+        if room == '270':
+            print()
+
         room_rect_info = get_room_rect_info(room, self.media_box, self.text_and_coords)
 
         if room_rect_info is not None:

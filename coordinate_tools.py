@@ -17,12 +17,18 @@ def get_room_pdf_coords(room, text_and_coords):
     global roomIndex
     roomIndex = None
 
-    for indx, col_room in text.iteritems():
-        if col_room == room or col_room.startswith(room) or col_room.endswith(room):
-            roomIndex = indx
+    # Check for exact matches first
+    if len(text_and_coords[text_and_coords['text'] == room].index) > 0:
+        roomIndex = text_and_coords.index[text_and_coords['text'] == room].tolist()
+    else:
+        # Then check with less exact methods
+        for indx, col_room in text.iteritems():
+            if col_room.startswith(room) or col_room.endswith(room):
+                roomIndex = indx
 
     if roomIndex is None:
         return None
+
     room_row = text_and_coords.iloc[roomIndex]
     return [room_row['x0'], room_row['y0'], room_row['x1'], room_row['y1']]
 
