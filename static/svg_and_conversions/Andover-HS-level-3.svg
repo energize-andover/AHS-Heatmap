@@ -5,13 +5,36 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg4731"
    viewBox="0 0 11000 8500"
    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
    version="1.1"
    height="8.5in"
    width="11in"
-   xml:space="preserve"><metadata
+   xml:space="preserve"
+   sodipodi:docname="Andover-HS-level-3.svg"
+   inkscape:version="0.92.4 (unknown)"><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1025"
+   id="namedview8416"
+   showgrid="false"
+   inkscape:zoom="4.627451"
+   inkscape:cx="683.01552"
+   inkscape:cy="345.76437"
+   inkscape:window-x="0"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="g3756" /><metadata
    id="metadata4735"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata>
@@ -588,11 +611,13 @@
 
 
 
+
    <text
    id="text3104"
    class="fil1 fnt0"
    y="4250"
    x="5565">1</text>
+
 
 
 
@@ -604,11 +629,13 @@
 
 
 
+
    <text
    id="text3108"
    class="fil1 fnt0"
    y="4250"
    x="5940">2</text>
+
 
 
 
@@ -620,11 +647,13 @@
 
 
 
+
    <text
    id="text3112"
    class="fil1 fnt0"
    y="4250"
    x="6070">9</text>
+
 
 
 
@@ -640,11 +669,13 @@
 
 
 
+
    <text
    id="text3118"
    class="fil1 fnt0"
    y="4250"
    x="5565">2</text>
+
 
 
 
@@ -656,11 +687,13 @@
 
 
 
+
    <text
    id="text3122"
    class="fil1 fnt0"
    y="4250"
    x="6033">2</text>
+
 
 
 
@@ -672,11 +705,13 @@
 
 
 
+
    <text
    id="text3126"
    class="fil1 fnt0"
    y="4250"
    x="6163">5</text>
+
 
 
 
@@ -692,6 +727,7 @@
 
 
 
+
    <text
    id="text3132"
    class="fil1 fnt0"
@@ -700,11 +736,13 @@
 
 
 
+
    <text
    id="text3134"
    class="fil1 fnt0"
    y="4250"
    x="5630">7</text>
+
 
 
 
@@ -720,6 +758,7 @@
 
 
 
+
    <text
    id="text3140"
    class="fil1 fnt0"
@@ -728,11 +767,13 @@
 
 
 
+
    <text
    id="text3142"
    class="fil1 fnt0"
    y="4250"
    x="5630">9</text>
+
 
 
 
@@ -748,6 +789,7 @@
 
 
 
+
    <text
    id="text3148"
    class="fil1 fnt0"
@@ -756,11 +798,13 @@
 
 
 
+
    <text
    id="text3150"
    class="fil1 fnt0"
    y="4250"
    x="5630">3</text>
+
 
 
 
@@ -776,6 +820,7 @@
 
 
 
+
    <text
    id="text3156"
    class="fil1 fnt0"
@@ -784,11 +829,13 @@
 
 
 
+
    <text
    id="text3158"
    class="fil1 fnt0"
    y="4250"
    x="5630">5</text>
+
 
 
 
@@ -804,6 +851,7 @@
 
 
 
+
    <text
    id="text3164"
    class="fil1 fnt1"
@@ -812,11 +860,13 @@
 
 
 
+
    <text
    id="text3166"
    class="fil1 fnt1"
    y="4250"
    x="5593">1</text>
+
 
 
 
@@ -832,6 +882,7 @@
 
 
 
+
    <text
    id="text3172"
    class="fil1 fnt1"
@@ -840,11 +891,13 @@
 
 
 
+
    <text
    id="text3174"
    class="fil1 fnt1"
    y="4250"
    x="5592">1</text>
+
 
 
 
@@ -860,6 +913,7 @@
 
 
 
+
    <text
    id="text3180"
    class="fil1 fnt0"
@@ -868,11 +922,13 @@
 
 
 
+
    <text
    id="text3182"
    class="fil1 fnt0"
    y="4250"
    x="5630">2</text>
+
 
 
 
@@ -888,6 +944,7 @@
 
 
 
+
    <text
    id="text3188"
    class="fil1 fnt0"
@@ -896,11 +953,13 @@
 
 
 
+
    <text
    id="text3190"
    class="fil1 fnt0"
    y="4250"
    x="5630">4</text>
+
 
 
 
@@ -916,6 +975,7 @@
 
 
 
+
    <text
    id="text3196"
    class="fil1 fnt0"
@@ -924,11 +984,13 @@
 
 
 
+
    <text
    id="text3198"
    class="fil1 fnt0"
    y="4250"
    x="5630">6</text>
+
 
 
 
@@ -944,6 +1006,7 @@
 
 
 
+
    <text
    id="text3204"
    class="fil1 fnt0"
@@ -952,11 +1015,13 @@
 
 
 
+
    <text
    id="text3206"
    class="fil1 fnt0"
    y="4250"
    x="5630">2</text>
+
 
 
 
@@ -972,6 +1037,7 @@
 
 
 
+
    <text
    id="text3212"
    class="fil1 fnt0"
@@ -980,11 +1046,13 @@
 
 
 
+
    <text
    id="text3214"
    class="fil1 fnt0"
    y="4250"
    x="5630">0</text>
+
 
 
 
@@ -1000,6 +1068,7 @@
 
 
 
+
    <text
    id="text3220"
    class="fil1 fnt0"
@@ -1008,11 +1077,13 @@
 
 
 
+
    <text
    id="text3222"
    class="fil1 fnt0"
    y="4250"
    x="5630">8</text>
+
 
 
 
@@ -1029,6 +1100,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:74.40351868px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text3228"
@@ -1038,12 +1110,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:74.40351868px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text3230"
    class="fil1 fnt2"
    y="4241.3413"
    x="5592.6514">1</text>
+
 
 
 
@@ -1059,6 +1133,7 @@
 
 
 
+
    <text
    id="text3236"
    class="fil1 fnt0"
@@ -1067,11 +1142,13 @@
 
 
 
+
    <text
    id="text3238"
    class="fil1 fnt0"
    y="4250"
    x="5630">9</text>
+
 
 
 
@@ -1087,6 +1164,7 @@
 
 
 
+
    <text
    id="text3244"
    class="fil1 fnt0"
@@ -1095,11 +1173,13 @@
 
 
 
+
    <text
    id="text3246"
    class="fil1 fnt0"
    y="4250"
    x="5630">7</text>
+
 
 
 
@@ -1115,6 +1195,7 @@
 
 
 
+
    <text
    id="text3252"
    class="fil1 fnt0"
@@ -1123,11 +1204,13 @@
 
 
 
+
    <text
    id="text3254"
    class="fil1 fnt0"
    y="4250"
    x="5630">5</text>
+
 
 
 
@@ -1143,6 +1226,7 @@
 
 
 
+
    <text
    id="text3260"
    class="fil1 fnt0"
@@ -1151,11 +1235,13 @@
 
 
 
+
    <text
    id="text3262"
    class="fil1 fnt0"
    y="4250"
    x="5630">3</text>
+
 
 
 
@@ -1171,6 +1257,7 @@
 
 
 
+
    <text
    id="text3268"
    class="fil1 fnt0"
@@ -1179,11 +1266,13 @@
 
 
 
+
    <text
    id="text3270"
    class="fil1 fnt0"
    y="4250"
    x="5630">1</text>
+
 
 
 
@@ -1199,6 +1288,7 @@
 
 
 
+
   </g>
   <g
    id="g3280"
@@ -1208,6 +1298,7 @@
    class="fil1 fnt0"
    y="4250"
    x="5500">W</text>
+
 
 
 
@@ -1223,6 +1314,7 @@
 
 
 
+
    <text
    id="text3284"
    class="fil1 fnt0"
@@ -1231,11 +1323,13 @@
 
 
 
+
    <text
    id="text3286"
    class="fil1 fnt0"
    y="4250"
    x="5630">9</text>
+
 
 
 
@@ -1251,6 +1345,7 @@
 
 
 
+
    <text
    id="text3292"
    class="fil1 fnt0"
@@ -1259,11 +1354,13 @@
 
 
 
+
    <text
    id="text3294"
    class="fil1 fnt0"
    y="4250"
    x="5630">1</text>
+
 
 
 
@@ -1279,6 +1376,7 @@
 
 
 
+
    <text
    id="text3300"
    class="fil1 fnt0"
@@ -1287,11 +1385,13 @@
 
 
 
+
    <text
    id="text3302"
    class="fil1 fnt0"
    y="4250"
    x="5630">2</text>
+
 
 
 
@@ -1307,6 +1407,7 @@
 
 
 
+
    <text
    id="text3308"
    class="fil1 fnt0"
@@ -1315,11 +1416,13 @@
 
 
 
+
    <text
    id="text3310"
    class="fil1 fnt0"
    y="4250"
    x="5630">3</text>
+
 
 
 
@@ -1332,6 +1435,7 @@
    class="fil1 fnt3"
    y="4250"
    x="5500">M</text>
+
 
 
 
@@ -1348,6 +1452,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:69.93014526px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text3320"
@@ -1357,12 +1462,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:69.93014526px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text3322"
    class="fil1 fnt3"
    y="4288.8184"
    x="5593.8931">1</text>
+
 
 
 
@@ -1378,6 +1485,7 @@
 
 
 
+
    <text
    id="text3328"
    class="fil1 fnt0"
@@ -1386,11 +1494,13 @@
 
 
 
+
    <text
    id="text3330"
    class="fil1 fnt0"
    y="4250"
    x="5630">3</text>
+
 
 
 
@@ -1406,6 +1516,7 @@
 
 
 
+
    <text
    id="text3336"
    class="fil1 fnt0"
@@ -1414,11 +1525,13 @@
 
 
 
+
    <text
    id="text3338"
    class="fil1 fnt0"
    y="4250"
    x="5630">5</text>
+
 
 
 
@@ -1434,6 +1547,7 @@
 
 
 
+
    <text
    id="text3344"
    class="fil1 fnt0"
@@ -1442,11 +1556,13 @@
 
 
 
+
    <text
    id="text3346"
    class="fil1 fnt0"
    y="4250"
    x="5630">7</text>
+
 
 
 
@@ -1462,6 +1578,7 @@
 
 
 
+
    <text
    id="text3352"
    class="fil1 fnt0"
@@ -1470,11 +1587,13 @@
 
 
 
+
    <text
    id="text3354"
    class="fil1 fnt0"
    y="4250"
    x="5630">9</text>
+
 
 
 
@@ -1490,6 +1609,7 @@
 
 
 
+
    <text
    id="text3360"
    class="fil1 fnt0"
@@ -1498,11 +1618,13 @@
 
 
 
+
    <text
    id="text3362"
    class="fil1 fnt0"
    y="4250"
    x="5630">1</text>
+
 
 
 
@@ -1518,6 +1640,7 @@
 
 
 
+
    <text
    id="text3368"
    class="fil1 fnt0"
@@ -1526,11 +1649,13 @@
 
 
 
+
    <text
    id="text3370"
    class="fil1 fnt0"
    y="4250"
    x="5630">3</text>
+
 
 
 
@@ -1546,6 +1671,7 @@
 
 
 
+
    <text
    id="text3376"
    class="fil1 fnt0"
@@ -1554,11 +1680,13 @@
 
 
 
+
    <text
    id="text3378"
    class="fil1 fnt0"
    y="4250"
    x="5630">5</text>
+
 
 
 
@@ -1574,11 +1702,13 @@
 
 
 
+
    <text
    id="text3384"
    class="fil1 fnt0"
    y="4250"
    x="5565">7</text>
+
 
 
 
@@ -1590,11 +1720,13 @@
 
 
 
+
    <text
    id="text3388"
    class="fil1 fnt0"
    y="4250"
    x="5694">-</text>
+
 
 
 
@@ -1606,11 +1738,13 @@
 
 
 
+
    <text
    id="text3392"
    class="fil1 fnt0"
    y="4250"
    x="5798">2</text>
+
 
 
 
@@ -1626,6 +1760,7 @@
 
 
 
+
    <text
    id="text3398"
    class="fil1 fnt0"
@@ -1634,11 +1769,13 @@
 
 
 
+
    <text
    id="text3400"
    class="fil1 fnt0"
    y="4250"
    x="5630">8</text>
+
 
 
 
@@ -1654,11 +1791,13 @@
 
 
 
+
    <text
    id="text3406"
    class="fil1 fnt3"
    y="4250"
    x="5578">e</text>
+
 
 
 
@@ -1670,6 +1809,7 @@
 
 
 
+
    <text
    id="text3410"
    class="fil1 fnt3"
@@ -1678,11 +1818,13 @@
 
 
 
+
    <text
    id="text3412"
    class="fil1 fnt3"
    y="4250"
    x="5703">a</text>
+
 
 
 
@@ -1698,11 +1840,13 @@
 
 
 
+
    <text
    id="text3418"
    class="fil1 fnt3"
    y="4250"
    x="5573">ff</text>
+
 
 
 
@@ -1718,11 +1862,13 @@
 
 
 
+
    <text
    id="text3424"
    class="fil1 fnt0"
    y="4250"
    x="5566">i</text>
+
 
 
 
@@ -1734,11 +1880,13 @@
 
 
 
+
    <text
    id="text3428"
    class="fil1 fnt0"
    y="4250"
    x="5657">r</text>
+
 
 
 
@@ -1750,6 +1898,7 @@
 
 
 
+
    <text
    id="text3432"
    class="fil1 fnt0"
@@ -1758,11 +1907,13 @@
 
 
 
+
    <text
    id="text3434"
    class="fil1 fnt0"
    y="4250"
    x="5799">y</text>
+
 
 
 
@@ -1778,6 +1929,7 @@
 
 
 
+
    <text
    id="text3440"
    class="fil1 fnt0"
@@ -1786,11 +1938,13 @@
 
 
 
+
    <text
    id="text3442"
    class="fil1 fnt0"
    y="4250"
    x="5630">0</text>
+
 
 
 
@@ -1806,6 +1960,7 @@
 
 
 
+
    <text
    id="text3448"
    class="fil1 fnt4"
@@ -1814,11 +1969,13 @@
 
 
 
+
    <text
    id="text3450"
    class="fil1 fnt4"
    y="4250"
    x="5581">0</text>
+
 
 
 
@@ -1834,11 +1991,13 @@
 
 
 
+
    <text
    id="text3456"
    class="fil1 fnt1"
    y="4250"
    x="5569">a</text>
+
 
 
 
@@ -1850,6 +2009,7 @@
 
 
 
+
    <text
    id="text3460"
    class="fil1 fnt1"
@@ -1858,11 +2018,13 @@
 
 
 
+
    <text
    id="text3462"
    class="fil1 fnt1"
    y="4250"
    x="5678"> </text>
+
 
 
 
@@ -1878,11 +2040,13 @@
 
 
 
+
    <text
    id="text3468"
    class="fil1 fnt1"
    y="4250"
    x="5564">ff</text>
+
 
 
 
@@ -1898,6 +2062,7 @@
 
 
 
+
   </g>
   <g
    id="g3496"
@@ -1910,11 +2075,13 @@
 
 
 
+
    <text
    id="text3478"
    class="fil2 fnt5"
    y="4250"
    x="5622">e</text>
+
 
 
 
@@ -1926,11 +2093,13 @@
 
 
 
+
    <text
    id="text3482"
    class="fil2 fnt5"
    y="4250"
    x="5854">e</text>
+
 
 
 
@@ -1942,11 +2111,13 @@
 
 
 
+
    <text
    id="text3486"
    class="fil2 fnt5"
    y="4250"
    x="6077">T</text>
+
 
 
 
@@ -1958,11 +2129,13 @@
 
 
 
+
    <text
    id="text3490"
    class="fil2 fnt5"
    y="4250"
    x="6333">r</text>
+
 
 
 
@@ -1974,11 +2147,13 @@
 
 
 
+
    <text
    id="text3494"
    class="fil2 fnt5"
    y="4250"
    x="6528">e</text>
+
 
 
 
@@ -1994,6 +2169,7 @@
 
 
 
+
   </g>
   <g
    id="g3504"
@@ -2003,6 +2179,7 @@
    class="fil3 fnt0"
    y="4250"
    x="5500">B</text>
+
 
 
 
@@ -2018,6 +2195,7 @@
 
 
 
+
   </g>
   <g
    id="g3512"
@@ -2027,6 +2205,7 @@
    class="fil3 fnt0"
    y="4250"
    x="5500">D</text>
+
 
 
 
@@ -2042,11 +2221,13 @@
 
 
 
+
    <text
    id="text3516"
    class="fil1 fnt0"
    y="4250"
    x="5598">ai</text>
+
 
 
 
@@ -2058,6 +2239,7 @@
 
 
 
+
    <text
    id="text3520"
    class="fil1 fnt0"
@@ -2066,11 +2248,13 @@
 
 
 
+
    <text
    id="text3522"
    class="fil1 fnt0"
    y="4250"
    x="5788">Lobby </text>
+
 
 
 
@@ -2086,11 +2270,13 @@
 
 
 
+
    <text
    id="text3528"
    class="fil1 fnt0"
    y="4250"
    x="5578">e</text>
+
 
 
 
@@ -2102,6 +2288,7 @@
 
 
 
+
    <text
    id="text3532"
    class="fil1 fnt0"
@@ -2110,11 +2297,13 @@
 
 
 
+
    <text
    id="text3534"
    class="fil1 fnt0"
    y="4250"
    x="5734">w</text>
+
 
 
 
@@ -2134,11 +2323,13 @@
 
 
 
+
    <text
    id="text3542"
    class="fil1 fnt4"
    y="4250"
    x="5548">x</text>
+
 
 
 
@@ -2158,6 +2349,7 @@
 
 
 
+
   </g>
   <g
    id="g3558"
@@ -2171,6 +2363,7 @@
 
 
 
+
    <text
    id="text3554"
    class="fil1 fnt0"
@@ -2180,12 +2373,14 @@
 
 
 
+
    <text
    id="text3556"
    class="fil1 fnt0"
    y="4250"
    x="5630"
    style="font-weight:normal;font-size:116.36199951px;font-family:Arial;fill:#ff0000">4</text>
+
 
 
 
@@ -2205,6 +2400,7 @@
 
 
 
+
   </g>
   <path
    id="path3566"
@@ -2218,6 +2414,7 @@
    class="fil1 fnt0"
    y="4250"
    x="5500">M</text>
+
 
 
 
@@ -2237,6 +2434,7 @@
 
 
 
+
   </g>
   <g
    id="g3580"
@@ -2246,6 +2444,7 @@
    class="fil1 fnt0"
    y="4250"
    x="5500">W</text>
+
 
 
 
@@ -2268,6 +2467,7 @@
 
 
 
+
   </g>
   <g
    id="g3590"
@@ -2277,6 +2477,7 @@
    class="fil1 fnt3"
    y="4250"
    x="5500">E</text>
+
 
 
 
@@ -2296,11 +2497,13 @@
 
 
 
+
    <text
    id="text3596"
    class="fil3 fnt0"
    y="4250"
    x="5565">5</text>
+
 
 
 
@@ -2316,11 +2519,13 @@
 
 
 
+
    <text
    id="text3602"
    class="fil3 fnt0"
    y="4250"
    x="5565">6</text>
+
 
 
 
@@ -2336,11 +2541,13 @@
 
 
 
+
    <text
    id="text3608"
    class="fil3 fnt0"
    y="4250"
    x="5565">7</text>
+
 
 
 
@@ -2356,11 +2563,13 @@
 
 
 
+
    <text
    id="text3614"
    class="fil3 fnt0"
    y="4250"
    x="5565">8</text>
+
 
 
 
@@ -2380,6 +2589,7 @@
 
 
 
+
    <text
    id="text3622"
    class="fil1 fnt0"
@@ -2388,11 +2598,13 @@
 
 
 
+
    <text
    id="text3624"
    class="fil1 fnt0"
    y="4250"
    x="5630">4</text>
+
 
 
 
@@ -2412,6 +2624,7 @@
 
 
 
+
    <text
    id="text3632"
    class="fil1 fnt4"
@@ -2420,11 +2633,13 @@
 
 
 
+
    <text
    id="text3634"
    class="fil1 fnt4"
    y="4250"
    x="5560">3</text>
+
 
 
 
@@ -2444,11 +2659,13 @@
 
 
 
+
    <text
    id="text3642"
    class="fil1 fnt4"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -2468,6 +2685,7 @@
 
 
 
+
   </g>
   <g
    id="g3656"
@@ -2480,11 +2698,13 @@
 
 
 
+
    <text
    id="text3654"
    class="fil1 fnt4"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -2504,11 +2724,13 @@
 
 
 
+
    <text
    id="text3662"
    class="fil1 fnt6"
    y="4250"
    x="5541">l</text>
+
 
 
 
@@ -2531,11 +2753,13 @@
 
 
 
+
    <text
    id="text3670"
    class="fil1 fnt0"
    y="4250"
    x="5585">p</text>
+
 
 
 
@@ -2547,11 +2771,13 @@
 
 
 
+
    <text
    id="text3674"
    class="fil1 fnt0"
    y="4250"
    x="5716">e</text>
+
 
 
 
@@ -2563,11 +2789,13 @@
 
 
 
+
    <text
    id="text3678"
    class="fil1 fnt0"
    y="4250"
    x="5838">A</text>
+
 
 
 
@@ -2579,11 +2807,13 @@
 
 
 
+
    <text
    id="text3682"
    class="fil1 fnt0"
    y="4250"
    x="5981">d</text>
+
 
 
 
@@ -2595,11 +2825,13 @@
 
 
 
+
    <text
    id="text3686"
    class="fil1 fnt0"
    y="4250"
    x="6071">t</text>
+
 
 
 
@@ -2611,11 +2843,13 @@
 
 
 
+
    <text
    id="text3690"
    class="fil1 fnt0"
    y="4250"
    x="6168">r</text>
+
 
 
 
@@ -2627,11 +2861,13 @@
 
 
 
+
    <text
    id="text3694"
    class="fil1 fnt0"
    y="4250"
    x="6233">u</text>
+
 
 
 
@@ -2643,11 +2879,13 @@
 
 
 
+
    <text
    id="text3698"
    class="fil1 fnt0"
    y="4250"
    x="6426">S</text>
+
 
 
 
@@ -2659,11 +2897,13 @@
 
 
 
+
    <text
    id="text3702"
    class="fil1 fnt0"
    y="4250"
    x="6568">a</text>
+
 
 
 
@@ -2675,11 +2915,13 @@
 
 
 
+
    <text
    id="text3706"
    class="fil1 fnt0"
    y="4250"
    x="6665">i</text>
+
 
 
 
@@ -2691,11 +2933,13 @@
 
 
 
+
    <text
    id="text3710"
    class="fil1 fnt0"
    y="4250"
    x="6756">g</text>
+
 
 
 
@@ -2715,11 +2959,13 @@
 
 
 
+
    <text
    id="text3718"
    class="fil1 fnt0"
    y="4250"
    x="5592">ff</text>
+
 
 
 
@@ -2734,35 +2980,19 @@
   <g
    id="g3756"
    transform="matrix(0.99215 0 0 1 682.343 391.667)">
-   <text
-   id="text3724"
-   class="fil4 fnt3"
-   y="4250"
-   x="5500">S</text>
+   
 
 
 
-   <text
-   id="text3726"
-   class="fil4 fnt3"
-   y="4250"
-   x="5563">t</text>
+   
 
 
 
-   <text
-   id="text3728"
-   class="fil4 fnt3"
-   y="4250"
-   x="5589">a</text>
+   
 
 
 
-   <text
-   id="text3730"
-   class="fil4 fnt3"
-   y="4250"
-   x="5641">i</text>
+   
 
 
 
@@ -2770,15 +3000,13 @@
    id="text3732"
    class="fil4 fnt3"
    y="4250"
-   x="5662">r</text>
+   x="5662"
+   style="font-weight:normal;font-size:93.24019623px;font-family:Arial;fill:#008000" />
 
 
 
-   <text
-   id="text3734"
-   class="fil4 fnt3"
-   y="4250"
-   x="5694">s </text>
+
+   
 
 
 
@@ -2786,7 +3014,9 @@
    id="text3736"
    class="fil4 fnt3"
    y="4250"
-   x="5766">t</text>
+   x="5766"
+   style="font-weight:normal;font-size:93.24019623px;font-family:Arial;fill:#008000" />
+
 
 
 
@@ -2794,71 +3024,41 @@
    id="text3738"
    class="fil4 fnt3"
    y="4250"
-   x="5792">o </text>
+   x="5792"
+   style="font-weight:normal;font-size:93.24019623px;font-family:Arial;fill:#008000" />
 
 
 
-   <text
-   id="text3740"
-   class="fil4 fnt3"
-   y="4250"
-   x="5870">3</text>
+
+   
 
 
 
-   <text
-   id="text3742"
-   class="fil4 fnt3"
-   y="4250"
-   x="5922">r</text>
+   
 
 
 
-   <text
-   id="text3744"
-   class="fil4 fnt3"
-   y="4250"
-   x="5954">d </text>
+   
 
 
 
-   <text
-   id="text3746"
-   class="fil4 fnt3"
-   y="4250"
-   x="6031">F</text>
+   
 
 
 
-   <text
-   id="text3748"
-   class="fil4 fnt3"
-   y="4250"
-   x="6089">l</text>
+   
 
 
 
-   <text
-   id="text3750"
-   class="fil4 fnt3"
-   y="4250"
-   x="6110">o</text>
+   
 
 
 
-   <text
-   id="text3752"
-   class="fil4 fnt3"
-   y="4250"
-   x="6162">o</text>
+   
 
 
 
-   <text
-   id="text3754"
-   class="fil4 fnt3"
-   y="4250"
-   x="6214">r</text>
+   
 
 
 
@@ -2878,6 +3078,7 @@
 
 
 
+
   </g>
   <path
    id="path3764"
@@ -2894,11 +3095,13 @@
 
 
 
+
    <text
    id="text3768"
    class="fil1 fnt4"
    y="4250"
    x="5547">l</text>
+
 
 
 
@@ -2915,6 +3118,7 @@
    class="fil1 fnt3"
    y="4250"
    x="5500">W</text>
+
 
 
 
@@ -3006,6 +3210,7 @@
 
 
 
+
   </g>
   <path
    id="path3818"
@@ -3026,11 +3231,13 @@
 
 
 
+
    <text
    id="text3824"
    class="fil1 fnt8"
    y="4250"
    x="5541">l</text>
+
 
 
 
@@ -3050,6 +3257,7 @@
 
 
 
+
    <text
    id="text3832"
    class="fil4 fnt9"
@@ -3058,11 +3266,13 @@
 
 
 
+
    <text
    id="text3834"
    class="fil4 fnt9"
    y="4250"
    x="5582">D</text>
+
 
 
 
@@ -3078,11 +3288,13 @@
 
 
 
+
    <text
    id="text3840"
    class="fil1 fnt10"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -3098,11 +3310,13 @@
 
 
 
+
    <text
    id="text3846"
    class="fil1 fnt10"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -3122,6 +3336,7 @@
 
 
 
+
   </g>
   <path
    id="path3856"
@@ -3138,11 +3353,13 @@
 
 
 
+
    <text
    id="text3860"
    class="fil1 fnt10"
    y="4250"
    x="5548">x</text>
+
 
 
 
@@ -3158,6 +3375,7 @@
 
 
 
+
    <text
    id="text3866"
    class="fil1 fnt10"
@@ -3166,11 +3384,13 @@
 
 
 
+
    <text
    id="text3868"
    class="fil1 fnt10"
    y="4250"
    x="5591">t</text>
+
 
 
 
@@ -3186,11 +3406,13 @@
 
 
 
+
    <text
    id="text3874"
    class="fil1 fnt10"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -3206,11 +3428,13 @@
 
 
 
+
    <text
    id="text3880"
    class="fil6 fnt11"
    y="4250"
    x="5506">X</text>
+
 
 
 
@@ -3238,11 +3462,13 @@
 
 
 
+
    <text
    id="text3892"
    class="fil1 fnt12"
    y="4250"
    x="5551">e</text>
+
 
 
 
@@ -3254,11 +3480,13 @@
 
 
 
+
    <text
    id="text3896"
    class="fil1 fnt12"
    y="4250"
    x="5630">l</text>
+
 
 
 
@@ -3270,11 +3498,13 @@
 
 
 
+
    <text
    id="text3900"
    class="fil1 fnt12"
    y="4250"
    x="5667">h</text>
+
 
 
 
@@ -3298,6 +3528,7 @@
 
 
 
+
    <text
    id="text3910"
    class="fil1 fnt12"
@@ -3306,11 +3537,13 @@
 
 
 
+
    <text
    id="text3912"
    class="fil1 fnt12"
    y="4250"
    x="5560">4</text>
+
 
 
 
@@ -3326,6 +3559,7 @@
 
 
 
+
    <text
    id="text3918"
    class="fil1 fnt12"
@@ -3334,11 +3568,13 @@
 
 
 
+
    <text
    id="text3920"
    class="fil1 fnt12"
    y="4250"
    x="5560">5</text>
+
 
 
 
@@ -3354,6 +3590,7 @@
 
 
 
+
    <text
    id="text3926"
    class="fil1 fnt12"
@@ -3362,11 +3599,13 @@
 
 
 
+
    <text
    id="text3928"
    class="fil1 fnt12"
    y="4250"
    x="5560">6</text>
+
 
 
 
@@ -3382,6 +3621,7 @@
 
 
 
+
    <text
    id="text3934"
    class="fil1 fnt12"
@@ -3390,11 +3630,13 @@
 
 
 
+
    <text
    id="text3936"
    class="fil1 fnt12"
    y="4250"
    x="5560">9</text>
+
 
 
 
@@ -3410,11 +3652,13 @@
 
 
 
+
    <text
    id="text3942"
    class="fil1 fnt12"
    y="4250"
    x="5540">0</text>
+
 
 
 
@@ -3430,11 +3674,13 @@
 
 
 
+
    <text
    id="text3948"
    class="fil1 fnt12"
    y="4250"
    x="5530">1</text>
+
 
 
 
@@ -3454,11 +3700,13 @@
 
 
 
+
    <text
    id="text3956"
    class="fil1 fnt12"
    y="4250"
    x="5553">o</text>
+
 
 
 
@@ -3470,11 +3718,13 @@
 
 
 
+
    <text
    id="text3960"
    class="fil1 fnt12"
    y="4250"
    x="5632">f</text>
+
 
 
 
@@ -3490,11 +3740,13 @@
 
 
 
+
    <text
    id="text3966"
    class="fil1 fnt12"
    y="4250"
    x="5548">r</text>
+
 
 
 
@@ -3506,11 +3758,13 @@
 
 
 
+
    <text
    id="text3970"
    class="fil1 fnt12"
    y="4250"
    x="5588">n</text>
+
 
 
 
@@ -3526,11 +3780,13 @@
 
 
 
+
    <text
    id="text3976"
    class="fil1 fnt12"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -3546,11 +3802,13 @@
 
 
 
+
    <text
    id="text3982"
    class="fil1 fnt12"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -3562,11 +3820,13 @@
 
 
 
+
    <text
    id="text3986"
    class="fil1 fnt12"
    y="4250"
    x="5732">ff</text>
+
 
 
 
@@ -3594,11 +3854,13 @@
 
 
 
+
    <text
    id="text3998"
    class="fil1 fnt13"
    y="4250"
    x="5591">y</text>
+
 
 
 
@@ -3610,11 +3872,13 @@
 
 
 
+
    <text
    id="text4002"
    class="fil1 fnt13"
    y="4250"
    x="5746">n</text>
+
 
 
 
@@ -3626,11 +3890,13 @@
 
 
 
+
    <text
    id="text4006"
    class="fil1 fnt13"
    y="4250"
    x="5876">s</text>
+
 
 
 
@@ -3642,6 +3908,7 @@
 
 
 
+
    <text
    id="text4010"
    class="fil1 fnt13"
@@ -3650,11 +3917,13 @@
 
 
 
+
    <text
    id="text4012"
    class="fil1 fnt13"
    y="4250"
    x="6025">m</text>
+
 
 
 
@@ -3670,11 +3939,13 @@
 
 
 
+
    <text
    id="text4018"
    class="fil4 fnt12"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -3686,11 +3957,13 @@
 
 
 
+
    <text
    id="text4022"
    class="fil4 fnt12"
    y="4250"
    x="5608">i</text>
+
 
 
 
@@ -3702,6 +3975,7 @@
 
 
 
+
    <text
    id="text4026"
    class="fil4 fnt12"
@@ -3710,11 +3984,13 @@
 
 
 
+
    <text
    id="text4028"
    class="fil4 fnt12"
    y="4250"
    x="5666">D</text>
+
 
 
 
@@ -3730,11 +4006,13 @@
 
 
 
+
    <text
    id="text4034"
    class="fil4 fnt12"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -3746,11 +4024,13 @@
 
 
 
+
    <text
    id="text4038"
    class="fil4 fnt12"
    y="4250"
    x="5608">i</text>
+
 
 
 
@@ -3762,11 +4042,13 @@
 
 
 
+
    <text
    id="text4042"
    class="fil4 fnt12"
    y="4250"
    x="5667">C</text>
+
 
 
 
@@ -3786,6 +4068,7 @@
 
 
 
+
   </g>
   <g
    id="g4054"
@@ -3795,6 +4078,7 @@
    class="fil4 fnt14"
    y="4250"
    x="5500">S</text>
+
 
 
 
@@ -3826,11 +4110,13 @@
 
 
 
+
    <text
    id="text4066"
    class="fil1 fnt15"
    y="4250"
    x="5597">e</text>
+
 
 
 
@@ -3842,11 +4128,13 @@
 
 
 
+
    <text
    id="text4070"
    class="fil1 fnt15"
    y="4250"
    x="5720">h</text>
+
 
 
 
@@ -3866,11 +4154,13 @@
 
 
 
+
    <text
    id="text4078"
    class="fil1 fnt16"
    y="4250"
    x="5539">l</text>
+
 
 
 
@@ -3882,11 +4172,13 @@
 
 
 
+
    <text
    id="text4082"
    class="fil1 fnt16"
    y="4250"
    x="5632">l</text>
+
 
 
 
@@ -3902,11 +4194,13 @@
 
 
 
+
    <text
    id="text4088"
    class="fil1 fnt16"
    y="4250"
    x="5533">1</text>
+
 
 
 
@@ -3922,11 +4216,13 @@
 
 
 
+
    <text
    id="text4094"
    class="fil1 fnt16"
    y="4250"
    x="5533">2</text>
+
 
 
 
@@ -3942,11 +4238,13 @@
 
 
 
+
    <text
    id="text4100"
    class="fil1 fnt17"
    y="4250"
    x="5613">M</text>
+
 
 
 
@@ -3966,11 +4264,13 @@
 
 
 
+
    <text
    id="text4108"
    class="fil1 fnt17"
    y="4250"
    x="5540">5</text>
+
 
 
 
@@ -3990,11 +4290,13 @@
 
 
 
+
    <text
    id="text4116"
    class="fil6 fnt18"
    y="4250"
    x="5506">X</text>
+
 
 
 
@@ -4022,6 +4324,7 @@
 
 
 
+
    <text
    id="text4128"
    class="fil1 fnt19"
@@ -4030,11 +4333,13 @@
 
 
 
+
    <text
    id="text4130"
    class="fil1 fnt19"
    y="4250"
    x="5552">t</text>
+
 
 
 
@@ -4054,11 +4359,13 @@
 
 
 
+
    <text
    id="text4138"
    class="fil1 fnt20"
    y="4250"
    x="5552">o</text>
+
 
 
 
@@ -4070,11 +4377,13 @@
 
 
 
+
    <text
    id="text4142"
    class="fil1 fnt20"
    y="4250"
    x="5631">f</text>
+
 
 
 
@@ -4087,6 +4396,7 @@
    class="fil1 fnt20"
    y="4250"
    x="5500">M</text>
+
 
 
 
@@ -4106,6 +4416,7 @@
 
 
 
+
   </g>
   <g
    id="g4160"
@@ -4118,11 +4429,13 @@
 
 
 
+
    <text
    id="text4158"
    class="fil1 fnt19"
    y="4250"
    x="5533">4</text>
+
 
 
 
@@ -4138,11 +4451,13 @@
 
 
 
+
    <text
    id="text4164"
    class="fil1 fnt19"
    y="4250"
    x="5533">5</text>
+
 
 
 
@@ -4162,11 +4477,13 @@
 
 
 
+
    <text
    id="text4172"
    class="fil1 fnt20"
    y="4250"
    x="5556">u</text>
+
 
 
 
@@ -4178,11 +4495,13 @@
 
 
 
+
    <text
    id="text4176"
    class="fil1 fnt20"
    y="4250"
    x="5612">d</text>
+
 
 
 
@@ -4202,11 +4521,13 @@
 
 
 
+
    <text
    id="text4184"
    class="fil1 fnt20"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -4222,11 +4543,13 @@
 
 
 
+
    <text
    id="text4190"
    class="fil1 fnt20"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -4246,11 +4569,13 @@
 
 
 
+
    <text
    id="text4198"
    class="fil4 fnt20"
    y="4250"
    x="5547">t</text>
+
 
 
 
@@ -4262,11 +4587,13 @@
 
 
 
+
    <text
    id="text4202"
    class="fil4 fnt20"
    y="4250"
    x="5608">i</text>
+
 
 
 
@@ -4278,11 +4605,13 @@
 
 
 
+
    <text
    id="text4206"
    class="fil4 fnt20"
    y="4250"
    x="5667">L</text>
+
 
 
 
@@ -4302,6 +4631,7 @@
 
 
 
+
   </g>
   <path
    id="path4216"
@@ -4315,6 +4645,7 @@
    class="fil1 fnt21"
    y="4250"
    x="5500">W</text>
+
 
 
 
@@ -4339,6 +4670,7 @@
 
 
 
+
   </g>
   <path
    id="path4230"
@@ -4352,6 +4684,7 @@
    class="fil1 fnt21"
    y="4250"
    x="5500">J</text>
+
 
 
 
@@ -4372,6 +4705,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:116.36199951px;font-family:Arial;fill:#ff0000"
    id="text4240"
@@ -4381,12 +4715,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:116.36199951px;font-family:Arial;fill:#ff0000"
    id="text4242"
    class="fil1 fnt21"
    y="4250"
    x="5630">8</text>
+
 
 
 
@@ -4403,6 +4739,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:65.45362091px;font-family:Arial;fill:#ff0000;stroke-width:0.5625"
    id="text4248"
@@ -4412,12 +4749,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:65.45362091px;font-family:Arial;fill:#ff0000;stroke-width:0.5625"
    id="text4250"
    class="fil1 fnt21"
    y="4232.2266"
    x="5616.2529">4</text>
+
 
 
 
@@ -4434,6 +4773,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:116.36199951px;font-family:Arial;fill:#ff0000"
    id="text4256"
@@ -4443,12 +4783,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:116.36199951px;font-family:Arial;fill:#ff0000"
    id="text4258"
    class="fil1 fnt21"
    y="4250"
    x="5630">6</text>
+
 
 
 
@@ -4468,11 +4810,13 @@
 
 
 
+
    <text
    id="text4266"
    class="fil1 fnt20"
    y="4250"
    x="5548">l</text>
+
 
 
 
@@ -4492,6 +4836,7 @@
 
 
 
+
   </g>
   <path
    id="path4276"
@@ -4508,11 +4853,13 @@
 
 
 
+
    <text
    id="text4280"
    class="fil1 fnt22"
    y="4250"
    x="5561">t</text>
+
 
 
 
@@ -4532,11 +4879,13 @@
 
 
 
+
    <text
    id="text4288"
    class="fil1 fnt19"
    y="4250"
    x="5539">u</text>
+
 
 
 
@@ -4548,11 +4897,13 @@
 
 
 
+
    <text
    id="text4292"
    class="fil1 fnt19"
    y="4250"
    x="5622">p </text>
+
 
 
 
@@ -4568,11 +4919,13 @@
 
 
 
+
    <text
    id="text4298"
    class="fil4 fnt19"
    y="4250"
    x="5540">t</text>
+
 
 
 
@@ -4584,11 +4937,13 @@
 
 
 
+
    <text
    id="text4302"
    class="fil4 fnt19"
    y="4250"
    x="5589">i</text>
+
 
 
 
@@ -4600,6 +4955,7 @@
 
 
 
+
    <text
    id="text4306"
    class="fil4 fnt19"
@@ -4608,11 +4964,13 @@
 
 
 
+
    <text
    id="text4308"
    class="fil4 fnt19"
    y="4250"
    x="5636">K</text>
+
 
 
 
@@ -4632,11 +4990,13 @@
 
 
 
+
    <text
    id="text4316"
    class="fil6 fnt23"
    y="4250"
    x="5507">X</text>
+
 
 
 
@@ -4661,6 +5021,7 @@
    class="fil6 fnt23"
    y="4250"
    x="5500">FX</text>
+
 
 
 
@@ -4692,6 +5053,7 @@
 
 
 
+
   </g>
   <polygon
    id="polygon4342"
@@ -4713,6 +5075,7 @@
    class="fil6 fnt23"
    y="4250"
    x="5500">FX</text>
+
 
 
 
@@ -4748,6 +5111,7 @@
 
 
 
+
   </g>
   <polygon
    id="polygon4366"
@@ -4776,11 +5140,13 @@
 
 
 
+
    <text
    id="text4376"
    class="fil1 fnt24"
    y="4250"
    x="5562">t</text>
+
 
 
 
@@ -4805,6 +5171,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:74.40352631px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text4386"
@@ -4814,12 +5181,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:74.40352631px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text4388"
    class="fil1 fnt25"
    y="4241.4624"
    x="5604.1245">5</text>
+
 
 
 
@@ -4839,11 +5208,13 @@
 
 
 
+
    <text
    id="text4396"
    class="fil1 fnt26"
    y="4250"
    x="5547">l</text>
+
 
 
 
@@ -4859,11 +5230,13 @@
 
 
 
+
    <text
    id="text4402"
    class="fil1 fnt26"
    y="4250"
    x="5547">l</text>
+
 
 
 
@@ -4887,6 +5260,7 @@
 
 
 
+
    <text
    id="text4412"
    class="fil1 fnt27"
@@ -4895,11 +5269,13 @@
 
 
 
+
    <text
    id="text4414"
    class="fil1 fnt27"
    y="4250"
    x="5630">0</text>
+
 
 
 
@@ -4915,6 +5291,7 @@
 
 
 
+
    <text
    id="text4420"
    class="fil1 fnt27"
@@ -4923,11 +5300,13 @@
 
 
 
+
    <text
    id="text4422"
    class="fil1 fnt27"
    y="4250"
    x="5630">8</text>
+
 
 
 
@@ -4947,6 +5326,7 @@
 
 
 
+
   </g>
   <path
    id="path4432"
@@ -4963,6 +5343,7 @@
 
 
 
+
   </g>
   <g
    id="g4442"
@@ -4975,11 +5356,13 @@
 
 
 
+
    <text
    id="text4440"
    class="fil1 fnt28"
    y="4250"
    x="5555">t</text>
+
 
 
 
@@ -4995,11 +5378,13 @@
 
 
 
+
    <text
    id="text4446"
    class="fil1 fnt28"
    y="4250"
    x="5555">t</text>
+
 
 
 
@@ -5020,6 +5405,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:69.93014526px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text4454"
@@ -5029,12 +5415,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:69.93014526px;font-family:Arial;fill:#ff0000;stroke-width:0.75"
    id="text4456"
    class="fil1 fnt24"
    y="4241.9756"
    x="5597.4819">7</text>
+
 
 
 
@@ -5054,11 +5442,13 @@
 
 
 
+
    <text
    id="text4464"
    class="fil4 fnt29"
    y="4250"
    x="5540">t</text>
+
 
 
 
@@ -5070,11 +5460,13 @@
 
 
 
+
    <text
    id="text4468"
    class="fil4 fnt29"
    y="4250"
    x="5589">i</text>
+
 
 
 
@@ -5086,6 +5478,7 @@
 
 
 
+
    <text
    id="text4472"
    class="fil4 fnt29"
@@ -5094,11 +5487,13 @@
 
 
 
+
    <text
    id="text4474"
    class="fil4 fnt29"
    y="4250"
    x="5636">G</text>
+
 
 
 
@@ -5114,11 +5509,13 @@
 
 
 
+
    <text
    id="text4480"
    class="fil4 fnt29"
    y="4250"
    x="5540">t</text>
+
 
 
 
@@ -5130,11 +5527,13 @@
 
 
 
+
    <text
    id="text4484"
    class="fil4 fnt29"
    y="4250"
    x="5589">i</text>
+
 
 
 
@@ -5146,6 +5545,7 @@
 
 
 
+
    <text
    id="text4488"
    class="fil4 fnt29"
@@ -5154,11 +5554,13 @@
 
 
 
+
    <text
    id="text4490"
    class="fil4 fnt29"
    y="4250"
    x="5636">H</text>
+
 
 
 
@@ -5178,6 +5580,7 @@
 
 
 
+
    <text
    id="text4498"
    class="fil1 fnt28"
@@ -5186,11 +5589,13 @@
 
 
 
+
    <text
    id="text4500"
    class="fil1 fnt28"
    y="4250"
    x="5592">0</text>
+
 
 
 
@@ -5206,11 +5611,13 @@
 
 
 
+
    <text
    id="text4506"
    class="fil1 fnt28"
    y="4250"
    x="5546">2</text>
+
 
 
 
@@ -5226,6 +5633,7 @@
 
 
 
+
    <text
    id="text4512"
    class="fil1 fnt28"
@@ -5234,11 +5642,13 @@
 
 
 
+
    <text
    id="text4514"
    class="fil1 fnt28"
    y="4250"
    x="5592">0</text>
+
 
 
 
@@ -5254,11 +5664,13 @@
 
 
 
+
    <text
    id="text4520"
    class="fil1 fnt28"
    y="4250"
    x="5546">1</text>
+
 
 
 
@@ -5274,11 +5686,13 @@
 
 
 
+
    <text
    id="text4526"
    class="fil6 fnt30"
    y="4250"
    x="5506">X</text>
+
 
 
 
@@ -5310,11 +5724,13 @@
 
 
 
+
    <text
    id="text4540"
    class="fil4 fnt31"
    y="4250"
    x="5540">t</text>
+
 
 
 
@@ -5326,11 +5742,13 @@
 
 
 
+
    <text
    id="text4544"
    class="fil4 fnt31"
    y="4250"
    x="5589">i</text>
+
 
 
 
@@ -5342,6 +5760,7 @@
 
 
 
+
    <text
    id="text4548"
    class="fil4 fnt31"
@@ -5350,11 +5769,13 @@
 
 
 
+
    <text
    id="text4550"
    class="fil4 fnt31"
    y="4250"
    x="5636">F</text>
+
 
 
 
@@ -5371,6 +5792,7 @@
    class="fil1 fnt32"
    y="4250"
    x="5500">M</text>
+
 
 
 
@@ -5398,11 +5820,13 @@
 
 
 
+
    <text
    id="text4568"
    class="fil1 fnt32"
    y="4250"
    x="5552">7</text>
+
 
 
 
@@ -5414,11 +5838,13 @@
 
 
 
+
    <text
    id="text4572"
    class="fil1 fnt32"
    y="4250"
    x="5656">-</text>
+
 
 
 
@@ -5430,11 +5856,13 @@
 
 
 
+
    <text
    id="text4576"
    class="fil1 fnt32"
    y="4250"
    x="5739">1</text>
+
 
 
 
@@ -5454,11 +5882,13 @@
 
 
 
+
    <text
    id="text4584"
    class="fil6 fnt33"
    y="4250"
    x="5507">X</text>
+
 
 
 
@@ -5483,6 +5913,7 @@
    class="fil6 fnt33"
    y="4250"
    x="5500">FX</text>
+
 
 
 
@@ -5514,11 +5945,13 @@
 
 
 
+
    <text
    id="text4608"
    class="fil1 fnt34"
    y="4250"
    x="5565">7</text>
+
 
 
 
@@ -5530,11 +5963,13 @@
 
 
 
+
    <text
    id="text4612"
    class="fil1 fnt34"
    y="4250"
    x="5694">-</text>
+
 
 
 
@@ -5546,11 +5981,13 @@
 
 
 
+
    <text
    id="text4616"
    class="fil1 fnt34"
    y="4250"
    x="5798">1</text>
+
 
 
 
@@ -5570,11 +6007,13 @@
 
 
 
+
    <text
    id="text4624"
    class="fil1 fnt35"
    y="4250"
    x="5562">o</text>
+
 
 
 
@@ -5586,6 +6025,7 @@
 
 
 
+
    <text
    id="text4628"
    class="fil1 fnt35"
@@ -5594,11 +6034,13 @@
 
 
 
+
    <text
    id="text4630"
    class="fil1 fnt35"
    y="4250"
    x="5692">h</text>
+
 
 
 
@@ -5618,11 +6060,13 @@
 
 
 
+
    <text
    id="text4638"
    class="fil4 fnt36"
    y="4250"
    x="5540">t</text>
+
 
 
 
@@ -5634,11 +6078,13 @@
 
 
 
+
    <text
    id="text4642"
    class="fil4 fnt36"
    y="4250"
    x="5589">i</text>
+
 
 
 
@@ -5650,6 +6096,7 @@
 
 
 
+
    <text
    id="text4646"
    class="fil4 fnt36"
@@ -5658,11 +6105,13 @@
 
 
 
+
    <text
    id="text4648"
    class="fil4 fnt36"
    y="4250"
    x="5636">J</text>
+
 
 
 
@@ -5679,6 +6128,7 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:93.24019623px;font-family:Arial;fill:#ff0000"
    id="text4654"
@@ -5688,12 +6138,14 @@
 
 
 
+
    <text
    style="font-weight:normal;font-size:93.24019623px;font-family:Arial;fill:#ff0000"
    id="text4656"
    class="fil1 fnt35"
    y="4250"
    x="5602">7</text>
+
 
 
 
@@ -5709,11 +6161,13 @@
 
 
 
+
    <text
    id="text4662"
    class="fil4 fnt35"
    y="4250"
    x="5568">o</text>
+
 
 
 
@@ -5725,11 +6179,13 @@
 
 
 
+
    <text
    id="text4666"
    class="fil4 fnt35"
    y="4250"
    x="5670">f</text>
+
 
 
 
@@ -5745,11 +6201,13 @@
 
 
 
+
    <text
    id="text4672"
    class="fil4 fnt35"
    y="4250"
    x="5568">o</text>
+
 
 
 
@@ -5761,11 +6219,13 @@
 
 
 
+
    <text
    id="text4676"
    class="fil4 fnt35"
    y="4250"
    x="5670">f</text>
+
 
 
 
@@ -5785,11 +6245,13 @@
 
 
 
+
    <text
    id="text4684"
    class="fil4 fnt34"
    y="4250"
    x="5584">o</text>
+
 
 
 
@@ -5801,11 +6263,13 @@
 
 
 
+
    <text
    id="text4688"
    class="fil4 fnt34"
    y="4250"
    x="5714">r</text>
+
 
 
 
@@ -5817,11 +6281,13 @@
 
 
 
+
    <text
    id="text4692"
    class="fil4 fnt34"
    y="4250"
    x="5785">y</text>
+
 
 
 
@@ -5833,6 +6299,7 @@
 
 
 
+
    <text
    id="text4696"
    class="fil4 fnt34"
@@ -5841,11 +6308,13 @@
 
 
 
+
    <text
    id="text4698"
    class="fil4 fnt34"
    y="4250"
    x="5946">d</text>
+
 
 
 
@@ -5861,11 +6330,13 @@
 
 
 
+
    <text
    id="text4704"
    class="fil1 fnt37"
    y="4250"
    x="5555">ff</text>
+
 
 
 
@@ -5877,11 +6348,13 @@
 
 
 
+
    <text
    id="text4708"
    class="fil1 fnt37"
    y="4250"
    x="5760">ff</text>
+
 
 
 
@@ -5897,11 +6370,13 @@
 
 
 
+
    <text
    id="text4714"
    class="fil1 fnt37"
    y="4250"
    x="5553">o</text>
+
 
 
 
@@ -5913,11 +6388,13 @@
 
 
 
+
    <text
    id="text4718"
    class="fil1 fnt37"
    y="4250"
    x="5632">f</text>
+
 
 
 
@@ -5933,6 +6410,7 @@
 
 
 
+
    <text
    id="text4724"
    class="fil1 fnt37"
@@ -5941,11 +6419,13 @@
 
 
 
+
    <text
    id="text4726"
    class="fil1 fnt37"
    y="4250"
    x="5572">m</text>
+
 
 
 

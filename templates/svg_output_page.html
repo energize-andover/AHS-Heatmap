@@ -9,19 +9,29 @@
 </header>
 <main>
     <section class="section" style="padding-top: 52px">
-        <h1 class="title is-size-2 has-text-centered">Map of AHS, Level {{ floor }}<span class="footnote-asterisk">*</span></h1>
+        <h1 class="title is-size-2 has-text-centered">Map of AHS, Level {{ floor }}<span
+                class="footnote-asterisk">*</span></h1>
         <h1 id="err-msg" class="subtitle is-size-4 has-text-centered"></h1>
         <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
     </section>
     <section class="section">
         <div class="container">
+            <div id="key" class="has-text-centered">
+                <p>Color-Coding Key:</p>
+                <table>
+                    <tr><td><i class="fa fa-circle color-indicator" style="color: #00ffff;"></i></td><td class="label-value" alt-data="&le; {{ blue_values[1] }} PPM">&le; {{ blue_values[0] }}&deg;F</td></tr>
+                    <tr><td><i class="fa fa-circle color-indicator" style="color: #00ff00;"></i></td><td class="label-value" alt-data="{{ green_values[1] }} PPM">{{ green_values[0] }}&deg;F</td></tr>
+                    <tr><td><i class="fa fa-circle color-indicator" style="color: #ff0000;"></i></td><td class="label-value" alt-data="&ge; {{ red_values[1] }} PPM">&ge; {{ red_values[0] }}&deg;F</td></tr>
+                </table>
+            </div>
+            <hr>
             <ul id="label-ul">
                 <li>Color rooms by:</li>
                 <li>
                     <div class="onoffswitch">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch"
                                checked>
-                        <label class="onoffswitch-label" for="myonoffswitch" onclick="toggleDisplay()">
+                        <label class="onoffswitch-label" for="onoffswitch" onclick="toggleDisplay()">
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                         </label>
@@ -33,7 +43,8 @@
     </section>
     <section class="section">
         <div class="container">
-            <p class="is-size-5 footnote"><span class="footnote-asterisk">*</span>Where level 1 consists of the field house and level 4 consists of room numbers 301 and above</p>
+            <p class="is-size-5 footnote"><span class="footnote-asterisk">*</span>Where level 1 consists of the field
+                house and level 4 consists of room numbers 301 and above</p>
         </div>
     </section>
 </main>

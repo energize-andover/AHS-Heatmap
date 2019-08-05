@@ -111,3 +111,15 @@
 #svg-container {
     border: 3px solid #113255;
 }
+
+#key table {
+    margin: 0 auto;
+}
+
+#key table td {
+    padding: 5px;
+}
+
+.label-value {
+    text-align: right;
+}

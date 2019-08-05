@@ -66,7 +66,7 @@ def update_svg():
         file_name = svg_file_prefix + str(floor_level) + '.svg'
         file_path = os.path.join(svg_and_conversions_path, file_name)
 
-        update_map(svg_file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
+        update_map(file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
 
 def start_app():

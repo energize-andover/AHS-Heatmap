@@ -33,7 +33,7 @@ def get_room_pdf_coords(room, text_and_coords):
     return [room_row['x0'], room_row['y0'], room_row['x1'], room_row['y1']]
 
 
-def get_room_rect_info(room, media_box, text_and_coords):
+def get_room_contour(room, media_box, text_and_coords):
     coords = get_room_pdf_coords(str(room), text_and_coords)
     if coords is None:
         return None
@@ -41,7 +41,4 @@ def get_room_rect_info(room, media_box, text_and_coords):
     room_text_coords[1] = media_box[3] - room_text_coords[1]  # OpenCV measures the y-axis from the other side
     room_text_coords[3] = media_box[3] - room_text_coords[3]
 
-    room_rect_coords = get_room_corner_coords(room_text_coords)
-    room_rect_coords[1] = media_box[3] - room_rect_coords[1]  # Invert y-axis to match SVG y-axis
-
-    return room_rect_coords
+    return get_room_max_contour(room_text_coords)
