@@ -14,9 +14,9 @@ function showRoomData(path, oldValue, oldUnits) {
     overlay.css({'opacity': 0.6, 'visibility': 'visible'});
 
     let room = $(path).attr('id').split("-")[2];
-    // Extract the coordinates, width, and height, from the path
-    let splitPath = pathD.split(" ");
-    let bottomRightCorner = [parseFloat(splitPath[4].substr(1)), parseFloat(splitPath[5])];
+    // Locate the bottom right corner of the path using the bounding box
+    let bbox = path.getBBox();
+    let bottomRightCorner = [bbox.x + bbox.width, bbox.y];
     let cornerPadding = 50;
     let boxPadding = 150;
     let textPadding = 20;
@@ -144,9 +144,20 @@ function startSVGUpdating() {
 function toggleDisplay() {
     isShowingTemperature = !isShowingTemperature;
     loadSvg();
+
+    // Switch the contents of each label-value and alt-value
+    $('.label-value').each((index, keyLabel) => {
+        let label = $(keyLabel);
+        let currentValue = label.html();
+
+        console.log(currentValue, label.attr('alt-data'));
+
+        label.html(label.attr('alt-data'));
+        label.attr('alt-data', currentValue);
+    });
 }
 
 $(document).ready(() => {
     loadSvg();
-    setTimeout(startSVGUpdating(), 100); //Detach a loop into a thread
+    setTimeout(startSVGUpdating, 100); //Detach a loop into a thread
 });

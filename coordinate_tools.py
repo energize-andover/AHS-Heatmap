@@ -17,17 +17,23 @@ def get_room_pdf_coords(room, text_and_coords):
     global roomIndex
     roomIndex = None
 
-    for indx, col_room in text.iteritems():
-        if col_room == room or col_room.startswith(room) or col_room.endswith(room):
-            roomIndex = indx
+    # Check for exact matches first
+    if len(text_and_coords[text_and_coords['text'] == room].index) > 0:
+        roomIndex = text_and_coords.index[text_and_coords['text'] == room].tolist()
+    else:
+        # Then check with less exact methods
+        for indx, col_room in text.iteritems():
+            if col_room.startswith(room) or col_room.endswith(room):
+                roomIndex = indx
 
     if roomIndex is None:
         return None
+
     room_row = text_and_coords.iloc[roomIndex]
     return [room_row['x0'], room_row['y0'], room_row['x1'], room_row['y1']]
 
 
-def get_room_rect_info(room, media_box, text_and_coords):
+def get_room_contour(room, media_box, text_and_coords):
     coords = get_room_pdf_coords(str(room), text_and_coords)
     if coords is None:
         return None
@@ -35,7 +41,4 @@ def get_room_rect_info(room, media_box, text_and_coords):
     room_text_coords[1] = media_box[3] - room_text_coords[1]  # OpenCV measures the y-axis from the other side
     room_text_coords[3] = media_box[3] - room_text_coords[3]
 
-    room_rect_coords = get_room_corner_coords(room_text_coords)
-    room_rect_coords[1] = media_box[3] - room_rect_coords[1]  # Invert y-axis to match SVG y-axis
-
-    return room_rect_coords
+    return get_room_max_contour(room_text_coords)

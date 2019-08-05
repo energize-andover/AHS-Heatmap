@@ -9,6 +9,8 @@ import svgwrite
 import svgutils.transform as st
 import math
 
+FILLED_PATH_OPACITY = 0.45 # The opacity of all generated paths
+
 
 class HeatmapMain:
     def __init__(self, path, r, g, b):
@@ -54,29 +56,24 @@ class HeatmapMain:
         if not os.path.exists(output_path):
             shutil.copy(self.svg_path, output_path)
 
-        room_rect_info = get_room_rect_info(room, self.media_box, self.text_and_coords)
+        contour = get_room_contour(room, self.media_box, self.text_and_coords)
 
-        if room_rect_info is not None:
-            room_corner = (room_rect_info[0], room_rect_info[1])
-            room_width = room_rect_info[2]
-            room_height = room_rect_info[3]
+        if contour is not None:
+            path_text = "M"
 
-            room_rect_svg_coords = get_svg_coords(room_corner, self.view_box, self.media_box)
-            room_svg_width = get_svg_measure(room_width, self.view_box[2], self.media_box[2])
-            room_svg_height = get_svg_measure(room_height, self.view_box[3], self.media_box[3])
+            for i in range(len(contour)):
+                x, y = contour[i][0]
+
+                # Invert y axis (OpenCV measures in the opposite direction)
+                y = self.media_box[3] - y
+
+                svg_coords = get_svg_coords((x, y), self.view_box, self.media_box)
+                path_text += '{0} {1} '.format(svg_coords[0], svg_coords[1])
 
             dwg = svgwrite.Drawing(temp_path)
-            dwg.add(dwg.path(
-                d="M{0} {1} L{2} {3} L{4} {5} L{6} {7} Z".format(room_rect_svg_coords[0], room_rect_svg_coords[1],
-                                                                 room_rect_svg_coords[0],
-                                                                 room_rect_svg_coords[1] + room_svg_height,
-                                                                 room_rect_svg_coords[0] + room_svg_width,
-                                                                 room_rect_svg_coords[1] + room_svg_height,
-                                                                 room_rect_svg_coords[0] + room_svg_width,
-                                                                 room_rect_svg_coords[1]), fill=color_hex_code,
-                opacity=opacity, id="room-rect-{0}".format(room),
-                onmouseover="showRoomData(this, {0}, '{1}')".format(value, units),
-                onmouseout="hideRoomData(this)"))
+            dwg.add(dwg.path(d=path_text, fill=color_hex_code, opacity=opacity, id="room-rect-{0}".format(room),
+                             onmouseover="showRoomData(this, {0}, '{1}')".format(value, units),
+                             onmouseout="hideRoomData(this)"))
             dwg.save()  # Save the path to a temporary file
 
             # Merge the files
@@ -119,7 +116,7 @@ class HeatmapMain:
 
         if not math.isnan(value) and units is not None and units != '':
             color = self.get_value_color(value, is_temperature_value)
-            self.fill_room(data['room'], color, 0.6, value, units, is_temperature_value)
+            self.fill_room(data['room'], color, FILLED_PATH_OPACITY, value, units, is_temperature_value)
 
     def add_overlay(self, is_temperature):
         temp_path = self.svg_path[0:-4] + '_temp_rect.svg'

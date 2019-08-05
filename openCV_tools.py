@@ -14,7 +14,7 @@ def initialize_cv(png_path):
         raise FileNotFoundError("There is no image located at '" + png_path + "'")
 
 
-def get_room_corner_coords(room_text_coords):
+def get_room_max_contour(room_text_coords):
     bottom_left = (room_text_coords[0], room_text_coords[1])
     top_right = (room_text_coords[2], room_text_coords[3])
 
@@ -44,13 +44,9 @@ def get_room_corner_coords(room_text_coords):
 
     ret, thresh = cv2.threshold(binary, 127, 255, 0)
     contours, hierarchy = cv2.findContours(thresh, 1, 2)
-    contour = contours[0]
+    contour = max(contours, key=cv2.contourArea) # grab largest contours
 
-    contour_perimeter = cv2.arcLength(contour, True)
-    approx_poly_curve = cv2.approxPolyDP(contour, 0.05 * contour_perimeter, True)
-    room_coords = cv2.boundingRect(approx_poly_curve)  # Format: (x, y, width, height)
-
-    return list(room_coords)
+    return contour
 
 
 def get_pixel_color(x, y):
