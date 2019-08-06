@@ -73,11 +73,7 @@ function showRoomData(path, oldValue, oldUnits) {
 }
 
 function getRoomPathWidth(path) {
-    let pathD = $(path).attr('d');
-    let split = pathD.split('L');
-    // To get width:
-    // split[2] up to first space - split[1] up to first space
-    let svg_width = Math.abs(parseFloat(split[1].split(' ')[0]) - parseFloat(split[2].split(' ')[0]));
+    let svg_width = path.getBBox().width;
 
     // Calculate pixel width based on SVG width
     let svg = $(path).parents('svg').first().parent('svg').first();
@@ -88,11 +84,7 @@ function getRoomPathWidth(path) {
 }
 
 function getRoomPathHeight(path) {
-    let pathD = $(path).attr('d');
-    let split = pathD.split('L');
-    // To get height:
-    // split[1] between first and second space - split[0] between first and second space
-    let svg_height = Math.abs(parseFloat(split[1].split(' ')[1]) - parseFloat(split[0].split(' ')[1]));
+    let svg_height = path.getBBox().height;
 
     // Calculate pixel width based on SVG width
     let svg = $(path).parents('svg').first().parent('svg').first();
