@@ -6611,52 +6611,7 @@
    class="fil6 str0"
    d="m 1551,1174 h 79 m -79,-12 h -1 m 1,0 v 12 h -1 v -12 m -11,12 1,-4 3,-4 3,-2 4,-1 m -23,0 h 1 m -1,0 v 12 h 1 v -12 l 4,1 4,2 2,4 1,4 m -2,159 h 92 m -104,-12 v 12.9272 l 1,0.073 v -13 z m 12,12 -1,-5 -2,-4 -4,-3 -5,-1"
    id="path7558" />
-  <g
-   transform="matrix(0.80347596,0,0,0.81872053,211.73658,260.91308)"
-   id="g7566">
-   <text
-   style="font-weight:normal;font-size:21.24890137px;font-family:Arial;fill:#ff0000;stroke-width:0.64596337"
-   x="1673.9438"
-   y="1266.6915"
-   class="fil1 fnt23"
-   id="text7560">1</text>
-
-
-
-
-
-
-
-
-   <text
-   style="font-weight:normal;font-size:21.24890137px;font-family:Arial;fill:#ff0000;stroke-width:0.64596337"
-   x="1686.2172"
-   y="1266.6915"
-   class="fil1 fnt23"
-   id="text7562">2</text>
-
-
-
-
-
-
-
-
-   <text
-   style="font-weight:normal;font-size:21.24890137px;font-family:Arial;fill:#ff0000;stroke-width:0.64596337"
-   x="1697.8445"
-   y="1266.6915"
-   class="fil1 fnt23"
-   id="text7564">2</text>
-
-
-
-
-
-
-
-
-  </g>
+  
   <path
    style="fill:none;stroke:#000000;stroke-width:0.89999998;stroke-linecap:round;stroke-linejoin:round"
    class="fil6 str0"
