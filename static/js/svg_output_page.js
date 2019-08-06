@@ -142,8 +142,6 @@ function toggleDisplay() {
         let label = $(keyLabel);
         let currentValue = label.html();
 
-        console.log(currentValue, label.attr('alt-data'));
-
         label.html(label.attr('alt-data'));
         label.attr('alt-data', currentValue);
     });
