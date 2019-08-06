@@ -13,7 +13,7 @@ import datetime
 import shutil
 
 app
-HOST_PREFIX = "/heatmap"
+HOST_PREFIX = ""
 
 levels = [2, 3, 4]
 svg_file_prefix = "Andover-HS-level-"
