@@ -2,6 +2,9 @@
 ## About
 This program reads from sensors around Andover High School (AHS) and, from any amount of given SVG floor plans, hosts a web site containing interactive versions of these floor plans, in which rooms are colored according to their temperature or carbon dioxide values. These maps provide a simple, quick, and comprehensible method of locating rooms, wings, or floors with ventilation problems. It can work with any amount of floor plans, given that they meet the [required format](#floor-plan-requirements).
 
+## Demo
+This project is hosted live at [heatmap.energizeandover.com](https://heatmap.energizeandover.com)! Check it out!
+
 ## Floor Plan Requirements
 This project supports any number of heatmaps, granted they meet the following criteria:
 * They are in SVG format
