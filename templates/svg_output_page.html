@@ -68,7 +68,7 @@
     function loadSvg() {
         let err = $('#err-msg');
 
-        $('#svg-container').load(`static/svg_and_conversions/Andover-HS-level-2.svg`, (responseText, statusText, xhr) => {
+        $('#svg-container').load(`static/svg_and_conversions/{{ file_filled_prefix }}${isShowingTemperature ? 'temperature' : 'co2'}.svg?${$.now()}`, (responseText, statusText, xhr) => {
             adjustFooter();
             if (xhr.status === 404) {
                 if (!SVGExists) {
