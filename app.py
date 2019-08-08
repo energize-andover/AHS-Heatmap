@@ -103,6 +103,10 @@ def start_app():
         else:
             abort(404)
 
+    @app.route('{0}/no-mobile'.format(HOST_PREFIX))
+    def no_mobile():
+        return load_error_page(403, 'Forbidden', 'Sorry, AHS Heatmaps does not currently support mobile devices!')
+
     @app.errorhandler(404)
     def error_404(e):
         return load_error_page(404, 'Page Not Found', 'The page you are looking for might have been removed, had its ' +
