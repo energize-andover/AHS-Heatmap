@@ -11,6 +11,7 @@
     <section class="section" style="padding-top: 52px">
         <h1 class="title is-size-2 has-text-centered">Map of AHS, Level {{ floor }}<span
                 class="footnote-asterisk">*</span></h1>
+        <h2 class="subtitle is-size-6 has-text-centered" id="mobile-notice"></h2>
         <h1 id="err-msg" class="subtitle is-size-4 has-text-centered"></h1>
         <div id="svg-container"><!-- the svg is loaded in via javascript--></div>
     </section>
@@ -106,7 +107,9 @@
     };
 
     if (window.mobileAndTabletcheck())
-        window.location.href = '{{ host_prefix }}/no-mobile'
+        $('#mobile-notice').html("Notice: Interactivity is known to perform worse on mobile devices!");
+    else
+        $('#mobile-notice').remove();
 </script>
 <script src="static/js/svg_output_page.js?{{ time }}"></script>
 {{ macros.footer(year) }}
