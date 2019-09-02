@@ -1,26 +1,19 @@
-from main import HeatmapMain
-from data_tools import init_data_tools, fill_all_rooms, update_air_data
-from file_update_tools import update_map
 from flask import *
+from config import *
+from main import HeatmapMain
+from file_update_tools import update_map
+from data_tools import init_data_tools, fill_all_rooms, update_air_data
 import os
-import sched
 import time
-import datetime as dt
-import timeinterval
-import threading
-import calendar
-import datetime
+import sched
 import shutil
+import datetime
+import calendar
+import threading
+import timeinterval
+import datetime as dt
 
 app
-HOST_PREFIX = ""
-
-levels = [2, 3, 4]
-svg_file_prefix = "Andover-HS-level-"
-svg_and_conversions_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                        os.path.join('static', 'svg_and_conversions'))
-
-rooms_and_sensors = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('data', 'csv', 'ahs_air.csv'))
 
 # Set up the color values (temperature, co2)
 # BLUE_VALUE is the temperatures/co2 levels that will be marked cold/low (with a light blue color)
@@ -31,18 +24,17 @@ GREEN_VALUE = (70, 900)
 RED_VALUE = (80, 2000)
 
 # Empty out the temporary folder by deleting it and making a new one
-folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.join('static', 'temp_update_svgs'))
 
-if os.path.exists(folder_path):
-    shutil.rmtree(folder_path)
+if os.path.exists(TEMP_UPDATE_PATH):
+    shutil.rmtree(TEMP_UPDATE_PATH)
 
-os.mkdir(folder_path)
+os.mkdir(TEMP_UPDATE_PATH)
 
-init_data_tools(rooms_and_sensors)
+init_data_tools(ROOM_SENSOR_CSV)
 
-for level in levels:
-    svg_file_name = svg_file_prefix + str(level) + '.svg'
-    svg_path = os.path.join(svg_and_conversions_path, svg_file_name)
+for level in BUILDING_LEVELS:
+    svg_file_name = SVG_FILE_PREFIX + str(level) + '.svg'
+    svg_path = os.path.join(SVG_AND_CONVERSIONS_PATH, svg_file_name)
 
     heatmap = HeatmapMain(svg_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
@@ -62,9 +54,9 @@ def datetime_to_utc(dt):
 def update_svg():
     update_air_data()
 
-    for floor_level in levels:
-        file_name = svg_file_prefix + str(floor_level) + '.svg'
-        file_path = os.path.join(svg_and_conversions_path, file_name)
+    for floor_level in BUILDING_LEVELS:
+        file_name = SVG_FILE_PREFIX + str(floor_level) + '.svg'
+        file_path = os.path.join(SVG_AND_CONVERSIONS_PATH, file_name)
 
         update_map(file_name, file_path, RED_VALUE, GREEN_VALUE, BLUE_VALUE)
 
@@ -97,7 +89,7 @@ def start_app():
             abort(404)
             return None  # Stops the following code from executing
 
-        if floor_num in levels:
+        if floor_num in BUILDING_LEVELS:
             return render_template('svg_output_page.html', title='Andover HS Level {0}'.format(floor),
                                    file_filled_prefix="Andover-HS-level-{0}_filled_rooms_".format(floor), floor=floor)
         else:
@@ -125,7 +117,7 @@ def start_app():
     app.register_error_handler(404, error_404)
 
     app.jinja_env.globals['host_prefix'] = HOST_PREFIX
-    app.jinja_env.globals['floors'] = levels
+    app.jinja_env.globals['floors'] = BUILDING_LEVELS
     app.jinja_env.globals['date'] = datetime.datetime.now().strftime("%B %d, %Y")
     app.jinja_env.globals['blue_values'] = BLUE_VALUE
     app.jinja_env.globals['green_values'] = GREEN_VALUE
