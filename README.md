@@ -35,6 +35,8 @@ An example of a properly formatted floor plan can be seen here:
 4) Install [Inkscape](https://inkscape.org/) and add it to your system's PATH (you should be able to open Inkscape by opening a terminal and running `inkscape` from any directory)
 5) Ensure you have an internet connection and run `main.py`
 
+For more detailed instructions, see `INITIALIZATION.md`.
+
 See [Security Notice](#security-notice) to learn more
 
 ## Dependencies
