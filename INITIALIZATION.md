@@ -1,4 +1,4 @@
-#AHS Heatmap Initialization 
+# AHS Heatmap Initialization 
 Follow this guide to properly install and initialize the heatmap on your machine.
 
 ## Cloning
