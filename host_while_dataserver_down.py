@@ -14,9 +14,7 @@ def start_error_app():
 
     @error_app.route("{0}/".format(HOST_PREFIX))
     def home():
-        return load_error_page(502, 'Bad Gateway', 'Due to a power outage and the building\'s COVID-related closure, '
-                                                   'the AHS heatmap is unable to access sensor data and will remain '
-                                                   'down until further notice.')
+        return load_error_page(502, 'Bad Gateway', 'As the public data server for this project has been made private, AHS heatmap is unable to access sensor data and will remain down until further notice.')
 
     @error_app.route("{0}/about".format(HOST_PREFIX))
     def about():
